@@ -1,0 +1,15 @@
+Put the lines below in context.xml in tomcat_base/conf (make sure the db and user exist and the user has permissions for the db)
+
+<Resource name="jdbc/practit"
+auth="Container"
+type="javax.sql.DataSource"
+username="battleshipsUser"
+password="Internship1"
+driverClassName="net.sourceforge.jtds.jdbc.Driver"
+url="jdbc:jtds:sqlserver:/localhost:1433/practit"
+maxActive="8"
+maxIdle="4"/>
+
+
+
+
