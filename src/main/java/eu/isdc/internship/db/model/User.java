@@ -115,6 +115,4 @@ public class User {
 	public void setMove(List<Move> move) {
 		this.move = move;
 	}
-	
-	
 }
