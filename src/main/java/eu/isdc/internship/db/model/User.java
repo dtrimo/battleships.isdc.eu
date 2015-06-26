@@ -17,6 +17,8 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "USERS")
@@ -36,18 +38,18 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "BIRTHDATE", nullable = false, length = 10)
 	private Date birthDate;
-
-	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
-	// 1-n StartConfig
-	@Cascade(value = CascadeType.ALL)	
-	private List<StartConfig> startConfig;
-
+	
 	@OneToOne(mappedBy = "user",fetch=FetchType.LAZY)
 	// 1-1 pentru Statistics
 	@Cascade(value = CascadeType.ALL)
 	private Statistics statistic;
+	
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY, orphanRemoval = true)
+	// 1-n StartConfig
+	@Cascade(value = CascadeType.ALL)	
+	private List<StartConfig> startConfig;
 
-	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY, orphanRemoval = true)
 	// 1-n Moves
 	@Cascade(value = CascadeType.ALL)
 	private List<Move> move;

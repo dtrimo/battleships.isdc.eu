@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import eu.isdc.internship.db.model.Move;
 import eu.isdc.internship.db.model.Statistics;
 import eu.isdc.internship.db.model.User;
 
@@ -29,21 +30,56 @@ public class TestUserDAO{
 	@Autowired
 	private StatisticsDAO statDAO;
 	
+	@Autowired
+	private MoveDAO moveDAO;
+	
+	@Autowired
+	private StartConfigDAO startConfDAO;
+	
 	@Before
     public void initTest() {
 		User entity = new User("user1", "pass1", new Date());
-		Statistics stat = new Statistics();
-		stat.setNrOfPlayedGames(1);
-		stat.setNrOfRoundsToWin(2);
-		//stat.setUser(entity);
-		//entity.setStatistic(stat);
+		Statistics stat = new Statistics(1, 2, 3, 4);
 		entity.setStatistic(stat);
 		stat.setUser(entity);
-		userDAO.save(entity);
-		//statDAO.save(stat);
-		//statDAO.readAll();
 		
+		Move move1 = new Move(1, new Date(), 2, 3);
+		Move move2 = new Move(10, new Date(), 20, 30);
+		ArrayList<Move> moveList = new ArrayList<Move>();
+		moveList.add(move1);
+		moveList.add(move2);
+		move1.setUser(entity);
+		move2.setUser(entity);
+		entity.setMove(moveList);
+		
+		userDAO.save(entity);
     }
+	
+	@Test
+	@Transactional
+	public void testUserStatsMapping() {
+		Assert.assertEquals(1, statDAO.readAll().size());
+		
+		userDAO.delete(userDAO.readAll().get(0));
+		Assert.assertEquals(0, statDAO.readAll().size());
+	}
+	
+	
+	
+	@Test
+	@Transactional
+	public void testMoveMapping() {
+		Assert.assertEquals(2, moveDAO.readAll().size());
+		User user = userDAO.readAll().get(0);
+		
+		Assert.assertEquals(2, user.getMove().size());
+		moveDAO.delete(moveDAO.readAll().get(1));
+		user = userDAO.readAll().get(0);
+		Assert.assertEquals(1, user.getMove().size());
+		
+		userDAO.delete(userDAO.readAll().get(0));
+		Assert.assertEquals(0, moveDAO.readAll().size());
+	}
 	
 	@Test
 	@Transactional
@@ -55,11 +91,6 @@ public class TestUserDAO{
 		
 		Assert.assertEquals("user1", user1.getName());
 		Assert.assertEquals("pass1", user1.getPassword());
-		Assert.assertEquals(1, user1.getStatistic().getNrOfPlayedGames());
-		
-		Assert.assertEquals(1, statDAO.readAll().size());
-		userDAO.delete(user1);
-		Assert.assertEquals(0, statDAO.readAll().size());
 	}
 	
 	@Test

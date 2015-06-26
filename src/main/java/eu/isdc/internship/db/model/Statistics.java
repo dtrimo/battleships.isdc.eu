@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +21,26 @@ public class Statistics {
 	// 1-1 cu Users
 	@JoinColumn(name = "USER_ID", referencedColumnName = "user_id")
 	private User user;
+	
+	@Column(name = "NROFWINS")
+	private int nrOfWins;
+
+	@Column(name = "NROFPLAYEDGAMES")
+	private int nrOfPlayedGames;
+
+	@Column(name = "NROFROUNDSTOWIN")
+	private int nrOfRoundsToWin;
+
+	@Column(name = "NROFROUNDSTOLOSE")
+	private int nrOfRundsToLose;
+	
+	public Statistics() {}
+	public Statistics(int wins, int played, int roundsWin, int roundsLose) {
+		this.nrOfWins = wins;
+		this.nrOfPlayedGames = played;
+		this.nrOfRoundsToWin = roundsWin;
+		this.nrOfRundsToLose = roundsLose;
+	}
 
 	public User getUser() {
 		return user;
@@ -35,18 +54,6 @@ public class Statistics {
 		this.stats_id = stats_id;
 	}
 
-	@Column(name = "NROFWINS")
-	private int nrOfWins;
-
-	@Column(name = "NROFPLAYEDGAMES")
-	private int nrOfPlayedGames;
-
-	@Column(name = "NROFROUNDSTOWIN")
-	private int nrOfRoundsToWin;
-
-	@Column(name = "NROFROUNDSTOLOSE")
-	private int nrOfRundsToLose;
-	
 	public void setUser(User user) {
 		this.user = user;
 	}

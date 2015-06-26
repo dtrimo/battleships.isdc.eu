@@ -72,6 +72,16 @@ public abstract class GenericDAO<T, ID extends Serializable> {
 	}
 	
 	/**
+	 * Reload an entity from the database
+	 * @param entity
+	 * @return
+	 */
+	public T refresh(T entity) {
+		hibernateTemplate.refresh(entity);
+		return entity;
+	}
+	
+	/**
 	 * Delete an entity from the database
 	 * @param entity
 	 * 		Entity to be deleted

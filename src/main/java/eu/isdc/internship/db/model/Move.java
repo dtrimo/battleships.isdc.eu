@@ -9,11 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "MOVES")
@@ -32,6 +33,7 @@ public class Move {
 
 	@ManyToOne //n-1 cu Users
 	@JoinColumn(name = "user_id")
+	@Cascade(CascadeType.REFRESH)
 	private User user;
 	
 	@ManyToOne //n-1 cu StartConfig
@@ -49,8 +51,7 @@ public class Move {
 	private Game game;
 
 	public Move(){}
-	public Move(Long id, int rounds, Date d, int x, int y){
-		this.move_id=id;
+	public Move(int rounds, Date d, int x, int y){
 		this.date=d;
 		this.round=rounds;
 		this.x=x;
