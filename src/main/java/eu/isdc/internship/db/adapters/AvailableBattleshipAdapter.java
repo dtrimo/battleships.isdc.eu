@@ -7,7 +7,7 @@ import eu.isdc.internship.db.dto.AvailableBattleshipDTO;
 import eu.isdc.internship.db.model.AvailableBattleship;
 
 @Component
-public class AvailableBattleshipsAdapter extends GenericAdapter<AvailableBattleship, AvailableBattleshipDTO>{
+public class AvailableBattleshipAdapter extends GenericAdapter<AvailableBattleship, AvailableBattleshipDTO>{
 
 	@Autowired
 	private BattleshipPositionAdapter battleshipPositionAdapter;

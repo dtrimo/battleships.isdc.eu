@@ -13,7 +13,7 @@ public class StatisticsAdapter extends GenericAdapter<Statistics,StatisticsDTO>{
 		return null;
 		
 		Statistics st=new Statistics();
-		st.setUser_id(dto.getUser_id());
+		//st.setUser_id(dto.getUser_id());
 		st.setNrOfPlayedGames(dto.getNrOfPlayedGames());
 		st.setNrOfRoundsToWin(dto.getNrOfRoundsToWin());
 		st.setNrOfRundsToLose(dto.getNrOfRundsToLose());
@@ -28,7 +28,7 @@ public class StatisticsAdapter extends GenericAdapter<Statistics,StatisticsDTO>{
 			return null;
 		}
 		StatisticsDTO dto=new StatisticsDTO();
-		dto.setUser_id(model.getUser_id());
+		//dto.setUser_id(model.getUser_id());
 		dto.setNrOfPlayedGames(model.getNrOfPlayedGames());
 		dto.setNrOfRoundsToWin(model.getNrOfRoundsToWin());
 		dto.setNrOfRundsToLose(model.getNrOfRundsToLose());

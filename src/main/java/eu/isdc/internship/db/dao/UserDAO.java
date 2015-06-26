@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.plexus.util.StringUtils;
-import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -18,6 +18,7 @@ import eu.isdc.internship.db.model.User;
  * UserDAO class - used for accessing User entities
  */
 @Repository
+@SuppressWarnings("unchecked")
 public class UserDAO extends GenericDAO<User, Long>{
 	
 	/**
@@ -31,8 +32,16 @@ public class UserDAO extends GenericDAO<User, Long>{
 			return null;
 		}
 		final DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
-		criteria.add(Restrictions.eq("USERNAME", userName));
-		return (User)((Criteria)criteria).uniqueResult();
+		criteria.add(Restrictions.eq("name", userName));
+		List<User> results = (List<User>)hibernateTemplate.findByCriteria(criteria);
+		if(results.size() == 0) {
+			return null;
+		}
+		User user = results.get(0);
+		//Hibernate.initialize(user.getStatistic());
+		
+		
+		return user;
 	}
 	
 	/**
@@ -46,7 +55,7 @@ public class UserDAO extends GenericDAO<User, Long>{
 			return new ArrayList<User>();
 		}
 		final DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
-		criteria.add(Restrictions.in("USER_ID", userIds));
+		criteria.add(Restrictions.in("user_id", userIds));
 		return readWithPagination(criteria, -1, -1);
 	}
 }

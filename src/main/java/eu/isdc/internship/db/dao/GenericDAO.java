@@ -11,7 +11,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -25,15 +24,13 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
  * @param <ID>
  * 		Generic type of the unique identifier of above entities
  */
+@SuppressWarnings("unchecked")
 public abstract class GenericDAO<T, ID extends Serializable> {
 	protected HibernateTemplate hibernateTemplate;
 	
 	private final Class<T> persistentClass;
-	private DetachedCriteria crt;
-	
 	{
 		persistentClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-		crt = DetachedCriteria.forClass(persistentClass);
 	}
 	
 	/**
@@ -50,7 +47,7 @@ public abstract class GenericDAO<T, ID extends Serializable> {
 	 * @return List containing all entities of type T
 	 */
 	public List<T> readAll() {
-		return hibernateTemplate.find("SELECT Ent FROM " + persistentClass.getSimpleName() + "Ent");
+		return (List<T>)hibernateTemplate.find("select ent from " + persistentClass.getSimpleName() + " ent");
 	}
 	
 	/**
@@ -75,19 +72,6 @@ public abstract class GenericDAO<T, ID extends Serializable> {
 	}
 	
 	/**
-	 * Save an entity to the database and refresh its java representation
-	 * @param entity
-	 * 		Entity to be saved
-	 * @return Saved entity
-	 */
-	public T saveAndRefresh(T entity) {
-		hibernateTemplate.saveOrUpdate(entity);
-		hibernateTemplate.flush();
-		hibernateTemplate.refresh(entity);
-		return entity;
-	}
-	
-	/**
 	 * Delete an entity from the database
 	 * @param entity
 	 * 		Entity to be deleted
@@ -108,7 +92,7 @@ public abstract class GenericDAO<T, ID extends Serializable> {
    *          The number of maximum results to be returned
    * @return List of entities retrieved based on hql query
    */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	protected List<T> readWithPagination(final String hql, final int startIndex, final int maxResults) {
 		return hibernateTemplate.executeFind(new HibernateCallback() {
 			public Object doInHibernate(final Session session) throws HibernateException, SQLException {
@@ -134,7 +118,6 @@ public abstract class GenericDAO<T, ID extends Serializable> {
    *          The max results
    * @return List of entities retrieved based on criteria
    */
-	@SuppressWarnings("unchecked")
 	protected List<T> readWithPagination(final DetachedCriteria criteria, final int startIndex, final int maxResults) {
 
     final Criteria executableCriteria = criteria.getExecutableCriteria(hibernateTemplate.getSessionFactory().getCurrentSession());

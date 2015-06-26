@@ -2,26 +2,38 @@ package eu.isdc.internship.db.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
 @Entity
-@Table(name = "USER_STATISTICS")
+@Table(name = "USER_STATS")
 public class Statistics {
-
 	@Id
-	@GeneratedValue(generator = "generator")
-	@Column(name = "user_id", unique = true, nullable = false)
-	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "user"))
-	private Long user_id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "STATS_ID", nullable = false)
+	private Long stats_id;
+	
+	@OneToOne
+	// 1-1 cu Users
+	@JoinColumn(name = "USER_ID", referencedColumnName = "user_id")
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+	
+	public Long getStats_id() {
+		return stats_id;
+	}
+
+	public void setStats_id(Long stats_id) {
+		this.stats_id = stats_id;
+	}
 
 	@Column(name = "NROFWINS")
 	private int nrOfWins;
@@ -34,34 +46,11 @@ public class Statistics {
 
 	@Column(name = "NROFROUNDSTOLOSE")
 	private int nrOfRundsToLose;
-
-	@OneToOne
-	// 1-1 cu Users
-	@PrimaryKeyJoinColumn
-	private User user;
-
-	public Statistics(){}
-	public Statistics(int nrW,int nrP,int nrRW, int nrRL){
-		this.nrOfWins=nrW;
-		this.nrOfPlayedGames=nrP;
-		this.nrOfRoundsToWin=nrRW;
-		this.nrOfRundsToLose=nrRL;
-	}
 	
-
-
-	public Long getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
-	}
-	public User getUser() {
-		return user;
-	}
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public int getNrOfWins() {
 		return nrOfWins;
 	}
@@ -93,15 +82,4 @@ public class Statistics {
 	public void setNrOfRundsToLose(int nrOfRundsToLose) {
 		this.nrOfRundsToLose = nrOfRundsToLose;
 	}
-
-	// @OneToOne
-	// @PrimaryKeyJoinColumn
-	public User getUserId() {
-		return user;
-	}
-
-	public void setUserId(User userId) {
-		this.user = userId;
-	}
-
 }

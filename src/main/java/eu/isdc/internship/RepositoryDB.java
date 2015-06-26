@@ -31,7 +31,7 @@ public class RepositoryDB {
 	@Autowired
 	private BattleshipModelAdapter battleshipModelAdapter;
 	@Autowired
-	private AvailableBattleshipsAdapter availableBattleshipsAdapter;
+	private AvailableBattleshipAdapter availableBattleshipsAdapter;
 	
 	
 	private Session session;

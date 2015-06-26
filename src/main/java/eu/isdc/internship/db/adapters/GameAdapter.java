@@ -11,7 +11,7 @@ import eu.isdc.internship.db.model.*;
 public class GameAdapter extends GenericAdapter<Game,GameDTO>{
 
 	@Autowired
-	private AvailableBattleshipsAdapter availableBattleshipsAdapter;
+	private AvailableBattleshipAdapter availableBattleshipsAdapter;
 	@Autowired
 	private StartConfAdapter startConfAdapter;
 	
