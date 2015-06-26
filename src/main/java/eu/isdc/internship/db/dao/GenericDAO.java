@@ -72,11 +72,12 @@ public abstract class GenericDAO<T, ID extends Serializable> {
 	}
 	
 	/**
-	 * Reload an entity from the database
+	 * Force flush and reload entity from the database
 	 * @param entity
 	 * @return
 	 */
 	public T refresh(T entity) {
+		hibernateTemplate.flush();
 		hibernateTemplate.refresh(entity);
 		return entity;
 	}

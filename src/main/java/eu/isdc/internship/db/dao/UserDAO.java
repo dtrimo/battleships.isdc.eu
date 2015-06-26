@@ -38,9 +38,6 @@ public class UserDAO extends GenericDAO<User, Long>{
 			return null;
 		}
 		User user = results.get(0);
-		//Hibernate.initialize(user.getStatistic());
-		
-		
 		return user;
 	}
 	

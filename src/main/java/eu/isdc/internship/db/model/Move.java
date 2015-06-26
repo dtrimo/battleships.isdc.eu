@@ -33,7 +33,6 @@ public class Move {
 
 	@ManyToOne //n-1 cu Users
 	@JoinColumn(name = "user_id")
-	@Cascade(CascadeType.REFRESH)
 	private User user;
 	
 	@ManyToOne //n-1 cu StartConfig

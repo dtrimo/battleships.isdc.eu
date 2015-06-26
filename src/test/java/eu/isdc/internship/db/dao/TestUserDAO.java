@@ -16,6 +16,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import eu.isdc.internship.db.model.Move;
+import eu.isdc.internship.db.model.StartConfig;
 import eu.isdc.internship.db.model.Statistics;
 import eu.isdc.internship.db.model.User;
 
@@ -34,10 +35,10 @@ public class TestUserDAO{
 	private MoveDAO moveDAO;
 	
 	@Autowired
-	private StartConfigDAO startConfDAO;
+	private StartConfigDAO confDAO;
 	
 	@Before
-    public void initTest() {
+    public void initTests() {
 		User entity = new User("user1", "pass1", new Date());
 		Statistics stat = new Statistics(1, 2, 3, 4);
 		entity.setStatistic(stat);
@@ -52,6 +53,15 @@ public class TestUserDAO{
 		move2.setUser(entity);
 		entity.setMove(moveList);
 		
+		StartConfig conf1 = new StartConfig();
+		StartConfig conf2 = new StartConfig();
+		ArrayList<StartConfig> confList = new ArrayList<StartConfig>();
+		confList.add(conf1);
+		confList.add(conf2);
+		conf1.setUser(entity);
+		conf2.setUser(entity);
+		entity.setStartConfig(confList);
+		
 		userDAO.save(entity);
     }
 	
@@ -63,8 +73,6 @@ public class TestUserDAO{
 		userDAO.delete(userDAO.readAll().get(0));
 		Assert.assertEquals(0, statDAO.readAll().size());
 	}
-	
-	
 	
 	@Test
 	@Transactional
@@ -79,6 +87,18 @@ public class TestUserDAO{
 		
 		userDAO.delete(userDAO.readAll().get(0));
 		Assert.assertEquals(0, moveDAO.readAll().size());
+	}
+	
+	@Test
+	@Transactional
+	public void testStartConfigMapping() {
+		Assert.assertEquals(2, confDAO.readAll().size());
+		User user = userDAO.readAll().get(0);
+		
+		Assert.assertEquals(2, user.getStartConfig().size());
+		confDAO.delete(confDAO.readAll().get(1));
+		user = userDAO.readAll().get(0);
+		Assert.assertEquals(1, user.getStartConfig().size());
 	}
 	
 	@Test

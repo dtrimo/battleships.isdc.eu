@@ -13,7 +13,7 @@ public class MoveDAO extends GenericDAO<Move, Long> {
 	private UserDAO userDAO;
 	
 	/**
-	 * Delete is overriden to make sure the move instance is also deleted from the collection of its parent User entity
+	 * Delete is overridden to make sure the Move instance is also deleted from the collection of its parent User entity
 	 */
 	@Override
 	public Move delete(final Move move) {
