@@ -11,6 +11,11 @@ import eu.isdc.internship.application.Comparison;
 import eu.isdc.internship.db.model.Statistics;
 import eu.isdc.internship.db.model.User;
 
+/**
+ * 
+ * @author Horia.Galbenu
+ * StatisticsDAO class - used for accessing Statistics entities
+ */
 @Repository
 public class StatisticsDAO extends GenericDAO<Statistics, Long> {
 
@@ -29,6 +34,14 @@ public class StatisticsDAO extends GenericDAO<Statistics, Long> {
 		return stats;
 	}
 	
+	/**
+	 * Get statistics by number of wins
+	 * @param wins
+	 * 		Wins to compare to
+	 * @param comp
+	 * 		Comparison enum value which indicates criteria restriction type
+	 * @return List of statistics which qualify for the specified criteria
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Statistics> getAllStatsByWins(int wins, Comparison comp) {
 		final DetachedCriteria criteria = DetachedCriteria.forClass(Statistics.class);
@@ -42,6 +55,14 @@ public class StatisticsDAO extends GenericDAO<Statistics, Long> {
 		return (List<Statistics>)hibernateTemplate.findByCriteria(criteria);
 	}
 	
+	/**
+	 * Get statistics by total games played
+	 * @param played
+	 * 		Amount of played games to compare to
+	 * @param comp
+	 * 		Comparison enum value which indicates criteria restriction type
+	 * @return List of statistics which qualify for the specified criteria
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Statistics> getAllStatsByGamesPlayed(int played, Comparison comp) {
 		final DetachedCriteria criteria = DetachedCriteria.forClass(Statistics.class);

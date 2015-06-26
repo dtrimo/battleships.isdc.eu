@@ -36,15 +36,15 @@ public class Game {
 	@Column(name = "N", nullable = false)
 	private int n;
 
-	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY)	// 1-n cu StartConfig
+	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY, orphanRemoval = true)	// 1-n cu StartConfig
 	@Cascade(value = CascadeType.ALL)
 	private List<StartConfig> startConfigs;
 	
-	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY)	// 1-n cu AvailableBT
+	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY, orphanRemoval = true)	// 1-n cu AvailableBT
 	@Cascade(value = CascadeType.ALL)
 	private List<AvailableBattleship> availableBTs;
 	
-	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY)	// 1-n cu Moves
+	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY, orphanRemoval = true)	// 1-n cu Moves
 	@Cascade(value = CascadeType.ALL)
 	private List<Move> moves;
 

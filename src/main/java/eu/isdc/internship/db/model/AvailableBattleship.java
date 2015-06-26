@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
@@ -27,7 +25,7 @@ public class AvailableBattleship {
 	@Column(name = "AV_BT_ID", nullable = false)
 	private Long Av_BT_id;
 
-	@Column(name = "COUNT")
+	@Column(name = "BATTLESHIP_COUNT")
 	private int count;
 
 	@ManyToOne //n-1 cu BT_Model 
@@ -42,6 +40,7 @@ public class AvailableBattleship {
 	@JoinColumn(name = "game_id")
 	private Game game;
 	
+	public AvailableBattleship() {}
 	
 	public List<BattleshipPosition> getBT_Positions() {
 		return BT_Positions;
