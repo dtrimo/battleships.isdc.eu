@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import eu.isdc.internship.db.model.AvailableBattleship;
 import eu.isdc.internship.db.model.Game;
 import eu.isdc.internship.db.model.Move;
 import eu.isdc.internship.db.model.StartConfig;
@@ -39,7 +38,7 @@ public class TestGameDAO {
 	
 	@Before
 	public void initTests() {
-		Game game = new Game(new Date(), 10, 20);
+		Game game = new Game(new Date());
 		
 		Move move1 = new Move(1, new Date(), 2, 3);
 		Move move2 = new Move(10, new Date(), 20, 30);
@@ -58,15 +57,6 @@ public class TestGameDAO {
 		conf1.setGame(game);
 		conf2.setGame(game);
 		game.setStartConfigs(confList);
-		
-		AvailableBattleship ab1 = new AvailableBattleship();
-		AvailableBattleship ab2 = new AvailableBattleship();
-		ArrayList<AvailableBattleship> abList = new ArrayList<AvailableBattleship>();
-		abList.add(ab1);
-		abList.add(ab2);
-		ab1.setGame(game);
-		ab2.setGame(game);
-		game.setAvailableBTs(abList);
 		
 		gameDAO.save(game);
 	}
@@ -100,18 +90,6 @@ public class TestGameDAO {
 	
 	@Test
 	@Transactional
-	public void testAvailableBattleshipMapping() {
-		Assert.assertEquals(2, abtDAO.readAll().size());
-		Game game = gameDAO.readAll().get(0);
-		
-		Assert.assertEquals(2, game.getAvailableBTs().size());
-		abtDAO.delete(abtDAO.readAll().get(1));
-		game = gameDAO.readAll().get(0);
-		Assert.assertEquals(1, game.getAvailableBTs().size());
-	}
-	
-	@Test
-	@Transactional
 	public void testGetGamesByIds() {
 		ArrayList<Long> ids = new ArrayList<Long>();
 		List<Game> results = gameDAO.readAll();
@@ -130,17 +108,6 @@ public class TestGameDAO {
 	
 	@Test
 	@Transactional
-	public void testGetGamesByShape() {
-		Assert.assertEquals(1, gameDAO.getAllGamesByShape(10, 20).size());
-		Assert.assertEquals(0, gameDAO.getAllGamesByShape(20, 10).size());
-		Assert.assertEquals(0, gameDAO.getAllGamesByShape(5, 17).size());
-		
-		gameDAO.save(new Game(new Date(), 10, 20));
-		Assert.assertEquals(2, gameDAO.getAllGamesByShape(10, 20).size());
-	}
-	
-	@Test
-	@Transactional
 	public void testGetGamesByDate() {
 		Assert.assertEquals(1, gameDAO.getAllGamesByDate(new Date()).size());
 		Date otherDate = new Date();
@@ -149,7 +116,7 @@ public class TestGameDAO {
 	    cal.set(Calendar.MONTH, 0);
 	    
 	    Assert.assertEquals(0, gameDAO.getAllGamesByDate(cal.getTime()).size());
-	    gameDAO.save(new Game(cal.getTime(), 1, 1));
+	    gameDAO.save(new Game(cal.getTime()));
 	    Assert.assertEquals(1, gameDAO.getAllGamesByDate(cal.getTime()).size());
 	    Assert.assertEquals(1, gameDAO.getAllGamesByDate(new Date()).size());
 	}

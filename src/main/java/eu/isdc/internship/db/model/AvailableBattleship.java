@@ -36,9 +36,9 @@ public class AvailableBattleship {
 	@Cascade(value = CascadeType.ALL)
 	private List<BattleshipPosition> BT_Positions;
 	
-	@ManyToOne //n-1 cu Games
-	@JoinColumn(name = "game_id")
-	private Game game;
+	@ManyToOne //n-1 cu GameType
+	@JoinColumn(name = "game_type_id")
+	private GameType gameType;
 	
 	public AvailableBattleship() {}
 	
@@ -48,11 +48,13 @@ public class AvailableBattleship {
 	public void setBT_Positions(List<BattleshipPosition> bT_Positions) {
 		BT_Positions = bT_Positions;
 	}
-	public Game getGame() {
-		return game;
+
+	public GameType getGameType() {
+		return gameType;
 	}
-	public void setGame(Game game) {
-		this.game = game;
+
+	public void setGameType(GameType gameType) {
+		this.gameType = gameType;
 	}
 
 	public BattleshipModel getModel() {

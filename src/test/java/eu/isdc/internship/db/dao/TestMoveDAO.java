@@ -49,7 +49,7 @@ public class TestMoveDAO {
 		move1.setUser(user);
 		move2.setUser(user);
 		
-		Game game = new Game(new Date(), 17, 14);
+		Game game = new Game(new Date());
 		game.setMoves(moveList);
 		move1.setGame(game);
 		move2.setGame(game);

@@ -1,7 +1,6 @@
 package eu.isdc.internship.db.dao;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -17,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import eu.isdc.internship.db.model.AvailableBattleship;
 import eu.isdc.internship.db.model.BattleshipModel;
 import eu.isdc.internship.db.model.BattleshipPosition;
-import eu.isdc.internship.db.model.Game;
+import eu.isdc.internship.db.model.GameType;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/test-beans.xml")
@@ -28,7 +27,7 @@ public class TestAvailableBattleshipDAO {
 	private AvailableBattleshipDAO avbDAO;
 	
 	@Autowired
-	private GameDAO gameDAO;
+	private GameTypeDAO gameTypeDAO;
 	
 	@Autowired
 	private BattleshipModelDAO modelDAO;
@@ -44,10 +43,10 @@ public class TestAvailableBattleshipDAO {
 		avbList.add(avb1);
 		avbList.add(avb2);
 		
-		Game game = new Game(new Date(), 10, 20);
-		game.setAvailableBTs(avbList);
-		avb1.setGame(game);
-		avb2.setGame(game);
+		GameType gameType = new GameType(10, 20);
+		gameType.setAvailableBTs(avbList);
+		avb1.setGameType(gameType);
+		avb2.setGameType(gameType);
 		
 		BattleshipModel model = new BattleshipModel("model");
 		model.setAv_BT(avbList);
@@ -68,7 +67,7 @@ public class TestAvailableBattleshipDAO {
 		pos3.setAv_BT(avb2);
 		avb2.setBT_Positions(posList2);
 		
-		gameDAO.save(game);
+		gameTypeDAO.save(gameType);
 		modelDAO.save(model);
 	}
 	
@@ -76,20 +75,20 @@ public class TestAvailableBattleshipDAO {
 	@Transactional
 	public void testGameMapping() {
 		Assert.assertEquals(2, avbDAO.readAll().size());
-		Assert.assertEquals(1, gameDAO.readAll().size());
-		Game game = gameDAO.readAll().get(0);
-		List<AvailableBattleship> avbList = game.getAvailableBTs();
+		Assert.assertEquals(1, gameTypeDAO.readAll().size());
+		GameType gameType = gameTypeDAO.readAll().get(0);
+		List<AvailableBattleship> avbList = gameType.getAvailableBTs();
 		Assert.assertEquals(2, avbList.size());
 
 		avbDAO.delete(avbDAO.readAll().get(1));
 		Assert.assertEquals(1, avbDAO.readAll().size());
-		Assert.assertEquals(1, gameDAO.readAll().size());	
-		Assert.assertEquals(1, gameDAO.readAll().get(0).getAvailableBTs().size());
+		Assert.assertEquals(1, gameTypeDAO.readAll().size());	
+		Assert.assertEquals(1, gameTypeDAO.readAll().get(0).getAvailableBTs().size());
 		
 		avbDAO.delete(avbDAO.readAll().get(0));
 		Assert.assertEquals(0, avbDAO.readAll().size());
-		Assert.assertEquals(1, gameDAO.readAll().size());	
-		Assert.assertEquals(0, gameDAO.readAll().get(0).getAvailableBTs().size());
+		Assert.assertEquals(1, gameTypeDAO.readAll().size());	
+		Assert.assertEquals(0, gameTypeDAO.readAll().get(0).getAvailableBTs().size());
 	}
 	
 	@Test

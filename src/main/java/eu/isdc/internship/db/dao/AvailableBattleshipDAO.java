@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import eu.isdc.internship.db.model.AvailableBattleship;
 import eu.isdc.internship.db.model.BattleshipModel;
-import eu.isdc.internship.db.model.Game;
+import eu.isdc.internship.db.model.GameType;
 
 /**
  * 
@@ -16,7 +16,7 @@ import eu.isdc.internship.db.model.Game;
 public class AvailableBattleshipDAO extends GenericDAO<AvailableBattleship, Long> {
 
 	@Autowired
-	private GameDAO gameDAO;
+	private GameTypeDAO gameTypeDAO;
 	
 	@Autowired
 	private BattleshipModelDAO modelDAO;
@@ -26,10 +26,10 @@ public class AvailableBattleshipDAO extends GenericDAO<AvailableBattleship, Long
 	 */
 	@Override
 	public AvailableBattleship delete(AvailableBattleship availableBattleship) {
-		Game game = availableBattleship.getGame();
-		if(game != null) {
-			game.getAvailableBTs().remove(availableBattleship);
-			gameDAO.save(game);
+		GameType gameType = availableBattleship.getGameType();
+		if(gameType != null) {
+			gameType.getAvailableBTs().remove(availableBattleship);
+			gameTypeDAO.save(gameType);
 		}
 		BattleshipModel model = availableBattleship.getModel();
 		if(model != null) {

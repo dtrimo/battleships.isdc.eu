@@ -22,9 +22,9 @@ public class GameAdapter extends GenericAdapter<Game,GameDTO>{
 		Game g=new Game();
 		g.setGame_id(dto.getGame_id());
 		g.setDate(dto.getDate());
-		g.setM(dto.getM());
-		g.setN(dto.getN());
-		g.setAvailableBTs(availableBattleshipsAdapter.toModel(dto.getAvailableBTs()));
+		//g.setM(dto.getM());
+		//g.setN(dto.getN());
+		//g.setAvailableBTs(availableBattleshipsAdapter.toModel(dto.getAvailableBTs()));
 		g.setStartConfigs(startConfAdapter.toModel(dto.getStartConfigs()));
 		return g;			
 	}
@@ -37,9 +37,9 @@ public class GameAdapter extends GenericAdapter<Game,GameDTO>{
 		GameDTO dto = new GameDTO();
 		dto.setGame_id(model.getGame_id());
 		dto.setDate(model.getDate());
-		dto.setM(model.getM());
-		dto.setN(model.getN());
-		dto.setAvailableBTs(availableBattleshipsAdapter.toDTO(model.getAvailableBTs()));
+		//dto.setM(model.getM());
+		//dto.setN(model.getN());
+		//dto.setAvailableBTs(availableBattleshipsAdapter.toDTO(model.getAvailableBTs()));
 		dto.setStartConfigs(startConfAdapter.toDTO(model.getStartConfigs()));
 		return dto;
 	}

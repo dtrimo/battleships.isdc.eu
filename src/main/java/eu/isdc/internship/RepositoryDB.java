@@ -181,10 +181,10 @@ public class RepositoryDB {
 		session = factory.openSession();
 		AvailableBattleship av=new AvailableBattleship();
 		av.setCount(count);
-		av.setGame(gameAdapter.toModel(game));
+		//av.setGame(gameAdapter.toModel(game));
 		av.setModel(battleshipModelAdapter.toModel(model));
 		battleshipModelAdapter.toModel(model).getAv_BT().add(av);
-		gameAdapter.toModel(game).getAvailableBTs().add(av);
+		//gameAdapter.toModel(game).getAvailableBTs().add(av);
 		session.saveOrUpdate(av);
 		session.close();			
 	}

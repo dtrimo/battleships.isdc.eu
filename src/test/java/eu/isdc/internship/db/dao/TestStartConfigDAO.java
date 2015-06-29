@@ -44,7 +44,7 @@ public class TestStartConfigDAO {
 		conf1.setUser(user);
 		conf2.setUser(user);
 		
-		Game game = new Game(new Date(), 17, 14);
+		Game game = new Game(new Date());
 		game.setStartConfigs(confList);
 		conf1.setGame(game);
 		conf2.setGame(game);
