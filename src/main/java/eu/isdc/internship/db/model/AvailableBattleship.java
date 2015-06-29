@@ -55,7 +55,6 @@ public class AvailableBattleship {
 		this.game = game;
 	}
 
-	
 	public BattleshipModel getModel() {
 		return model;
 	}
