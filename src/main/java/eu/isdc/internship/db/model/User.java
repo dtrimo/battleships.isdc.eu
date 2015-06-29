@@ -3,6 +3,8 @@ package eu.isdc.internship.db.model;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -113,5 +115,25 @@ public class User {
 
 	public void setMove(List<Move> move) {
 		this.move = move;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if(other == null) {
+			return false;
+		}
+		if(other == this) {
+			return true;
+		}
+		if(!(other instanceof User)) {
+			return false;
+		}
+		User user = (User)other;
+		return user.user_id == this.user_id;
+	}
+	
+	@Override
+    public int hashCode() {
+		return new HashCodeBuilder(17, 31).append(this.user_id).toHashCode();
 	}
 }

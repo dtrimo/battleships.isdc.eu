@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import eu.isdc.internship.db.model.Game;
 import eu.isdc.internship.db.model.Move;
 import eu.isdc.internship.db.model.StartConfig;
-import eu.isdc.internship.db.model.Statistics;
 import eu.isdc.internship.db.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
