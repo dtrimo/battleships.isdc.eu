@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
@@ -27,7 +25,7 @@ public class AvailableBattleship {
 	@Column(name = "AV_BT_ID", nullable = false)
 	private Long Av_BT_id;
 
-	@Column(name = "COUNT")
+	@Column(name = "BATTLESHIP_COUNT")
 	private int count;
 
 	@ManyToOne //n-1 cu BT_Model 
@@ -38,10 +36,11 @@ public class AvailableBattleship {
 	@Cascade(value = CascadeType.ALL)
 	private List<BattleshipPosition> BT_Positions;
 	
-	@ManyToOne //n-1 cu Games
-	@JoinColumn(name = "game_id")
-	private Game game;
+	@ManyToOne //n-1 cu GameType
+	@JoinColumn(name = "game_type_id")
+	private GameType gameType;
 	
+	public AvailableBattleship() {}
 	
 	public List<BattleshipPosition> getBT_Positions() {
 		return BT_Positions;
@@ -49,14 +48,15 @@ public class AvailableBattleship {
 	public void setBT_Positions(List<BattleshipPosition> bT_Positions) {
 		BT_Positions = bT_Positions;
 	}
-	public Game getGame() {
-		return game;
-	}
-	public void setGame(Game game) {
-		this.game = game;
+
+	public GameType getGameType() {
+		return gameType;
 	}
 
-	
+	public void setGameType(GameType gameType) {
+		this.gameType = gameType;
+	}
+
 	public BattleshipModel getModel() {
 		return model;
 	}

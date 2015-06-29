@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
@@ -21,7 +19,6 @@ import org.hibernate.annotations.CascadeType;
 @Entity
 @Table(name = "START_CONFIG")
 public class StartConfig {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "STARTCONFIG_ID", nullable = false)
@@ -44,9 +41,7 @@ public class StartConfig {
 	private User user;
 	
 	public StartConfig(){}
-	public StartConfig(Long id){
-		this.startConfig_id=id;
-	}
+
 	public List<BattleshipPosition> getBT_Positions() {
 		return BT_Positions;
 	}

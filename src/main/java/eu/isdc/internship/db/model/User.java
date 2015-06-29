@@ -1,8 +1,9 @@
 package eu.isdc.internship.db.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,18 +38,18 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "BIRTHDATE", nullable = false, length = 10)
 	private Date birthDate;
-
-	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
-	// 1-n StartConfig
-	@Cascade(value = CascadeType.ALL)	
-	private List<StartConfig> startConfig;
-
+	
 	@OneToOne(mappedBy = "user",fetch=FetchType.LAZY)
 	// 1-1 pentru Statistics
 	@Cascade(value = CascadeType.ALL)
 	private Statistics statistic;
+	
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY, orphanRemoval = true)
+	// 1-n StartConfig
+	@Cascade(value = CascadeType.ALL)	
+	private List<StartConfig> startConfig;
 
-	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY, orphanRemoval = true)
 	// 1-n Moves
 	@Cascade(value = CascadeType.ALL)
 	private List<Move> move;
@@ -115,6 +116,24 @@ public class User {
 	public void setMove(List<Move> move) {
 		this.move = move;
 	}
+
+	@Override
+	public boolean equals(Object other) {
+		if(other == null) {
+			return false;
+		}
+		if(other == this) {
+			return true;
+		}
+		if(!(other instanceof User)) {
+			return false;
+		}
+		User user = (User)other;
+		return user.user_id == this.user_id;
+	}
 	
-	
+	@Override
+    public int hashCode() {
+		return new HashCodeBuilder(17, 31).append(this.user_id).toHashCode();
+	}
 }

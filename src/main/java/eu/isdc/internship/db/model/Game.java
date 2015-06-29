@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,32 +31,22 @@ public class Game {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "PLAYING_DATE", nullable = false, length = 10)
 	private Date date;
-
-	@Column(name = "M", nullable = false)
-	private int m;
 	
-	@Column(name = "N", nullable = false)
-	private int n;
+	@ManyToOne //n-1 cu GameType
+	@JoinColumn(name = "game_type_id")
+	private GameType gameType;
 
-	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY)	// 1-n cu StartConfig
+	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY, orphanRemoval = true)	// 1-n cu StartConfig
 	@Cascade(value = CascadeType.ALL)
 	private List<StartConfig> startConfigs;
 	
-	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY)	// 1-n cu AvailableBT
-	@Cascade(value = CascadeType.ALL)
-	private List<AvailableBattleship> availableBTs;
-	
-	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY)	// 1-n cu Moves
+	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY, orphanRemoval = true)	// 1-n cu Moves
 	@Cascade(value = CascadeType.ALL)
 	private List<Move> moves;
 
-
 	public Game(){}
-	public Game(Date d, int m, int n){
-		this.date=d;
-		this.m=m;
-		this.n=n;
-		
+	public Game(Date d){
+		this.date=d;		
 	}
 	/**
 	 * @return the game_id
@@ -85,34 +77,6 @@ public class Game {
 	}
 
 	/**
-	 * @return the m
-	 */
-	public int getM() {
-		return m;
-	}
-
-	/**
-	 * @param m the m to set
-	 */
-	public void setM(int m) {
-		this.m = m;
-	}
-
-	/**
-	 * @return the n
-	 */
-	public int getN() {
-		return n;
-	}
-
-	/**
-	 * @param n the n to set
-	 */
-	public void setN(int n) {
-		this.n = n;
-	}
-
-	/**
 	 * @return the startConfigs
 	 */
 	public List<StartConfig> getStartConfigs() {
@@ -124,20 +88,6 @@ public class Game {
 	 */
 	public void setStartConfigs(List<StartConfig> startConfigs) {
 		this.startConfigs = startConfigs;
-	}
-
-	/**
-	 * @return the availableBTs
-	 */
-	public List<AvailableBattleship> getAvailableBTs() {
-		return availableBTs;
-	}
-
-	/**
-	 * @param availableBTs the availableBTs to set
-	 */
-	public void setAvailableBTs(List<AvailableBattleship> availableBTs) {
-		this.availableBTs = availableBTs;
 	}
 
 	/**
@@ -153,7 +103,10 @@ public class Game {
 	public void setMoves(List<Move> moves) {
 		this.moves = moves;
 	}
-	
-	
-
+	public GameType getGameType() {
+		return gameType;
+	}
+	public void setGameType(GameType gameType) {
+		this.gameType = gameType;
+	}	
 }

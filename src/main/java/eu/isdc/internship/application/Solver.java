@@ -3,7 +3,7 @@ package eu.isdc.internship.application;
 import java.util.ArrayList;
 import java.util.List;
 
-//the big class Solver
+//May God have mercy on its users for the Solver shall not
 public class Solver {
 	
 	//the list with the all point which are on board

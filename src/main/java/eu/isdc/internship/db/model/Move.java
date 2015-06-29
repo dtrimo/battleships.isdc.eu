@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,8 +47,7 @@ public class Move {
 	private Game game;
 
 	public Move(){}
-	public Move(Long id, int rounds, Date d, int x, int y){
-		this.move_id=id;
+	public Move(int rounds, Date d, int x, int y){
 		this.date=d;
 		this.round=rounds;
 		this.x=x;
@@ -120,7 +117,4 @@ public class Move {
 	public void setGame(Game game) {
 		this.game = game;
 	}
-	
-	
-	
 }
