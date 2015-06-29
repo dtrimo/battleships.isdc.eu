@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import eu.isdc.internship.db.model.AvailableBattleship;
+import eu.isdc.internship.db.model.BattleshipModel;
 import eu.isdc.internship.db.model.Game;
 
 /**
@@ -17,6 +18,9 @@ public class AvailableBattleshipDAO extends GenericDAO<AvailableBattleship, Long
 	@Autowired
 	private GameDAO gameDAO;
 	
+	@Autowired
+	private BattleshipModelDAO modelDAO;
+	
 	/**
 	 * Delete is overridden to make sure the StartConfig instance is also deleted from the collection of its parent entities
 	 */
@@ -26,6 +30,11 @@ public class AvailableBattleshipDAO extends GenericDAO<AvailableBattleship, Long
 		if(game != null) {
 			game.getAvailableBTs().remove(availableBattleship);
 			gameDAO.save(game);
+		}
+		BattleshipModel model = availableBattleship.getModel();
+		if(model != null) {
+			model.getAv_BT().remove(availableBattleship);
+			modelDAO.save(model);
 		}
 		hibernateTemplate.delete(availableBattleship);
 		return availableBattleship;
