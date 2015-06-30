@@ -6,7 +6,7 @@ import java.util.List;
 public class GameDTO {
 	private Long game_id;
 	private Date date;
-	private GameType gameType;
+	private GameTypeDTO gameType;
 	private List<StartConfigDTO> startConfigs;
 	private List<MoveDTO> moves;
 	
@@ -16,10 +16,10 @@ public class GameDTO {
 	public void setGame_id(Long game_id) {
 		this.game_id = game_id;
 	}
-	public GameType getGameType() {
+	public GameTypeDTO getGameType() {
 		return gameType;
 	}
-	public void setGameType(GameType gameType) {
+	public void setGameType(GameTypeDTO gameType) {
 		this.gameType = gameType;
 	}
 	public Date getDate() {

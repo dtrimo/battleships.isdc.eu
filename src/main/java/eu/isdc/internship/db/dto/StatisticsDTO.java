@@ -1,18 +1,9 @@
 package eu.isdc.internship.db.dto;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
-import eu.isdc.internship.db.model.User;
-
 public class StatisticsDTO {
-	private Long user_id;
+	private Long stats_id;
+	
+	private UserDTO user;
 
 	private int nrOfWins;
 
@@ -22,12 +13,20 @@ public class StatisticsDTO {
 
 	private int nrOfRundsToLose;
 
-	public Long getUser_id() {
-		return user_id;
+	public Long getStats_id() {
+		return stats_id;
 	}
 
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setStats_id(Long stats_id) {
+		this.stats_id = stats_id;
+	}
+
+	public UserDTO getUser() {
+		return user;
+	}
+
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
 
 	public int getNrOfWins() {
@@ -61,6 +60,4 @@ public class StatisticsDTO {
 	public void setNrOfRundsToLose(int nrOfRundsToLose) {
 		this.nrOfRundsToLose = nrOfRundsToLose;
 	}
-
-
 }

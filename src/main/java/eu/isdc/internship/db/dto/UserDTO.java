@@ -1,7 +1,6 @@
 package eu.isdc.internship.db.dto;
 
 import java.util.Date;
-import java.util.List;
 
 public class UserDTO {
 
@@ -50,5 +49,4 @@ public class UserDTO {
 	public void setStatistics(StatisticsDTO statistics) {
 		this.statistics = statistics;
 	}
-
 }

@@ -4,12 +4,11 @@ package eu.isdc.internship.db.dto;
 import eu.isdc.internship.db.model.BattleshipModel;
 
 public class PositionDTO {
-	  private Long position_id;	  
-	  private int x;
-	  private int y;
-	  private BattleshipModel model;
-	  
-	  
+	private Long position_id;	  
+	private int x;
+	private int y;
+	private BattleshipModel model;
+	    
 	public Long getPosition_id() {
 		return position_id;
 	}
@@ -33,7 +32,5 @@ public class PositionDTO {
 	}
 	public void setModel(BattleshipModel model) {
 		this.model = model;
-	}
-
-	  
+	} 
 }

@@ -1,6 +1,4 @@
 package eu.isdc.internship.db.dto;
-import eu.isdc.internship.db.model.AvailableBattleship;
-import eu.isdc.internship.db.model.StartConfig;
 
 public class BattleshipPositionDTO {
 	private Long BT_Pos_id;
@@ -9,8 +7,8 @@ public class BattleshipPositionDTO {
 	private int flagReflY;
 	private int translateX;
 	private int translateY;
-//	private StartConfig startConfig;
-	private AvailableBattleship av_BT;
+	private StartConfigDTO startConfig;
+	private AvailableBattleshipDTO av_BT;
 	
 	public Long getBT_Pos_id() {
 		return BT_Pos_id;
@@ -48,13 +46,16 @@ public class BattleshipPositionDTO {
 	public void setTranslateY(int translateY) {
 		this.translateY = translateY;
 	}
-	public AvailableBattleship getAv_BT() {
+	public StartConfigDTO getStartConfig() {
+		return startConfig;
+	}
+	public void setStartConfig(StartConfigDTO startConfig) {
+		this.startConfig = startConfig;
+	}
+	public AvailableBattleshipDTO getAv_BT() {
 		return av_BT;
 	}
-	public void setAv_BT(AvailableBattleship av_BT) {
+	public void setAv_BT(AvailableBattleshipDTO av_BT) {
 		this.av_BT = av_BT;
 	}
-	
-	
-	
 }
