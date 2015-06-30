@@ -2,17 +2,12 @@ package eu.isdc.internship.db.dto;
 
 import java.util.List;
 
-
-import eu.isdc.internship.db.model.BattleshipModel;
-import eu.isdc.internship.db.model.BattleshipPosition;
-import eu.isdc.internship.db.model.Game;
-
 public class AvailableBattleshipDTO {
 	private Long Av_BT_id;	
 	private int count;
-	private BattleshipModel model;
+	private BattleshipModelDTO model;
 	private List<BattleshipPositionDTO> BT_Positions;
-//	private Game game;
+	private GameTypeDTO gameType;
 	
 	
 	public Long getAv_BT_id() {
@@ -27,10 +22,10 @@ public class AvailableBattleshipDTO {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public BattleshipModel getModel() {
+	public BattleshipModelDTO getModel() {
 		return model;
 	}
-	public void setModel(BattleshipModel model) {
+	public void setModel(BattleshipModelDTO model) {
 		this.model = model;
 	}
 	public List<BattleshipPositionDTO> getBT_Positions() {
@@ -39,6 +34,10 @@ public class AvailableBattleshipDTO {
 	public void setBT_Positions(List<BattleshipPositionDTO> bT_Positions) {
 		BT_Positions = bT_Positions;
 	}
-	
-	
+	public GameTypeDTO getGameType() {
+		return gameType;
+	}
+	public void setGameType(GameTypeDTO gameType) {
+		this.gameType = gameType;
+	}
 }

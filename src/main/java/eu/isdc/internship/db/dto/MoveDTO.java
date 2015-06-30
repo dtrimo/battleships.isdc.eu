@@ -2,21 +2,15 @@ package eu.isdc.internship.db.dto;
 
 import java.util.Date;
 
-
-import eu.isdc.internship.db.model.Game;
-import eu.isdc.internship.db.model.StartConfig;
-import eu.isdc.internship.db.model.User;
-
 public class MoveDTO {
 	private Long move_id;
 	private int round;
 	private Date date;
-	private User user;
-	private StartConfig startConfig;
+	private UserDTO user;
+	private StartConfigDTO startConfig;
 	private int x;
 	private int y;	
-//	private Game game;
-	
+	private GameDTO game;
 	
 	public Long getMove_id() {
 		return move_id;
@@ -36,17 +30,23 @@ public class MoveDTO {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public User getUser() {
+	public UserDTO getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+	public void setUser(UserDTO user) {
 		this.user = user;
 	}
-	public StartConfig getStartConfig() {
+	public StartConfigDTO getStartConfig() {
 		return startConfig;
 	}
-	public void setStartConfig(StartConfig startConfig) {
+	public void setStartConfig(StartConfigDTO startConfig) {
 		this.startConfig = startConfig;
+	}
+	public GameDTO getGame() {
+		return game;
+	}
+	public void setGame(GameDTO game) {
+		this.game = game;
 	}
 	public int getX() {
 		return x;

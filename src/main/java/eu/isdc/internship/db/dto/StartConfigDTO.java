@@ -2,28 +2,12 @@ package eu.isdc.internship.db.dto;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
-import eu.isdc.internship.db.model.BattleshipPosition;
-import eu.isdc.internship.db.model.Game;
-import eu.isdc.internship.db.model.Move;
-import eu.isdc.internship.db.model.User;
-
 public class StartConfigDTO {
 	private Long startConfig_id;
 	private List<BattleshipPositionDTO> BT_Positions;
-	private Game game;
-//	private List<Move> move;	
-	private User user;
+	private GameDTO game;
+	private List<MoveDTO> move;	
+	private UserDTO user;
 	
 	
 	public Long getStartConfig_id() {
@@ -38,20 +22,22 @@ public class StartConfigDTO {
 	public void setBT_Positions(List<BattleshipPositionDTO> bT_Positions) {
 		BT_Positions = bT_Positions;
 	}
-	public Game getGame() {
+	public GameDTO getGame() {
 		return game;
 	}
-	public void setGame(Game game) {
+	public void setGame(GameDTO game) {
 		this.game = game;
 	}
-	public User getUser() {
+	public List<MoveDTO> getMove() {
+		return move;
+	}
+	public void setMove(List<MoveDTO> move) {
+		this.move = move;
+	}
+	public UserDTO getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+	public void setUser(UserDTO user) {
 		this.user = user;
 	}
-	
-	
-	
-	
 }
