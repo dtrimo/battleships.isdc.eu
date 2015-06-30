@@ -22,6 +22,12 @@ public class GameType {
 	@Column(name = "GAME_TYPE_ID", nullable = false)
 	private Long game_type_id;
 	
+	@Column(name = "NAME")
+	private String name;
+	
+	@Column(name = "SHORT_DESCRIPTION")
+	private String shortDescription;
+	
 	@Column(name = "M", nullable = false)
 	private int m;
 	
@@ -43,6 +49,25 @@ public class GameType {
 		this.n = n;
 	}
 	
+	public GameType(String name, String shortDescription, int m, int n) {
+		this.name = name;
+		this.shortDescription = shortDescription;
+		this.m = m;
+		this.n = n;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getShortDescription() {
+		return shortDescription;
+	}
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
+	}
 	public Long getGame_type_id() {
 		return game_type_id;
 	}

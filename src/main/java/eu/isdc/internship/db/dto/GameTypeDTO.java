@@ -4,6 +4,8 @@ import java.util.List;
 
 public class GameTypeDTO {
 	private Long game_type_id;
+	private String name;
+	private String shortDescription;
 	private int n;
 	private int m;
 	private List<GameDTO> games;
@@ -14,6 +16,18 @@ public class GameTypeDTO {
 	}
 	public void setGame_type_id(Long game_type_id) {
 		this.game_type_id = game_type_id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getShortDescription() {
+		return shortDescription;
+	}
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
 	}
 	public int getN() {
 		return n;

@@ -7,19 +7,18 @@ import eu.isdc.internship.db.model.*;
 
 @Component
 public class PositionAdapter extends GenericAdapter<Position,PositionDTO>{
-
+	
 	@Override
 	public Position toModel(PositionDTO dto) {
-		if(dto==null)
-		return null;
+		if(dto==null) {
+			return null;
+		}
+		Position pos = new Position();
+		pos.setPosition_id(dto.getPosition_id());
+		pos.setX(dto.getX());
+		pos.setY(dto.getY());
 		
-		Position p=new Position();
-		p.setPosition_id(dto.getPosition_id());
-		p.setX(dto.getX());
-		p.setY(dto.getY());
-		p.setModel(dto.getModel());
-		
-		return p;
+		return pos;
 	}
 
 	@Override
@@ -31,7 +30,7 @@ public class PositionAdapter extends GenericAdapter<Position,PositionDTO>{
 		dto.setPosition_id(model.getPosition_id());
 		dto.setX(model.getX());
 		dto.setY(model.getY());
-		dto.setModel(model.getModel());
+
 		return dto;
 	}
 	

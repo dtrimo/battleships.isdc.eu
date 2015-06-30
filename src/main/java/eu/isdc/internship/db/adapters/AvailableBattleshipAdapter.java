@@ -10,18 +10,23 @@ import eu.isdc.internship.db.model.AvailableBattleship;
 public class AvailableBattleshipAdapter extends GenericAdapter<AvailableBattleship, AvailableBattleshipDTO>{
 
 	@Autowired
+	private BattleshipModelAdapter battleshipModelAdapter;
+	
+	@Autowired
 	private BattleshipPositionAdapter battleshipPositionAdapter;
 	
 	@Override
 	public AvailableBattleship toModel(AvailableBattleshipDTO dto) {
-		if (dto==null)
-		return null;
-		AvailableBattleship av=new AvailableBattleship();
-		av.setAv_BT_id(dto.getAv_BT_id());
-		av.setCount(dto.getCount());
-		av.setBT_Positions(battleshipPositionAdapter.toModel(dto.getBT_Positions()));
-		av.setModel(dto.getModel());
-		return av;		
+		if (dto==null) {
+			return null;
+		}
+		AvailableBattleship avb = new AvailableBattleship();
+		avb.setAv_BT_id(dto.getAv_BT_id());
+		avb.setCount(dto.getCount());
+		
+		avb.setModel(battleshipModelAdapter.toModel(dto.getModel()));
+		avb.setBT_Positions(battleshipPositionAdapter.toModel(dto.getBT_Positions()));
+		return avb;
 	}
 
 	@Override
@@ -32,8 +37,9 @@ public class AvailableBattleshipAdapter extends GenericAdapter<AvailableBattlesh
 		AvailableBattleshipDTO dto = new AvailableBattleshipDTO();
 		dto.setAv_BT_id(model.getAv_BT_id());
 		dto.setCount(model.getCount());
+		
+		dto.setModel(battleshipModelAdapter.toDTO(model.getModel()));
 		dto.setBT_Positions(battleshipPositionAdapter.toDTO(model.getBT_Positions()));
-		dto.setModel(model.getModel());
 		return dto;
 	}
 }

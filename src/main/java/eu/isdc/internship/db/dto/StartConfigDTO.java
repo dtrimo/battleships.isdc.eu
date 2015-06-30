@@ -9,7 +9,6 @@ public class StartConfigDTO {
 	private List<MoveDTO> move;	
 	private UserDTO user;
 	
-	
 	public Long getStartConfig_id() {
 		return startConfig_id;
 	}
