@@ -14,13 +14,15 @@ public class BattleshipModelAdapter extends GenericAdapter<BattleshipModel,Battl
 	
 	@Override
 	public BattleshipModel toModel(BattleshipModelDTO dto) {
-		if(dto==null)
-		return null;
-		BattleshipModel btm=new BattleshipModel();
-		btm.setModel_id(dto.getModel_id());
-		btm.setName(dto.getName());
-		btm.setPositions(positionAdapter.toModel(dto.getPositions()));
-		return btm;	
+		if(dto==null) { 
+			return null;
+		}
+		BattleshipModel battleshipModel = new BattleshipModel();
+		battleshipModel.setModel_id(dto.getModel_id());
+		battleshipModel.setName(dto.getName());
+		
+		battleshipModel.setPositions(positionAdapter.toModel(dto.getPositions()));
+		return battleshipModel;
 	}
 
 	@Override
@@ -31,6 +33,7 @@ public class BattleshipModelAdapter extends GenericAdapter<BattleshipModel,Battl
 		BattleshipModelDTO dto = new BattleshipModelDTO();
 		dto.setModel_id(model.getModel_id());
 		dto.setName(model.getName());
+		
 		dto.setPositions(positionAdapter.toDTO(model.getPositions()));
 		return dto;
 	}

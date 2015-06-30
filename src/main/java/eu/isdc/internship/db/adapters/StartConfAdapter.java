@@ -11,16 +11,17 @@ public class StartConfAdapter extends GenericAdapter<StartConfig,StartConfigDTO>
 
 	@Autowired
 	private BattleshipPositionAdapter battleshipPositionAdapter;
+	
 	@Override
 	public StartConfig toModel(StartConfigDTO dto) {
-
-		if(dto==null)		
-		return null;
+		if(dto==null) {	
+			return null;
+		}
 		StartConfig st=new StartConfig();
 		st.setStartConfig_id(dto.getStartConfig_id());
-		st.setGame(dto.getGame());
+		//st.setGame(dto.getGame());
 		st.setBT_Positions(battleshipPositionAdapter.toModel(dto.getBT_Positions()));
-		st.setUser(dto.getUser());
+		//st.setUser(dto.getUser());
 		return st;
 	}
 
@@ -31,15 +32,10 @@ public class StartConfAdapter extends GenericAdapter<StartConfig,StartConfigDTO>
 		}
 		StartConfigDTO dto = new StartConfigDTO();
 		dto.setStartConfig_id(model.getStartConfig_id());
-		dto.setGame(model.getGame());
+		//dto.setGame(model.getGame());
 		dto.setBT_Positions(battleshipPositionAdapter.toDTO(model.getBT_Positions()));
-		dto.setUser(model.getUser());
+		//dto.setUser(model.getUser());
 		return dto;
 		
-	}
-	
-	
-
-	
-	
+	}	
 }
