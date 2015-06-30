@@ -10,6 +10,12 @@ import eu.isdc.internship.db.model.*;
 public class StartConfAdapter extends GenericAdapter<StartConfig,StartConfigDTO>{
 
 	@Autowired
+	private UserAdapter userAdapter;
+	
+	@Autowired
+	private MoveAdapter moveAdapter;
+	
+	@Autowired
 	private BattleshipPositionAdapter battleshipPositionAdapter;
 	
 	@Override
@@ -17,11 +23,11 @@ public class StartConfAdapter extends GenericAdapter<StartConfig,StartConfigDTO>
 		if(dto==null) {	
 			return null;
 		}
-		StartConfig st=new StartConfig();
+		StartConfig st = new StartConfig();
 		st.setStartConfig_id(dto.getStartConfig_id());
-		//st.setGame(dto.getGame());
 		st.setBT_Positions(battleshipPositionAdapter.toModel(dto.getBT_Positions()));
-		//st.setUser(dto.getUser());
+		st.setMove(moveAdapter.toModel(dto.getMove()));
+		st.setUser(userAdapter.toModel(dto.getUser()));
 		return st;
 	}
 
@@ -32,10 +38,9 @@ public class StartConfAdapter extends GenericAdapter<StartConfig,StartConfigDTO>
 		}
 		StartConfigDTO dto = new StartConfigDTO();
 		dto.setStartConfig_id(model.getStartConfig_id());
-		//dto.setGame(model.getGame());
 		dto.setBT_Positions(battleshipPositionAdapter.toDTO(model.getBT_Positions()));
-		//dto.setUser(model.getUser());
+		dto.setMove(moveAdapter.toDTO(model.getMove()));
+		dto.setUser(userAdapter.toDTO(model.getUser()));
 		return dto;
-		
 	}	
 }

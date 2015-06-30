@@ -1,15 +1,12 @@
 package eu.isdc.internship.db.adapters;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import eu.isdc.internship.db.dto.*;
 import eu.isdc.internship.db.model.*;
+
 @Component
 public class StatisticsAdapter extends GenericAdapter<Statistics,StatisticsDTO>{
-
-	@Autowired
-	private UserAdapter userAdapter;
 	
 	@Override
 	public Statistics toModel(StatisticsDTO dto) {
@@ -23,7 +20,6 @@ public class StatisticsAdapter extends GenericAdapter<Statistics,StatisticsDTO>{
 		st.setNrOfRundsToLose(dto.getNrOfRundsToLose());
 		st.setNrOfWins(dto.getNrOfWins());
 		
-		st.setUser(userAdapter.toModel(dto.getUser()));
 		return st;
 	}
 
@@ -39,7 +35,6 @@ public class StatisticsAdapter extends GenericAdapter<Statistics,StatisticsDTO>{
 		dto.setNrOfRundsToLose(model.getNrOfRundsToLose());
 		dto.setNrOfWins(model.getNrOfWins());
 		
-		dto.setUser(userAdapter.toDTO(model.getUser()));
 		return dto;
 	}
 }

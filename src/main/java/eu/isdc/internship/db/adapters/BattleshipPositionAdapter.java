@@ -9,11 +9,11 @@ public class BattleshipPositionAdapter extends GenericAdapter<BattleshipPosition
 
 	@Override
 	public BattleshipPosition toModel(BattleshipPositionDTO dto) {
-		if (dto==null)
+		if (dto==null) {
 			return null;
+		}
 		BattleshipPosition bt=new BattleshipPosition();
 		bt.setBT_Pos_id(dto.getBT_Pos_id());
-		bt.setAv_BT(dto.getAv_BT());
 		bt.setFlagReflX(dto.getFlagReflX());
 		bt.setFlagReflY(dto.getFlagReflY());
 		bt.setFlagRotate(dto.getFlagRotate());
@@ -29,7 +29,6 @@ public class BattleshipPositionAdapter extends GenericAdapter<BattleshipPosition
 		}
 		BattleshipPositionDTO dto = new BattleshipPositionDTO();
 		dto.setBT_Pos_id(model.getBT_Pos_id());
-		dto.setAv_BT(model.getAv_BT());
 		dto.setFlagReflX(model.getFlagReflX());
 		dto.setFlagReflY(model.getFlagReflY());
 		dto.setFlagRotate(dto.getFlagRotate());
@@ -37,7 +36,4 @@ public class BattleshipPositionAdapter extends GenericAdapter<BattleshipPosition
 		dto.setTranslateY(model.getTranslateY());
 		return dto;
 	}
-	
-	
-
 }

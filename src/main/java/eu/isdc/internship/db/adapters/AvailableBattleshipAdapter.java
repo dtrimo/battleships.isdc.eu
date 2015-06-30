@@ -12,6 +12,9 @@ public class AvailableBattleshipAdapter extends GenericAdapter<AvailableBattlesh
 	@Autowired
 	private BattleshipModelAdapter battleshipModelAdapter;
 	
+	@Autowired
+	private BattleshipPositionAdapter battleshipPositionAdapter;
+	
 	@Override
 	public AvailableBattleship toModel(AvailableBattleshipDTO dto) {
 		if (dto==null) {
@@ -22,6 +25,7 @@ public class AvailableBattleshipAdapter extends GenericAdapter<AvailableBattlesh
 		avb.setCount(dto.getCount());
 		
 		avb.setModel(battleshipModelAdapter.toModel(dto.getModel()));
+		avb.setBT_Positions(battleshipPositionAdapter.toModel(dto.getBT_Positions()));
 		return avb;
 	}
 
@@ -35,6 +39,7 @@ public class AvailableBattleshipAdapter extends GenericAdapter<AvailableBattlesh
 		dto.setCount(model.getCount());
 		
 		dto.setModel(battleshipModelAdapter.toDTO(model.getModel()));
+		dto.setBT_Positions(battleshipPositionAdapter.toDTO(model.getBT_Positions()));
 		return dto;
 	}
 }

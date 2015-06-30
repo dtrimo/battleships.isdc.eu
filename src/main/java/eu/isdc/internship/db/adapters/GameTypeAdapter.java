@@ -1,10 +1,12 @@
 package eu.isdc.internship.db.adapters;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import eu.isdc.internship.db.dto.GameTypeDTO;
 import eu.isdc.internship.db.model.GameType;
 
+@Component
 public class GameTypeAdapter extends GenericAdapter<GameType, GameTypeDTO> {
 	
 	@Autowired
