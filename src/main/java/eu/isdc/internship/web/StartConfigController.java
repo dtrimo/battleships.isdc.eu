@@ -7,7 +7,6 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +18,6 @@ import eu.isdc.internship.db.dao.StartConfigDAO;
 import eu.isdc.internship.db.dto.StartConfigDTO;
 
 @Controller
-@TransactionConfiguration(transactionManager="transactionManager")
 public class StartConfigController {
 	
 	@Autowired

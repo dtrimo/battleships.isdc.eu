@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,6 @@ import eu.isdc.internship.db.dao.GameTypeDAO;
 import eu.isdc.internship.db.dto.GameTypeDTO;
 
 @Controller
-@TransactionConfiguration(transactionManager="transactionManager")
 public class GameTypeController {
 
 	@Autowired

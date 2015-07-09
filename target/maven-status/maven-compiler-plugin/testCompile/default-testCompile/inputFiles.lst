@@ -1,1 +1,11 @@
-D:\jde\workspace-internship\battleships\src\test\java\eu\isdc\internship\db\dao\TestUserDAO.java
+C:\Users\ciprian.tiperciuc\Documents\git-repos\battleships.isdc.eu\src\test\java\eu\isdc\internship\db\dao\TestBattleshipPositionDAO.java
+C:\Users\ciprian.tiperciuc\Documents\git-repos\battleships.isdc.eu\src\test\java\eu\isdc\internship\db\dao\TestStatisticsDAO.java
+C:\Users\ciprian.tiperciuc\Documents\git-repos\battleships.isdc.eu\src\test\java\eu\isdc\internship\db\dao\TestPositionDAO.java
+C:\Users\ciprian.tiperciuc\Documents\git-repos\battleships.isdc.eu\src\test\java\eu\isdc\internship\db\dao\TestUserDAO.java
+C:\Users\ciprian.tiperciuc\Documents\git-repos\battleships.isdc.eu\src\test\java\eu\isdc\internship\db\dao\TestGameDAO.java
+C:\Users\ciprian.tiperciuc\Documents\git-repos\battleships.isdc.eu\src\test\java\eu\isdc\internship\db\dao\TestBattleshipModelDAO.java
+C:\Users\ciprian.tiperciuc\Documents\git-repos\battleships.isdc.eu\src\test\java\eu\isdc\internship\db\dao\TestMoveDAO.java
+C:\Users\ciprian.tiperciuc\Documents\git-repos\battleships.isdc.eu\src\test\java\eu\isdc\internship\db\dao\TestStartConfigDAO.java
+C:\Users\ciprian.tiperciuc\Documents\git-repos\battleships.isdc.eu\src\test\java\eu\isdc\internship\db\dao\TestAvailableBattleshipDAO.java
+C:\Users\ciprian.tiperciuc\Documents\git-repos\battleships.isdc.eu\src\test\java\eu\isdc\internship\db\dao\TestGameTypeDAO.java
+C:\Users\ciprian.tiperciuc\Documents\git-repos\battleships.isdc.eu\src\test\java\eu\isdc\internship\db\dao\TestFriendDAO.java

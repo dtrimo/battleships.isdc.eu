@@ -13,10 +13,10 @@
 	<div class="board-container"></div>
 	<div class="transformation-container">
 		<button type="button" class="transform" id="left">Left</button>
-
-		<button type="button" class="transform" id="reflect">Reflect</button>
-
+		<button type="button" class="transform" id="reflectX">Reflect X</button>		
+		<button type="button" class="transform" id="reflectY">Reflect Y</button>
 		<button type="button" class="transform" id="right">Right</button>
+		<div class="transformation-grid"></div>
 	</div>
 </body>
 </html>

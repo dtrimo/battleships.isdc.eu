@@ -14,8 +14,8 @@ public class FriendAdapter extends GenericAdapter<Friend,FriendDTO> {
 			return null;
 		}
 		Friend fr=new Friend();
-		fr.setUser1(dto.getUser1());
-		fr.setUser2(dto.getUser2());
+//		fr.setUser1(dto.getUser1());
+//		fr.setUser2(dto.getUser2());
 		fr.setFriendship_id(dto.getFriendship_id());
 		return fr;
 	}
@@ -26,8 +26,8 @@ public class FriendAdapter extends GenericAdapter<Friend,FriendDTO> {
 			return null;
 		}
 		FriendDTO dto = new FriendDTO();
-		dto.setUser1(model.getUser1());
-		dto.setUser2(model.getUser2());
+//		dto.setUser1(model.getUser1());
+//		dto.setUser2(model.getUser2());
 		dto.setFriendship_id(model.getFriendship_id());
 		return dto;
 	} 
