@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import eu.isdc.internship.db.dto.AvailableBattleshipDTO;
 import eu.isdc.internship.db.model.AvailableBattleship;
-
+/*test-comment*/
 @Component
 public class AvailableBattleshipAdapter extends GenericAdapter<AvailableBattleship, AvailableBattleshipDTO>{
 
