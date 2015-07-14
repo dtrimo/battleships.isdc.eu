@@ -6,6 +6,11 @@
 	<script type="text/javascript" src="js/jquery-ui.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/gameboard.css">
 	<script src="js/gameboard.js" type="text/javascript"></script>	
+	<style>
+		.active {
+			background-color: grey;
+		}
+	</style>
 </head>
 
 <body>

@@ -344,7 +344,7 @@ var gameEditing = function(data){
  	 		cursor: 'move',
  	 		revert: 'invalid',
  	 		start: function(event, ui) {
- 	 			$draggingShip = $(this);
+ 	 			$draggingShip = $(this); 	 	 
  	 		}
  		})
  	});
