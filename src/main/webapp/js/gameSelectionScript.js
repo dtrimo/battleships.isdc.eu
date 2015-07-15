@@ -63,10 +63,12 @@ var Transforms = {
 }
 
 
-var BattleshipPosition = function(xCoords, yCoords){
+var BattleshipPosition = function(xCoords, yCoords, offsetCellX, offsetCellY){
 	
 	var transforms = [];
 	var cartesianCoords = [];
+	this.offsetCellX = offsetCellX;
+	this.offsetCellY = offsetCellY;
 	
 	var initialCoords = [];
 	for (var i=0;i<xCoords.length;i++){
@@ -193,7 +195,7 @@ var gameEditing = function(data){
  	board.drawBoard();
  		
  	var $transformationContainer = $('.transformation-container');
- 	var transformationBoard = new Board(14,14, $transformationContainer, "transformShip");
+ 	var transformationBoard = new TransformationBoard(14,14, $transformationContainer, "transformShip", board);
  	transformationBoard.drawBoard();
  	
 	var $shipsContainer = $('.ships-container');
@@ -210,23 +212,23 @@ var gameEditing = function(data){
 	
  	var x = [0,1,2,1];
 	var y = [0,0,0,1];
- 	offset += selectionBoard.drawShip(x, y, offset, 0, $shipsContainer).width+1;
+ 	selectionBoard.drawShip(x, y);
 
  	var x1 = [0,1,2,1,1];
  	var y1 = [1,0,1,1,2];
- 	offset += selectionBoard.drawShip(x1, y1, offset, 0, $shipsContainer).width+1;
+ 	selectionBoard.drawShip(x1, y1);
  
  	var x2 = [0,0,0,1];
  	var y2 = [0,1,2,0];
- 	offset += selectionBoard.drawShip(x2, y2, offset, 0, $shipsContainer).width+1;
+ 	selectionBoard.drawShip(x2, y2);
 
  	var x3 = [0,1,2];
  	var y3 = [0,0,0];
- 	offset += selectionBoard.drawShip(x3, y3, offset, 0, $shipsContainer).width+1;
+ 	selectionBoard.drawShip(x3, y3);
 
  	var x4 = [0,1,2,3,4];
  	var y4 = [0,0,0,0,0];
- 	offset += selectionBoard.drawShip(x4, y4, offset, 0, $shipsContainer).width+1;
+ 	selectionBoard.drawShip(x4, y4);
 
 
 	
@@ -311,27 +313,26 @@ var gameEditing = function(data){
 			
 			var d1 = $(".board-container");
 			var d2 = $(".transformation-grid");
-			var dropPosition = $(ui.draggable).position();
+			
+			var $ship = $(ui.draggable);
+			var dropPosition = $ship.position();
+			
 			var topPosition;
 			var leftPosition;
 			
-			var $ship = $draggingShip;
-			if ($ship.hasClass("gameBoardShip")){
-				
+			if ($ship.hasClass("gameBoardShip")){				
 				topPosition = dropPosition.top;
-				leftPosition = dropPosition.left;
-					
-			} else {
-				
+				leftPosition = dropPosition.left;					
+			} else {				
 				//The offset of the game board (top-left corner)
-				var y = d1.offset();
+				var offsetGameBoard = d1.offset();
 				//The offset of the transformation board (top-left corner)
-				var x = d2.offset();
-				var rel = { left: y.left-x.left, top: y.top-x.top };
+				var offsetTransformBoard = d2.offset();
+				var rel = { left: offsetGameBoard.left - offsetTransformBoard.left, 
+						top: offsetGameBoard.top - offsetTransformBoard.top };
 				
 				topPosition = dropPosition.top - rel.top;
 				leftPosition = dropPosition.left - rel.left;
-				
 			}
 			
     		if( leftPosition + $ship.width() < d1.width() &&
@@ -345,6 +346,7 @@ var gameEditing = function(data){
     				$ship.removeClass("transformShip");
     				$ship.appendTo(d1);
     			}			
+    			
     			if(topPosition % 40 != 0){
     				topPosition = Math.round(topPosition / 40) * 40;
     			}

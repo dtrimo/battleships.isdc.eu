@@ -7,6 +7,7 @@
 		this.board = new Board(m, n, $container, shipClass);
 		this.transformBoard = transformBoard;
 		this.ships = [];
+		this.crtDrawableOffset = 0;
 		bindShipClickHandler(this);
 	}
 
@@ -14,16 +15,31 @@
 		this.board.drawBoard();
 	}
 
-	SelectionBoard.prototype.drawShip = function(x, y, offsetX, offsetY){
-		var ship = this.board.drawShip(x,y,offsetX, offsetY);
+	SelectionBoard.prototype.drawShip = function(x, y){
+		var ship = this.board.drawShip(x, y, this.crtDrawableOffset, 0);
+		this.crtDrawableOffset += (ship.width + 1);
 		this.ships.push(ship);
 		return ship;
 	}
 
+	SelectionBoard.prototype.reloadShips = function() {
+		this.crtDrawableOffset = 0;
+		this.board.removeShips();
+		var updatedShips = [];
+		var length = this.ships.length;
+		for (var i = 0; i < length; i++) {
+			var xCoords = this.ships[i].position.getXCoords();
+			var yCoords = this.ships[i].position.getYCoords();
+			updatedShips.push(this.drawShip(xCoords, yCoords));
+		}
+		this.ships = updatedShips;
+	}
+	
 	SelectionBoard.prototype.removeShips = function() {
 		this.board.removeShips();
 		var ships = this.ships;
 		this.ships = [];
+		this.crtDrawableOffset = 0;
 		return ships;
 	}
 
@@ -42,19 +58,28 @@
 			ship.$container.remove();
 			this.ships.splice(this.ships.indexOf(ship),1);
 		}
+		this.reloadShips();
 		
 		return ship;
 	}
-
+	
 	var bindShipClickHandler = function(selectionBoard){
 		selectionBoard.$container.on("click","."+selectionBoard.shipClass,function(){
-			selectionBoard.transformBoard.removeShips();
-			var $ship = $(this);	
-			var xCoords = $ship.data("position").getXCoords();
-			var yCoords = $ship.data("position").getYCoords();
-			//TODO: replace with something like transformBoard.drawCentered(xCoords, yCoords);
-			selectionBoard.transformBoard.drawShip(xCoords, yCoords, 6, 6);
-			$(document).trigger("selectedShipChanged",$(this));
+			var transformShip = selectionBoard.transformBoard.getShip();
+			if (transformShip != null) {
+				selectionBoard.ships.push(transformShip);
+				selectionBoard.transformBoard.removeShip();
+			}
+			
+			var $ship = $(this);
+			var xCoordsTransformShip = $ship.data("position").getXCoords();
+			var yCoordsTransformShip = $ship.data("position").getYCoords();
+			selectionBoard.transformBoard.drawShip(xCoordsTransformShip, yCoordsTransformShip, 6, 6);
+			
+			selectionBoard.removeShip($ship);
+			
+//			//TODO: Dude, this is totaly not okay
+//			$(document).trigger("selectedShipChanged",$(this));
 		});
 	}
 

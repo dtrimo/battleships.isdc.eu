@@ -73,7 +73,7 @@ Board.prototype.drawShip = function(x, y, offsetX, offsetY){
 	var bottom = (offsetY+minY)*cellHeight;
 	$divShip.css('bottom', bottom + 'px');
 	
-	var position = BattleshipPosition(x,y);
+	var position = BattleshipPosition(x, y, offsetX, offsetY);
 	$divShip.data("position",position);
 	
 	return 	{
