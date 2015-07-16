@@ -191,11 +191,11 @@ var gameEditing = function(data){
 	var $draggingShip = null;
 	
 	var $container =  $($('.board-container')[0]);
- 	var board = new Board(9,9,$container);
+ 	var board = new Board(9, 9, $container);
  	board.drawBoard();
  		
  	var $transformationContainer = $('.transformation-container');
- 	var transformationBoard = new TransformationBoard(14,14, $transformationContainer, "transformShip", board);
+ 	var transformationBoard = new TransformationBoard(10, 10, $transformationContainer, "transformShip", board);
  	transformationBoard.drawBoard();
  	
 	var $shipsContainer = $('.ships-container');

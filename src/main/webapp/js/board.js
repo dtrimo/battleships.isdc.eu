@@ -11,7 +11,10 @@ Board.prototype.drawBoard = function(){
 	for(var i = 0; i < this.n; i++){
 		var $divRow = $('<div><div>');
 		$divRow.addClass('div-row');
-		for(var j = 0; j < this.m; j++){
+		
+		//TODO: Something's wrong here. I had to limit j
+		//to m - 1 so it draws the correct number of collumns
+		for(var j = 0; j < this.m - 1; j++){
 			var $div = $('<div></div>');
 			$divRow.append($div);
 		}

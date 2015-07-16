@@ -74,12 +74,9 @@
 			var $ship = $(this);
 			var xCoordsTransformShip = $ship.data("position").getXCoords();
 			var yCoordsTransformShip = $ship.data("position").getYCoords();
-			selectionBoard.transformBoard.drawShip(xCoordsTransformShip, yCoordsTransformShip, 6, 6);
+			selectionBoard.transformBoard.drawShip(xCoordsTransformShip, yCoordsTransformShip);
 			
 			selectionBoard.removeShip($ship);
-			
-//			//TODO: Dude, this is totaly not okay
-//			$(document).trigger("selectedShipChanged",$(this));
 		});
 	}
 
