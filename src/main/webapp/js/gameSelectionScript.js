@@ -1,34 +1,3 @@
-var generateBoard = function(){
-	var mGameBoard;
-	var nGameBoard;
-	var $container;
- 	
-	//draws transfomations container whit m x n cells
-	var drawTransformationContainer = function(m, n){
-		var $container = $('.transformation-container');
-		var $grid = $container.find(".transformation-grid");
-		
-		for(var i = 0; i < n ; i++){
-			var $divRow = $('<div><div>');
-			$divRow.addClass('div-row');
-			for(var j = 0; j < m; j++){
-				var $div = $('<div></div>');
-				$divRow.append($div);
-			}
-			
-			$grid.append($divRow);
-		}
-		
-		$container.data( "size", { lines: n, columns: m});
-		
-	} 
-
-
-	return{
-		drawTransformationContainer : drawTransformationContainer
-	}
-};
-
 var Transforms = {		
 		rotateCounterClockwise : function(position){
 			return {
@@ -190,18 +159,20 @@ var gameEditing = function(data){
 	var $selectedShip = null;
 	var $draggingShip = null;
 	
-	var $container =  $($('.board-container')[0]);
- 	var board = new Board(9, 9, $container);
- 	board.drawBoard();
- 		
- 	var $transformationContainer = $('.transformation-container');
- 	var transformationBoard = new TransformationBoard(10, 10, $transformationContainer, "transformShip", board);
- 	transformationBoard.drawBoard();
- 	
+	var $transformationContainer = $('.transformation-container');
+	var transformationBoard = new TransformationBoard(10, 10, $transformationContainer, "transformShip");
+	
 	var $shipsContainer = $('.ships-container');
 	selectionBoard = new SelectionBoard(23, 4, $shipsContainer, "modelShip", transformationBoard);
-	selectionBoard.drawBoard();
 	
+	var $gameContainer =  $('.board-container');
+	var gameBoard = new GameBoard(9, 9, $gameContainer, "gameBoardShip", transformationBoard);
+	
+	gameBoard.drawBoard();
+	transformationBoard.drawBoard();
+	selectionBoard.drawBoard();
+ 		
+ 	
 	$(document).on("selectedShipChanged",function(event,data){
 		$selectedShip = data;
 	});
@@ -234,16 +205,16 @@ var gameEditing = function(data){
 	
  	//Dragging
 	
- 	$('.transformation-container, .board-container').on('mouseover',function(){
-
- 		$('.transformShip, .gameBoardShip').draggable({
- 	 		cursor: 'move',
- 	 		revert: 'invalid',
- 	 		start: function(event, ui) {
- 	 			$draggingShip = $(this); 	 	 
- 	 		}
- 		})
- 	});
+// 	$('.transformation-container, .board-container').on('mouseover',function(){
+//
+// 		$('.transformShip, .gameBoardShip').draggable({
+// 	 		cursor: 'move',
+// 	 		revert: 'invalid',
+// 	 		start: function(event, ui) {
+// 	 			$draggingShip = $(this); 	 	 
+// 	 		}
+// 		})
+// 	});
  	
  	//	NO RIGHTCLICK MENU :D YEEEY
  	
@@ -301,71 +272,7 @@ var gameEditing = function(data){
  		applyTransformation("reflectX");
  	})
  	///////////////////////////////////////////////////////////////////////////////////////////////////////////////
- 	$('.board-container').droppable({
- 		revert: false,
- 		tolerance:'fit',
- 		over: function(event, ui){
- 			
- 			//DROP SHADOW HERE
- 			
- 		},
-		deactivate: function(event, ui){
-			
-			var d1 = $(".board-container");
-			var d2 = $(".transformation-grid");
-			
-			var $ship = $(ui.draggable);
-			var dropPosition = $ship.position();
-			
-			var topPosition;
-			var leftPosition;
-			
-			if ($ship.hasClass("gameBoardShip")){				
-				topPosition = dropPosition.top;
-				leftPosition = dropPosition.left;					
-			} else {				
-				//The offset of the game board (top-left corner)
-				var offsetGameBoard = d1.offset();
-				//The offset of the transformation board (top-left corner)
-				var offsetTransformBoard = d2.offset();
-				var rel = { left: offsetGameBoard.left - offsetTransformBoard.left, 
-						top: offsetGameBoard.top - offsetTransformBoard.top };
-				
-				topPosition = dropPosition.top - rel.top;
-				leftPosition = dropPosition.left - rel.left;
-			}
-			
-    		if( leftPosition + $ship.width() < d1.width() &&
-    			topPosition + $ship.height() < d1.height() &&
-    			leftPosition > 0 &&
-    			topPosition > 0)
-    		{
-    			if ($ship.hasClass("transformShip")){
-    				$ship.addClass("gameBoardShip");
-    				$ship.detach();
-    				$ship.removeClass("transformShip");
-    				$ship.appendTo(d1);
-    			}			
-    			
-    			if(topPosition % 40 != 0){
-    				topPosition = Math.round(topPosition / 40) * 40;
-    			}
-
-
-    			if(leftPosition % 40 != 0){
-    				leftPosition = Math.round(leftPosition / 40) * 40;
-    			}
-    			
-
-    			$ship.css('top', topPosition + 'px');
-    			$ship.css('left', leftPosition + 'px');
-    	
-    			if ($selectedShip != null && $selectedShip.hasClass("modelShip")){
-    				$selectedShip.remove();
-    			}	
-			}
-		}
- 	});
+ 	//TODO:put droppable here in case you can't figure it out(note)
 }
  
 	// Stuff to do:
