@@ -15,7 +15,7 @@
 
 <body>
 	<div class="ships-container"></div>
-	<div class="board-container"></div>
+	<div class="board-container" oncontextmenu = "return false;"></div>
 	<div class="transformation-container">
 		<button type="button" class="transform" id="left">Left</button>
 		<button type="button" class="transform" id="reflectX">Reflect

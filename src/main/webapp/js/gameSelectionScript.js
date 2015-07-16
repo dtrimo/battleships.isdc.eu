@@ -166,7 +166,7 @@ var gameEditing = function(data){
 	selectionBoard = new SelectionBoard(23, 4, $shipsContainer, "modelShip", transformationBoard);
 	
 	var $gameContainer =  $('.board-container');
-	var gameBoard = new GameBoard(9, 9, $gameContainer, "gameBoardShip", transformationBoard);
+	var gameBoard = new GameBoard(9, 9, $gameContainer, "gameBoardShip", transformationBoard, selectionBoard);
 	
 	gameBoard.drawBoard();
 	transformationBoard.drawBoard();
@@ -201,47 +201,7 @@ var gameEditing = function(data){
  	var y4 = [0,0,0,0,0];
  	selectionBoard.drawShip(x4, y4);
 
-
-	
- 	//Dragging
-	
-// 	$('.transformation-container, .board-container').on('mouseover',function(){
-//
-// 		$('.transformShip, .gameBoardShip').draggable({
-// 	 		cursor: 'move',
-// 	 		revert: 'invalid',
-// 	 		start: function(event, ui) {
-// 	 			$draggingShip = $(this); 	 	 
-// 	 		}
-// 		})
-// 	});
  	
- 	//	NO RIGHTCLICK MENU :D YEEEY
- 	
- 	$('.board-container').off("contextmenu.rclick",".gameBoardShip").on("contextmenu.rclick",".gameBoardShip",function(e){ 
-	 		e.preventDefault();
-	 		e.stopPropagation();
-	 		return false;
- 	});
- 	
- 	//	RightClick function: Needs to be edited, info below.
-
-	$('.board-container').off("mousedown.rclick",".gameBoardShip").on("mousedown.rclick",".gameBoardShip",function(e){ 
-		    if( e.button == 2 ) { 
-		    	var $this = $(this);
-		    	setTimeout(function (){
-		    		$this.remove();
-		    	},200);
-		 		e.preventDefault();
-		 		e.stopPropagation();
-		 		return false;
-		    } 
-	});  
-
- 	
- 	
- 	/////////////////////////////////06.23.2015 - Handlers/////////////////////////////////////////////////////////
-
  	
  	// Needs to be edited: store commands to vector(s).
  	var applyTransformation = function(transformationName){
@@ -278,7 +238,6 @@ var gameEditing = function(data){
 	// Stuff to do:
  /*
   * 1. JQuery Ajax requests.
-  * 2. RightClick : Put back the Ship to its initial place in the model board. 
   * 3. Verify if two shapes collide
   * 4. DROP SHADOW
   * 5. Information Vector : position, rotation, reflection.
