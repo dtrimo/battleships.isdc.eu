@@ -6,6 +6,7 @@ body{
 	float: left;
 	position: relative;
 }
+
 .div-row{
 	width: 100%;
 	height: 40px;
@@ -17,7 +18,7 @@ body{
 	border: 1px solid black;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
+	        box-sizing: border-box;	       
 }
 
 .ships-container{
