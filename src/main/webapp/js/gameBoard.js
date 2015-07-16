@@ -73,7 +73,8 @@
 	    		{
 	    			//if the ship is successfuly dropped inside gameBoard,
 	    			//the ship is removed from the transform board
-	    			gameBoard.transformBoard.removeShip();
+	    			if ($ship.hasClass(gameBoard.transformBoard.shipClass))
+	    				gameBoard.transformBoard.removeShip();
 	    			
 	    			if ($ship.hasClass(gameBoard.transformBoard.shipClass)){
 	    				$ship.addClass(gameBoard.shipClass);
