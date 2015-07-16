@@ -58,10 +58,6 @@
 				transformationBoard.ship.$container.draggable({
 				cursor : 'move',
 				revert : 'invalid',
-//				start : function(event, ui) {
-//					//TODO: Dude, this is totaly not okay
-//					//$(document).trigger("selectedShipChanged",transformationBoard.ship.$container);
-//				}
 			})
 		});
 	}

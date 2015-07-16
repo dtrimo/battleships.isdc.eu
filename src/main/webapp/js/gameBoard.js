@@ -7,10 +7,20 @@
 		this.transformBoard = transformBoard;
 		this.board = new Board(m, n, $container, shipClass);
 		bindDroppableBoardHandler(this);
+		bindDraggableShipHandler(this);
 	}
 	
 	GameBoard.prototype.drawBoard = function() {
 		this.board.drawBoard();
+	}
+	
+	var bindDraggableShipHandler = function(gameBoard) {
+		gameBoard.$container.on('mouseover', function() {
+			$("." + gameBoard.shipClass).draggable({
+				cursor : 'move',
+				revert : 'invalid',
+			})
+		});
 	}
 	
 	var bindDroppableBoardHandler = function(gameBoard) {
@@ -61,6 +71,10 @@
 	    			leftPosition > 0 &&
 	    			topPosition > 0)
 	    		{
+	    			//if the ship is successfuly dropped inside gameBoard,
+	    			//the ship is removed from the transform board
+	    			gameBoard.transformBoard.removeShip();
+	    			
 	    			if ($ship.hasClass(gameBoard.transformBoard.shipClass)){
 	    				$ship.addClass(gameBoard.shipClass);
 	    				$ship.detach();
