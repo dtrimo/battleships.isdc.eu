@@ -9,6 +9,8 @@
 		bindDraggableShipHandler(this);
 		bindReflectXBtnHandler(this);
 		bindReflectYBtnHandler(this);
+		bindRotateClockwiseBtn(this);
+		bindRotateCounterClockwiseBtn(this)
 	}
 
 	TransformationBoard.prototype.drawBoard = function() {
@@ -64,6 +66,12 @@
 		case "reflectY":
 			newCoords = Transform.reflectY(this.getShip().position);
 			break;
+		case "rotateClockwise":
+			newCoords = Transform.rotateClockwise(this.getShip().position);
+			break;		
+		case "rotateCounterClockwise":
+			newCoords = Transform.rotateCounterClockwise(this.getShip().position);
+			break;	
 		}
 		
 		this.removeShip();
@@ -79,6 +87,18 @@
 	var bindReflectYBtnHandler = function(transformationBoard) {
 	 	$('button#reflectY').click(function(){
 	 		transformationBoard.transform("reflectY");
+	 	})
+	}
+	
+	var bindRotateClockwiseBtn = function(transformationBoard) {
+	 	$('button#right').click(function(){
+	 		transformationBoard.transform("rotateClockwise");
+	 	})
+	}
+	
+	var bindRotateCounterClockwiseBtn = function(transformationBoard) {
+	 	$('button#left').click(function(){
+	 		transformationBoard.transform("rotateCounterClockwise");
 	 	})
 	}
 	

@@ -220,13 +220,13 @@ var gameEditing = function(data){
  	
  	
  			//ROTATIONS
- 	$('button#left').click(function(){ 		
- 		applyTransformation("rotateCounterClockwise");
- 	});
+// 	$('button#left').click(function(){ 		
+// 		applyTransformation("rotateCounterClockwise");
+// 	});
  	
- 	$('button#right').click(function(){
- 		applyTransformation("rotateClockwise");
- 	});
+// 	$('button#right').click(function(){
+// 		applyTransformation("rotateClockwise");
+// 	});
  	
  	///////////////////////////////////////////////////////////////////////////////////////////////////////////////
  	//TODO:put droppable here in case you can't figure it out(note)
