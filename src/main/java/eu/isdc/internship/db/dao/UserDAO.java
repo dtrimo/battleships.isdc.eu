@@ -2,6 +2,7 @@ package eu.isdc.internship.db.dao;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.codehaus.plexus.util.StringUtils;
@@ -54,4 +55,5 @@ public class UserDAO extends GenericDAO<User, Long>{
 		criteria.add(Restrictions.in("user_id", userIds));
 		return readWithPagination(criteria, -1, -1);
 	}
+	
 }

@@ -15,6 +15,7 @@
   
   <mvc:resources mapping="/js/**" location="/js/" />
   <mvc:resources mapping="/css/**" location="/css/" />
+  <mvc:resources mapping="/images/**" location="/images/" />
   
   <tx:annotation-driven transaction-manager="transactionManager"/>
   
@@ -55,5 +56,6 @@
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
 
 </beans>
