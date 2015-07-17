@@ -7,6 +7,8 @@
 		this.board = new Board(m, n, $container, shipClass);
 		this.ship = null;
 		bindDraggableShipHandler(this);
+		bindReflectXBtnHandler(this);
+		bindReflectYBtnHandler(this);
 	}
 
 	TransformationBoard.prototype.drawBoard = function() {
@@ -51,7 +53,35 @@
 		}
 		return ship;
 	}
+	
+	TransformationBoard.prototype.transform = function(transformType) {
+		var newCoords;
+		
+		switch(transformType) {
+		case "reflectX":
+			newCoords = Transform.reflectX(this.getShip().position);
+			break;
+		case "reflectY":
+			newCoords = Transform.reflectY(this.getShip().position);
+			break;
+		}
+		
+		this.removeShip();
+		this.drawShip(newCoords.xCoords, newCoords.yCoords);
+	}
 
+	var bindReflectXBtnHandler = function(transformationBoard) {
+	 	$('button#reflectX').click(function(){
+	 		transformationBoard.transform("reflectX");
+	 	})
+	}
+	
+	var bindReflectYBtnHandler = function(transformationBoard) {
+	 	$('button#reflectY').click(function(){
+	 		transformationBoard.transform("reflectY");
+	 	})
+	}
+	
 	var bindDraggableShipHandler = function(transformationBoard) {
 		transformationBoard.$container.on('mouseover', function() {
 			if (transformationBoard.ship != null) 

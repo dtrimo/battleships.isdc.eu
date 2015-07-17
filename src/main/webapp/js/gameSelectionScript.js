@@ -1,35 +1,35 @@
-var Transforms = {		
-		rotateCounterClockwise : function(position){
-			return {
-				x: -position.y,
-				y: position.x
-			}
-		},		
-		rotateClockwise : function(position){
-			return {
-				x: position.y,
-				y: -position.x
-			}
-		},		
-		reflectX : function(position){
-			return {
-				x : position.x,
-				y : -position.y
-			}
-		},		
-		reflectY : function(position){
-			return {
-				x: -position.x,
-				y: position.y
-			}	
-		},
-		translate : function(position,x,y){
-			return {
-				x : position.x+x,
-				y : position.y+y
-			}
-		}
-}
+//var Transforms = {		
+//		rotateCounterClockwise : function(position){
+//			return {
+//				x: -position.y,
+//				y: position.x
+//			}
+//		},		
+//		rotateClockwise : function(position){
+//			return {
+//				x: position.y,
+//				y: -position.x
+//			}
+//		},		
+//		reflectX : function(position){
+//			return {
+//				x : position.x,
+//				y : -position.y
+//			}
+//		},		
+//		reflectY : function(position){
+//			return {
+//				x: -position.x,
+//				y: position.y
+//			}	
+//		},
+//		translate : function(position,x,y){
+//			return {
+//				x : position.x+x,
+//				y : position.y+y
+//			}
+//		}
+//}
 
 
 var BattleshipPosition = function(xCoords, yCoords, offsetCellX, offsetCellY){
@@ -98,11 +98,12 @@ var BattleshipPosition = function(xCoords, yCoords, offsetCellX, offsetCellY){
 	};
 	
 	var getCoords = function(){
-		var result = [];
-		for (var i=0;i<cartesianCoords.length;i++){
-			result.push(Transforms.translate(cartesianCoords[i],-0.5,-0.5));
-		}
-		return result;
+//		var result = [];
+//		for (var i=0;i<cartesianCoords.length;i++){
+//			result.push(Transforms.translate(cartesianCoords[i],-0.5,-0.5));
+//		}
+//		return result;
+		return initialCoords;
 	};
 	
 	var getXCoords = function(){
@@ -159,6 +160,9 @@ var gameEditing = function(data){
 	var $selectedShip = null;
 	var $draggingShip = null;
 	
+	//you need this so you can use transformations
+	Transform = new Transform();
+	
 	var $transformationContainer = $('.transformation-container');
 	var transformationBoard = new TransformationBoard(10, 10, $transformationContainer, "transformShip");
 	
@@ -204,15 +208,15 @@ var gameEditing = function(data){
  	
  	
  	// Needs to be edited: store commands to vector(s).
- 	var applyTransformation = function(transformationName){
- 		var $ship = $('div.transformShip');
- 		var position = $ship.data("position");
- 		position[transformationName]();
- 		var xCoords = $ship.data("position").getXCoords();
- 		var yCoords = $ship.data("position").getYCoords();
- 		$ship.remove();
- 	 	board.drawShip(xCoords, yCoords, 6, 6, $transformationContainer);	
- 	}
+// 	var applyTransformation = function(transformationName){
+// 		var $ship = $('div.transformShip');
+// 		var position = $ship.data("position");
+// 		position[transformationName]();
+// 		var xCoords = $ship.data("position").getXCoords();
+// 		var yCoords = $ship.data("position").getYCoords();
+// 		$ship.remove();
+// 	 	board.drawShip(xCoords, yCoords, 6, 6, $transformationContainer);	
+// 	}
  	
  	
  			//ROTATIONS
@@ -224,13 +228,6 @@ var gameEditing = function(data){
  		applyTransformation("rotateClockwise");
  	});
  	
- 	$('button#reflectY').click(function(){
- 		applyTransformation("reflectY");
- 	});
- 	
- 	$('button#reflectX').click(function(){
- 		applyTransformation("reflectX");
- 	})
  	///////////////////////////////////////////////////////////////////////////////////////////////////////////////
  	//TODO:put droppable here in case you can't figure it out(note)
 }
