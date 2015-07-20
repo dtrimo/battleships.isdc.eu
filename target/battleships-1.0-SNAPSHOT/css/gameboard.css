@@ -1,11 +1,16 @@
 body{
 	/*overflow:hidden;*/
+	opacity: 0.4;
+	    background-image: url('../images/picture.jpg');
+	
 }
+
 .board-container{
 	display: table;
 	float: left;
 	position: relative;
 }
+
 .div-row{
 	width: 100%;
 	height: 40px;
@@ -18,6 +23,7 @@ body{
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
+	border-radius: 10%;	       
 }
 
 .ships-container{
@@ -32,12 +38,13 @@ body{
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
+	border-radius: 10%;
 }
 .div-ship{
  	position: absolute;
- 	display: table;
+ 	display: table; 		
  }
-
+	
  .ship-row{
  	width: 100%;
 	height: 40px;
