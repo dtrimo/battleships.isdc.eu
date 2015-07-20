@@ -1,7 +1,7 @@
 //shipClass is the class assigned to ships drawn on this board
 var Board = function(m, n, $container, shipClass){		
-	this.m=m;
-	this.n=n;
+	this.m = m;
+	this.n = n;
 	this.$container = $($container);
 	this.shipClass = shipClass;
 };
@@ -77,7 +77,8 @@ Board.prototype.drawShip = function(x, y, offsetX, offsetY){
 	$divShip.css('bottom', bottom + 'px');
 	
 	var position = BattleshipPosition(x, y, offsetX, offsetY);
-	$divShip.data("position",position);
+	//var initialPosition = BattleshipPosition(x, y, offsetX, offsetY);
+	//$divShip.data("position",position);
 	
 	return 	{
 		$container : $divShip,

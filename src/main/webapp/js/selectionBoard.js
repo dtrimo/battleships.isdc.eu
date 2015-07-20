@@ -16,7 +16,7 @@
 	}
 
 	SelectionBoard.prototype.drawShip = function(x, y){
-		var ship = this.board.drawShip(x, y, this.crtDrawableOffset, 0);
+		var ship = this.board.drawShip(x, y, this.crtDrawableOffset, 0);		
 		this.crtDrawableOffset += (ship.width + 1);
 		this.ships.push(ship);
 		return ship;
@@ -66,17 +66,18 @@
 	var bindShipClickHandler = function(selectionBoard){
 		selectionBoard.$container.on("click","."+selectionBoard.shipClass,function(){
 			var transformShip = selectionBoard.transformBoard.getShip();
-			if (transformShip != null) {
+			if (transformShip != null) {						
 				selectionBoard.ships.push(transformShip);
 				selectionBoard.transformBoard.removeShip();
 			}
 			
-			var $ship = $(this);
-			var xCoordsTransformShip = $ship.data("position").getXCoords();
-			var yCoordsTransformShip = $ship.data("position").getYCoords();
+			var ship = selectionBoard.getShip($(this));
+			var xCoordsTransformShip = ship.position.getXCoords();
+			var yCoordsTransformShip = ship.position.getYCoords();
+			
 			selectionBoard.transformBoard.drawShip(xCoordsTransformShip, yCoordsTransformShip);
 			
-			selectionBoard.removeShip($ship);
+			selectionBoard.removeShip($(this));
 		});
 	}
 

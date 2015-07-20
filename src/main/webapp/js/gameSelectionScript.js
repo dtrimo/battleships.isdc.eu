@@ -1,11 +1,16 @@
 var BattleshipPosition = function(xCoords, yCoords){
-	
+	var transforms = [];
 	var coords = [];
+	
 	for (var i = 0; i < xCoords.length; i++){
 		coords.push({
 			x:xCoords[i],
 			y:yCoords[i]
 		});
+	}
+	
+	var pushTransform = function() {
+		transforms.push(transform)
 	}
 	
 	var getCoords = function(){

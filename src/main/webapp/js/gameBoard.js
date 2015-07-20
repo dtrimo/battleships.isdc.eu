@@ -45,7 +45,8 @@
 				function(e) {
 					if (e.button == 2) {
 						var ship = gameBoard.getShip($(this));
-						gameBoard.selectionBoard.drawShip(ship.position.getXCoords(), ship.position.getYCoords());
+						gameBoard.selectionBoard.drawShip(ship.position.getXCoords(), 
+								ship.position.getYCoords());
 						gameBoard.removeShip($(this));						
 					}
 				}); 
@@ -73,7 +74,6 @@
 					deactivate : function(event, ui) {
 
 						var gameContainer = gameBoard.$container;
-
 						// TODO: this is not okay, because i'm selecting the
 						// transformBoard
 						// and not the transformation-grid, which i removed from

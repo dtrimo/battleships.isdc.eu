@@ -57,25 +57,27 @@
 	}
 	
 	TransformationBoard.prototype.transform = function(transformType) {
-		var newCoords;
+		if (this.getShip() != null) {
+			var newCoords;
 		
-		switch(transformType) {
-		case "reflectX":
-			newCoords = Transform.reflectX(this.getShip().position);
-			break;
-		case "reflectY":
-			newCoords = Transform.reflectY(this.getShip().position);
-			break;
-		case "rotateClockwise":
-			newCoords = Transform.rotateClockwise(this.getShip().position);
-			break;		
-		case "rotateCounterClockwise":
-			newCoords = Transform.rotateCounterClockwise(this.getShip().position);
-			break;	
+			switch(transformType) {
+			case "reflectX":
+				newCoords = Transform.reflectX(this.getShip().position);
+				break;
+			case "reflectY":
+				newCoords = Transform.reflectY(this.getShip().position);
+				break;
+			case "rotateClockwise":
+				newCoords = Transform.rotateClockwise(this.getShip().position);
+				break;		
+			case "rotateCounterClockwise":
+				newCoords = Transform.rotateCounterClockwise(this.getShip().position);
+				break;	
+			}
+			
+			var removedShip = this.removeShip();
+			this.drawShip(newCoords.getXCoords(), newCoords.getYCoords());			
 		}
-		
-		this.removeShip();
-		this.drawShip(newCoords.xCoords, newCoords.yCoords);
 	}
 
 	var bindReflectXBtnHandler = function(transformationBoard) {
