@@ -9,7 +9,7 @@
 		for (var i = 0; i < yCoords.length; i++)
 			yCoords[i] = -yCoords[i] - 1;
 		
-		return BattleshipPosition(xCoords, yCoords);
+		return new BattleshipPosition(xCoords, yCoords);
 	}
 	
 	Transform.prototype.reflectY = function(position) {
@@ -19,7 +19,7 @@
 		for (var i = 0; i < xCoords.length; i++)
 			xCoords[i] = -xCoords[i] - 1;
 		
-		return BattleshipPosition(xCoords, yCoords);
+		return new BattleshipPosition(xCoords, yCoords);
 	}
 	
 	Transform.prototype.rotateClockwise = function(position) {
@@ -32,7 +32,7 @@
 			yCoords[i] = -aux - 1;
 		}
 		
-		return BattleshipPosition(xCoords, yCoords);
+		return new BattleshipPosition(xCoords, yCoords);
 	}
 	
 	Transform.prototype.rotateCounterClockwise = function(position) {
@@ -45,7 +45,7 @@
 			yCoords[i] = aux;
 		}
 		
-		return BattleshipPosition(xCoords, yCoords);
+		return new BattleshipPosition(xCoords, yCoords);
 	}
 	
 	Transform.prototype.resetInitialPosition = function(transforms, position) {

@@ -67,7 +67,9 @@
 	var bindShipClickHandler = function(selectionBoard){
 		selectionBoard.$container.on("click","."+selectionBoard.shipClass,function(){
 			var transformShip = selectionBoard.transformBoard.getShip();
-			if (transformShip != null) {						
+			if (transformShip != null) {
+				transformShip.position = Transform.resetInitialPosition(transformShip.position.getTransforms(), 
+						transformShip.position);
 				selectionBoard.ships.push(transformShip);
 				selectionBoard.transformBoard.removeShip();
 			}
