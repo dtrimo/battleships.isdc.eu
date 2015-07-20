@@ -11,7 +11,7 @@ Board.prototype.drawBoard = function(){
 	for(var i = 0; i < this.n; i++){
 		var $divRow = $('<div><div>');
 		$divRow.addClass('div-row');
-		for(var j = 0; j < this.m; j++){
+		for(var j = 0; j < this.m-1; j++){
 			var $div = $('<div></div>');
 			$divRow.append($div);
 		}
@@ -67,18 +67,18 @@ Board.prototype.drawShip = function(x, y, offsetX, offsetY){
 	for(var i = 0; i < y.length; i++){
 		var $div = $($divShip.find('.ship-row')[shipCellHeight-y[i]+minY-1]);
 		var $cell = $($div.find(' > div')[x[i]-minX]);
-		$cell.css('background-color','black');
+		$cell.css('background-color','rgb(250, 210, 8)');
 	}
 	
 	var bottom = (offsetY+minY)*cellHeight;
 	$divShip.css('bottom', bottom + 'px');
 	
-	var position = BattleshipPosition(x,y);
-	$divShip.data("position",position);
+	//var position = {x:x, y:y};//BattleshipPosition(x,y);
+	//$divShip.data("position",position);
 	
 	return 	{
 		$container : $divShip,
-		position : position,
+		//position : position,
 		width : shipCellWidth,
 		height : shipCellHeight
 	}

@@ -1,3 +1,4 @@
+
 (function($){
 	SelectionBoard = function(m, n, $container, shipClass, transformBoard){
 		this.m=m;
@@ -45,7 +46,7 @@
 		
 		return ship;
 	}
-
+	
 	var bindShipClickHandler = function(selectionBoard){
 		selectionBoard.$container.on("click","."+selectionBoard.shipClass,function(){
 			selectionBoard.transformBoard.removeShips();
