@@ -71,13 +71,14 @@
 				selectionBoard.ships.push(transformShip);
 				selectionBoard.transformBoard.removeShip();
 			}
-			
-			var $ship = $(this);
-			var xCoordsTransformShip = $ship.data("position").getXCoords();
-			var yCoordsTransformShip = $ship.data("position").getYCoords();
+					
+			var ship = selectionBoard.getShip($(this));
+			alert(ship.position);
+			var xCoordsTransformShip = ship.position.getXCoords();
+			var yCoordsTransformShip = ship.position.getYCoords();
 			selectionBoard.transformBoard.drawShip(xCoordsTransformShip, yCoordsTransformShip);
 			
-			selectionBoard.removeShip($ship);
+			selectionBoard.removeShip($(this));
 		});
 	}
 
