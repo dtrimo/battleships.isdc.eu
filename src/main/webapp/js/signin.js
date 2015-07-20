@@ -41,4 +41,12 @@ $(document).ready(function() {
 	        e.target.setCustomValidity(msg);
 	    };
 	} 
+	
+	
+	
 	})
+	
+	
+	
+	
+	

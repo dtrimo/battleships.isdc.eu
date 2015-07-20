@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -54,10 +56,10 @@ public class UserController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/login")
 	@Transactional
-	public String userLogIn(final Model model, @RequestParam("username") String userName, @RequestParam("password") String password) {
+	public String userLogIn(final Model model, @RequestParam("username") String userName, @RequestParam("password") String password, HttpServletRequest request) {
 		UserDTO user = getUserNyName(userName);
 		if (user == null) {
-//			model.addAttribute("message", "User does not exist");
+			model.addAttribute("message", "User does not exist");
 			return "login";
 		}
 		else if (!user.getPassword().equals(password)) {
@@ -65,6 +67,7 @@ public class UserController {
 			return "login";
 		}
 		else {
+			request.getSession().setAttribute("user", user);
 			model.addAttribute("x", user);
 			return "home";
 		}
@@ -72,9 +75,12 @@ public class UserController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/signin")
 	@Transactional
-	public String userSignIn (final Model model, @RequestParam("username") String userName, @RequestParam("password") String password, @RequestParam("repeatPassword") String rPassword, @RequestParam("bday") Date birthday) throws ParseException{
-		if (!password.equals(rPassword))
+	public String userSignIn (final Model model, @RequestParam("username") String userName, @RequestParam("password") String password, @RequestParam("repeatPassword") String rPassword, @RequestParam("bday") Date birthday, HttpServletRequest request) throws ParseException{
+		if (!password.equals(rPassword)) {
+			model.addAttribute("message", "Passwords do not match!");
 			return "signin";
+		}
+			
 		UserDTO userDto = getUserNyName(userName);
 		if (userDto != null) {
 			model.addAttribute("message", "This user already exists!");
@@ -86,6 +92,7 @@ public class UserController {
 		Date date = dateformat.parse(s);
 		User user = new User(userName, password, date);
 		userDAO.save(user);
+		request.getSession().setAttribute("user", user);
 		model.addAttribute("x", user);
 		return "home";
 	}

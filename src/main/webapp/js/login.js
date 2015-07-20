@@ -28,4 +28,36 @@ $(document).ready(function() {
 	        e.target.setCustomValidity(msg);
 	    };
 	} 
-	})
+	
+	if ($('#message').text().length > 0) {
+		alert($('#message').text());
+	} 
+	
+	var $form = $("form.login");
+	$form.on("submit", function(event){
+		event.preventDefault();
+		//do validations;
+		//if valid
+		$.ajax({
+			method : "post",
+			data : {
+				username : $form.find("input[name=username]").val(),
+				password : $form.find("input[name=password]").val()
+			},
+			success : function(response){
+				if ($(response).find("#message").text().length > 0){
+					alert($(response).find("#message").text());
+				} else {
+					alert("Welcome!");
+					top.location="http://localhost:8080/battleships/home";
+				}
+			},
+			error : function(error){
+				alert(error);
+			}
+			
+		});
+		
+	});
+	
+})
