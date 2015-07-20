@@ -14,11 +14,11 @@
   <section class="container">
     <div>
       <h1>Log In to Battleships</h1>
-      <form class="login" method="post" onsubmit="show('${message}');">
+      <form class="login" method="post">
         <p><sup>*</sup><input type="text" name="username" placeholder="Username" required id="username"></p>
         <p><sup>*</sup><input type="password" name="password" placeholder="Password" required id="password"></p>
         <p><input type="submit" value="Log In"></p>
-        <!-- <p id="message">${message}</p> -->
+        <p id="message">${message}</p>
       </form>
         <p id="signin"> Don't have an account? <a href="signin.html" class="button">Sign In</a></p>
     </div>

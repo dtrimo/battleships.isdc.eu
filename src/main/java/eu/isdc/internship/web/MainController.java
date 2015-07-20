@@ -1,6 +1,9 @@
 package eu.isdc.internship.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,7 +26,9 @@ public class MainController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/home")
-	public String getHome(){
+	public String getHome(final HttpServletRequest request, final Model model){
+		model.addAttribute("x",request.getSession().getAttribute("user"));
 		return "home";
+
 	}
 }

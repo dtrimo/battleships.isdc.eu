@@ -25,6 +25,7 @@
 		<button type="button" class="transform" id="right">Right</button>
 	</div>
 	
+	<script src="js/transformComponent.js" type="text/javascript"></script>
 	<script src="js/board.js" type="text/javascript"></script>
 	<script src="js/transformationBoard.js" type="text/javascript"></script>
 	<script src="js/selectionBoard.js" type="text/javascript"></script>

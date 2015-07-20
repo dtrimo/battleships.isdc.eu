@@ -1,3 +1,4 @@
+
 (function($){
 	SelectionBoard = function(m, n, $container, shipClass, transformBoard){
 		this.m=m;
@@ -70,7 +71,7 @@
 				selectionBoard.ships.push(transformShip);
 				selectionBoard.transformBoard.removeShip();
 			}
-			
+
 			var ship = selectionBoard.getShip($(this));
 			var xCoordsTransformShip = ship.position.getXCoords();
 			var yCoordsTransformShip = ship.position.getYCoords();

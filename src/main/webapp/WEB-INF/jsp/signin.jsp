@@ -13,14 +13,15 @@
   <section class="container">
     <div>
       <h1>Sign In</h1>
-      <form method="post" class="signin" onsubmit="return validate(this, '${message}');">
+      <form method="post" class="signin">
         <p> Username: <input type="text" name="username" placeholder="Username" required id="username"></p>
         <p> Password:<input class="password" type="password" name="password" placeholder="Password" required id="password"></p>
         <p> Confirm Password:<input class="repeatPassword" type="password" name="repeatPassword" placeholder="Confirm Password" required id="repeatPassword"></p>
         <p> Birthday: <input type="date" name="bday" required id="birthday"></p>
+        <p id="message">${message}</p>
         <br>
 
-        <!-- <p class="submit"><input type="submit" name="commit" value="Login"></p> -->
+        <!-- <p class="submit"><input type="submit" name="commit" value="Login"></p>  -->
         <button type="submit" class="button-submit">Sign In</button>
       </form>
     </div>
