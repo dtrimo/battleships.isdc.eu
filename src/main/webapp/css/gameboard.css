@@ -1,6 +1,5 @@
 body{
 	/*overflow:hidden;*/
-	opacity: 0.4;
 	    background-image: url('../images/picture.jpg');
 	
 }
@@ -14,6 +13,8 @@ body{
 .div-row{
 	width: 100%;
 	height: 40px;
+	background-color: white;
+	opacity:0.4;
 }
 .div-row > div{
 	display: inline-block;
@@ -42,7 +43,8 @@ body{
 }
 .div-ship{
  	position: absolute;
- 	display: table; 		
+ 	display: table; 
+ 	opacity:0.9;		
  }
 	
  .ship-row{
