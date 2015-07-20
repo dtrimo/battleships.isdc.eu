@@ -47,4 +47,19 @@
 		
 		return BattleshipPosition(xCoords, yCoords);
 	}
+	
+	Transform.prototype.resetInitialPosition = function(transforms, position) {
+		var length = transforms.length;
+		for (var i = length - 1; i >= 0; i--) {
+			if (transforms[i] == Transform.reflectX)
+				position = Transform.reflectX(position);
+			else if (transforms[i] == Transform.reflectY)
+				position = Transform.reflectY(position);
+			else if (transforms[i] == Transform.rotateClockwise)
+				position = Transform.rotateCounterClockwise(position);
+			else if (transforms[i] == Transform.rotateCounterClockwise)
+				position = Transform.rotateClockwise(position);			
+		}
+		return position;
+	}
 })();

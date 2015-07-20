@@ -9,8 +9,16 @@ var BattleshipPosition = function(xCoords, yCoords){
 		});
 	}
 	
-	var pushTransform = function() {
+	var pushTransform = function(transform) {
 		transforms.push(transform)
+	}
+	
+	var attachTransforms = function(trans) {
+		transforms = trans;
+	}
+	
+	var getTransforms = function() {
+		return transforms;
 	}
 	
 	var getCoords = function(){
@@ -40,6 +48,9 @@ var BattleshipPosition = function(xCoords, yCoords){
 		getCoords : getCoords,
 		getXCoords : getXCoords,
 		getYCoords : getYCoords,
+		getTransforms : getTransforms,
+		attachTransforms : attachTransforms,
+		pushTransform : pushTransform
 	};
 }
 

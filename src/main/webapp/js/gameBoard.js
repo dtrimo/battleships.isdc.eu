@@ -45,8 +45,9 @@
 				function(e) {
 					if (e.button == 2) {
 						var ship = gameBoard.getShip($(this));
-						gameBoard.selectionBoard.drawShip(ship.position.getXCoords(), 
-								ship.position.getYCoords());
+						var initialPosition = Transform.resetInitialPosition(ship.position.getTransforms(), ship.position);
+						gameBoard.selectionBoard.drawShip(initialPosition.getXCoords(), 
+								initialPosition.getYCoords());
 						gameBoard.removeShip($(this));						
 					}
 				}); 
