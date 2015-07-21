@@ -38,12 +38,23 @@ $(document).ready(function() {
 		event.preventDefault();
 		//do validations;
 		//if valid
+//		var ships = [];
+//		ships.push{
+//			transforms : [1, 2, 3],
+//			a : {
+//				b : 2
+//			}
+//		};
+		
+		
 		$.ajax({
 			method : "post",
 			data : {
 				username : $form.find("input[name=username]").val(),
 				password : $form.find("input[name=password]").val()
 			},
+			//data : JSON.stringify(ships);
+
 			success : function(response){
 				if ($(response).find("#message").text().length > 0){
 					alert($(response).find("#message").text());

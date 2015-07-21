@@ -40,6 +40,10 @@
 		return ship;
 	}
 
+	GameBoard.prototype.getShips = function(){
+		return this.ships;
+	}
+	
 	var bindRightClickHandler = function(gameBoard) {
 		gameBoard.$container.on("mousedown.rclick", "." + gameBoard.shipClass,
 				function(e) {
@@ -70,7 +74,12 @@
 					over : function(event, ui) {
 
 						// DROP SHADOW HERE
+						$('.board-container').css('background-color', 'green');
 
+					},
+					out : function(event, ui) {
+						$('.board-container').css('background-color', 'white');
+						$('.board-container').css('opacity', '0.4');
 					},
 					deactivate : function(event, ui) {
 
@@ -123,6 +132,7 @@
 
 							if ($ship.hasClass(gameBoard.transformBoard.shipClass)) {
 								gameBoard.addShip(gameBoard.transformBoard.getShip());
+								//TODO: do your stuff
 								
 								// if the ship is successfuly dropped inside
 								// gameBoard,

@@ -9,7 +9,7 @@
 	 	error
 	 });*/
 	 
-	 gameEditing();	//ONLY FOR EXAMPLE PURPOSE...
+	 editingScreen = gameEditing();	//ONLY FOR EXAMPLE PURPOSE...
  })
  
 var gameEditing = function(data){
@@ -56,6 +56,12 @@ var gameEditing = function(data){
  	var x4 = [0,1,2,3,4];
  	var y4 = [0,0,0,0,0];
  	selectionBoard.drawShip(x4, y4);
+ 	
+ 	return {
+ 		gameBoard : gameBoard,
+ 		transformationBoard : transformationBoard,
+ 		selectionBoard : selectionBoard	
+ 	}
  	
 }
  
