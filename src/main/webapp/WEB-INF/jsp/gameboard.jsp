@@ -16,6 +16,7 @@
 <body>
 	<div class="ships-container"></div>
 	<div class="board-container" oncontextmenu = "return false;"></div>
+	  <form class="game" method="post"><p><input type="submit" value="Da click"></p></form>
 	<div class="transformation-container">
 		<button type="button" class="transform" id="left">Left</button>
 		<button type="button" class="transform" id="reflectX">Reflect
