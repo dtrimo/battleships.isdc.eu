@@ -62,4 +62,16 @@
 		}
 		return position;
 	}
+	
+	Transform.prototype.getTransformName = function(func) {
+		  if (func == Transform.reflectX)
+		   return "reflectX";
+		  else if (func == Transform.reflectY)
+		   return "reflectY";
+		  else if (func == Transform.rotateClockwise)
+		   return "rotateClockwise";
+		  else if (func == Transform.rotateCounterClockwise)
+		   return "rotateCounterClockwise";
+		  return null;
+		 }
 })();
