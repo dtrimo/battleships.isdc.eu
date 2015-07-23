@@ -42,7 +42,36 @@ $(document).ready(function() {
 	    };
 	} 
 	
-	
+	var $form = $("form.signin");
+	$form.on("submit", function(event){
+		event.preventDefault();
+		
+		
+		$.ajax({
+			method : "post",
+			url: "http://localhost:8080/battleships/signin",
+			data : {
+				username : $form.find("input[name=username]").val(),
+				password : $form.find("input[name=password]").val(),
+				repeatPassword : $form.find("input[name=repeatPassword]").val(),
+				bday : $form.find("input[name=bday]").val()
+			},
+
+			success : function(response){
+				if ($(response).find("#message").text().length > 0){
+					alert($(response).find("#message").text());
+				} else {
+					alert("Account created succesfully!");
+					top.location="http://localhost:8080/battleships/login";
+				}
+			},
+			error : function(error){
+				alert(error);
+			}
+			
+		});
+		
+	});
 	
 	})
 	

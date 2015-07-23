@@ -70,7 +70,7 @@ Board.prototype.drawShip = function(x, y, offsetX, offsetY){
 	for(var i = 0; i < y.length; i++){
 		var $div = $($divShip.find('.ship-row')[shipCellHeight-y[i]+minY-1]);
 		var $cell = $($div.find(' > div')[x[i]-minX]);
-		$cell.css('background-color','rgb(39, 108, 56)');
+		$cell.css('background-color','rgb(250, 210, 8)');
 	}
 	
 	var bottom = (offsetY+minY)*cellHeight;

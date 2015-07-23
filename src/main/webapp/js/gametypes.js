@@ -16,8 +16,9 @@
 		for (var i=0;i<gametypesList.length;i++){
 			var gameType = gametypesList[i];
 			var $li = $("<li></li>");
+			$li.append('<span class="gametypeId" style="display:none">'+gameType.id+'</span>');
 			$li.append("<span class='description'>"+gameType.shortDescription+"</span>");
-			$li.append("<button type='button' class='play'>Play this!</button>");
+			$li.append("<form class='playform'> <button type='submit' class='play'>Play this!</button></form>");
 			$li.append("<button type='button' class='expand'>Show available battleships</button>");
 			var $boardContainer = $("<div class='board-container'></div>");
 			$li.append($boardContainer);
@@ -40,5 +41,29 @@
 		$("body").on("click",".expand", display);
 	});
 
-
 })(jQuery);
+
+
+$(document).ready(function() {
+var $form = $("form.playform");
+$form.on("submit", function(event){
+	event.preventDefault();
+//	alert(document.getElementsByClassName("playform")[0].elements[0].innerText);
+	$.ajax({
+		method : "post",
+		url: "http://localhost:8080/battleships/gametypes",
+		data : {
+			gametypeId : $(this).closest("li").find(".gametypeId").text()
+		},		
+		success : function(response){
+			top.location = "http://localhost:8080/battleships/game?gameId="+response.gameId+"&gameRole="+response.gameRole
+		},
+		error : function(error){
+			alert(error);
+		}
+		
+	});
+	
+});
+})
+

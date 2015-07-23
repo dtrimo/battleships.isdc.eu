@@ -36,15 +36,6 @@ $(document).ready(function() {
 	var $form = $("form.login");
 	$form.on("submit", function(event){
 		event.preventDefault();
-		//do validations;
-		//if valid
-//		var ships = [];
-//		ships.push{
-//			transforms : [1, 2, 3],
-//			a : {
-//				b : 2
-//			}
-//		};
 		
 		
 		$.ajax({
@@ -53,14 +44,13 @@ $(document).ready(function() {
 				username : $form.find("input[name=username]").val(),
 				password : $form.find("input[name=password]").val()
 			},
-			//data : JSON.stringify(ships);
 
 			success : function(response){
 				if ($(response).find("#message").text().length > 0){
 					alert($(response).find("#message").text());
 				} else {
 					alert("Welcome!");
-					top.location="http://localhost:8080/battleships/home";
+					top.location="http://localhost:8080/battleships/gametypes";
 				}
 			},
 			error : function(error){

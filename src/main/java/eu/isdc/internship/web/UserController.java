@@ -76,7 +76,7 @@ public class UserController {
 		else {
 			request.getSession().setAttribute("user", user);
 			model.addAttribute("x", user);
-			return "home";
+			return "gametypes";
 		}
 	}
 	
@@ -99,9 +99,8 @@ public class UserController {
 		Date date = dateformat.parse(s);
 		User user = new User(userName, password, date);
 		userDAO.save(user);
-		request.getSession().setAttribute("user", user);
 		model.addAttribute("x", user);
-		return "home";
+		return "login";
 	}
 	
 }

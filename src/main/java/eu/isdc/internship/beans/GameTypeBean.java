@@ -9,7 +9,16 @@ public class GameTypeBean {
 	private Integer n;
 	private Integer m;
 	private List<BattleshipModelBean> battleships;
+	private Long id;
 
+	public Long getId(){
+		return id;
+	}
+	
+	public void setId(Long newId){
+		id = newId;
+	}
+	
 	public String getName() {
 		return name;
 	}

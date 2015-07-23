@@ -25,6 +25,7 @@ public class GameTypeAdapter extends GenericAdapter<GameTypeBean, GameTypeDTO> {
 		bean.setName(dto.getName());
 		bean.setShortDescription(dto.getShortDescription());
 		bean.setBattleships(battleshipModelAdapter.toModel(dto.getAvailableBTs()));
+		bean.setId(dto.getGame_type_id());
 		return bean;
 	}
 

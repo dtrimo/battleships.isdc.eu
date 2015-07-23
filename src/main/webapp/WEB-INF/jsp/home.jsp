@@ -7,7 +7,7 @@
 </head>
 
 <body>
-	<p>Welcome ${x.name}</p>
+	<p>Welcome ${x.name} ${x.user_id }</p>
 
 </body>
 </html>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	
+		<script type="text/javascript" src="js/battleshipPosition.js"></script>
 		<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
 		<script type="text/javascript" src="js/jquery-ui.js"></script>
 		<script src="js/board.js" type="text/javascript"></script>
@@ -32,6 +32,7 @@
 	</head>
 	
 	<body>
+		<p>Welcome ${x.name} ${x.user_id }</p>
 		<div style="text-align: center; font-size: 30px; font-family: serif; margin-top: 20px; margin-bottom: 60px;">Available
 			game modes</div>	
 		<ul class="types"></ul>
