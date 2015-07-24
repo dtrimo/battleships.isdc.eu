@@ -23,6 +23,7 @@ import eu.isdc.internship.beans.GameRequestResponse;
 import eu.isdc.internship.beans.GameRole;
 import eu.isdc.internship.db.dto.GameTypeDTO;
 import eu.isdc.internship.exception.MatchMakingException;
+import eu.isdc.internship.service.GameUnderConstructionFactory.GameUnderConstruction;
 
 @Service
 public class MatchMakingServiceImpl implements MatchMakingService {
@@ -30,16 +31,20 @@ public class MatchMakingServiceImpl implements MatchMakingService {
 	@Autowired
 	private GameTypeService gameTypeService;
 	
-	private Map<Integer, List<Integer>> pendingGameRequests =  new HashMap<Integer, List<Integer>>();
-	private Map<Integer, GameUnderConstruction> gamesUnderConstruction = new HashMap<Integer, GameUnderConstruction>();
+	@Autowired
+	private GameUnderConstructionFactory gameUnderConstructionFactory;
+	
+	private Map<Long, List<Long>> pendingGameRequests =  new HashMap<Long, List<Long>>();
+	private Map<Long, GameUnderConstruction> gamesUnderConstruction = new HashMap<Long, GameUnderConstruction>();
 	
 	public GameRequestResponse requestGame(GameRequest gameRequest) throws MatchMakingException {
-		List<Integer> requestsQueue = pendingGameRequests.get(gameRequest.getGametypeId());
+		final Long gametypeId = gameRequest.getGametypeId();
+		List<Long> requestsQueue = pendingGameRequests.get(gametypeId);
 		if (requestsQueue == null){
 			throw new MatchMakingException("Invalid game type");
 		}
 		GameUnderConstruction gameUnderConstruction = gamesUnderConstruction.get(gameRequest.getGametypeId());
-		int order = gameUnderConstruction.getUsers().size()+1;
+		int order = gameUnderConstruction.getUsers().size();
 		gameUnderConstruction.getUsers().add(gameRequest.getUserId());
 		
 		try {
@@ -49,19 +54,20 @@ public class MatchMakingServiceImpl implements MatchMakingService {
 		} catch (BrokenBarrierException e) {
 			throw new MatchMakingException(e);
 		}
-		gamesUnderConstruction.put(gameRequest.getGametypeId(),new GameUnderConstruction());
+		gamesUnderConstruction.put(gametypeId, gameUnderConstructionFactory.newGame(2,gametypeId));
 		
 		GameRequestResponse response = new GameRequestResponse();
 		response.setGameId(gameUnderConstruction.getGameId());
-		response.setGameRole(order == 1 ? GameRole.PLAYER_1 : GameRole.PLAYER_2);
+		response.setGameRole(order == 0 ? GameRole.PLAYER_1 : GameRole.PLAYER_2);
+		response.setStartConfigId(gameUnderConstruction.getConstructedGame().getStartConfigs().get(order).getStartConfig_id());
 		return response;
 	}
 
 	@PostConstruct
 	public void initializePendingGameRequestsMap(){
 		for (final GameTypeDTO dto : gameTypeService.getGameTypes()){
-			pendingGameRequests.put(dto.getGame_type_id().intValue(), new ArrayList<Integer>());
-			gamesUnderConstruction.put(dto.getGame_type_id().intValue(),new GameUnderConstruction());
+			pendingGameRequests.put(dto.getGame_type_id(), new ArrayList<Long>());
+			gamesUnderConstruction.put(dto.getGame_type_id(), gameUnderConstructionFactory.newGame(2,dto.getGame_type_id()));
 		}		
 	}
 	

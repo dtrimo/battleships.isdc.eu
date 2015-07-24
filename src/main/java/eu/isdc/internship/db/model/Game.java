@@ -109,4 +109,12 @@ public class Game {
 	public void setGameType(GameType gameType) {
 		this.gameType = gameType;
 	}	
+	
+//	public Long getGameTypeId() {
+//		return gameType.getGame_type_id();
+//	}
+//	
+//	public void setGameTypeId(Long id) {
+//		this.gameType.setGame_type_id(id);
+//	}
 }

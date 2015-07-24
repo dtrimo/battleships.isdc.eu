@@ -48,10 +48,10 @@ public class GameTypesController {
 	 
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST, value="gametypes")
-	public GameRequestResponse requestGame(final Model model, final HttpServletRequest request, @RequestParam("gametypeId") Integer id) throws MatchMakingException {
+	public GameRequestResponse requestGame(final Model model, final HttpServletRequest request, @RequestParam("gametypeId") Long id) throws MatchMakingException {
 		final GameRequest gameRequest = new GameRequest();
 		gameRequest.setGametypeId(id);
-		gameRequest.setUserId(((UserDTO)request.getSession().getAttribute("user")).getUser_id().intValue());
+		gameRequest.setUserId(((UserDTO)request.getSession().getAttribute("user")).getUser_id());
 		return matchMakingService.requestGame(gameRequest);
 	}
 	
