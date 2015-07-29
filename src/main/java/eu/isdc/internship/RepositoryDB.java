@@ -192,9 +192,9 @@ public class RepositoryDB {
 	public void saveBatleshipPosition(AvailableBattleshipDTO av, StartConfigDTO st, int flagRot,int flagReflx, int flagReflY, int tX, int tY){
 		session = factory.openSession();
 		BattleshipPosition bt=new BattleshipPosition();
-		bt.setFlagReflX(flagReflx);
-		bt.setFlagReflY(flagReflY);
-		bt.setFlagRotate(flagRot);
+//		bt.setFlagReflX(flagReflx);
+//		bt.setFlagReflY(flagReflY);
+//		bt.setFlagRotate(flagRot);
 		bt.setTranslateX(tX);
 		bt.setTranslateY(tY);
 		bt.setAv_BT(availableBattleshipsAdapter.toModel(av));

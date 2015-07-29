@@ -11,6 +11,34 @@ body{
     
 }
 
+.loading{
+	z-index: 1;
+	width: 1279px;
+	height: 794px;
+	position: absolute;
+	background-image: url('../images/loading.gif');
+	background-size: 400px 400px;
+  background-repeat: no-repeat;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-position: 761px 234px;
+  display: none;
+}
+
+.cancel{
+	  z-index: 2;
+  position: absolute;
+ top: 75%;
+  left: 46%;
+  display: none;
+  width: 8%;
+  height: 45px;
+
+}
+
+
 .hidden{
 	display:none;
 }

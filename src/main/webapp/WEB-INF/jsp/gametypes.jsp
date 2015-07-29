@@ -32,7 +32,9 @@
 	</head>
 	
 	<body>
-		<p>Welcome ${x.name} ${x.user_id }</p>
+		<div class="loading"></div>
+		<button  class="cancel">Cancel</button>
+		<p>Welcome ${x.name}</p>
 		<div style="text-align: center; font-size: 30px; font-family: serif; margin-top: 20px; margin-bottom: 60px;">Available
 			game modes</div>	
 		<ul class="types"></ul>

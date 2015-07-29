@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -48,11 +49,18 @@ public class GameTypesController {
 	 
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST, value="gametypes")
-	public GameRequestResponse requestGame(final Model model, final HttpServletRequest request, @RequestParam("gametypeId") Integer id) throws MatchMakingException {
+	public GameRequestResponse requestGame(final Model model, final HttpServletRequest request, @RequestParam("gametypeId") Integer id) throws MatchMakingException, IOException {
 		final GameRequest gameRequest = new GameRequest();
 		gameRequest.setGametypeId(id);
 		gameRequest.setUserId(((UserDTO)request.getSession().getAttribute("user")).getUser_id().intValue());
-		return matchMakingService.requestGame(gameRequest);
+		GameRequestResponse resp;
+		try{
+			resp = matchMakingService.requestGame(gameRequest);
+		}catch(Exception ex){
+			resp = new GameRequestResponse(); 
+			resp.setErrorMsg(ex.getMessage());
+		}
+		return resp;
 	}
 	
 	

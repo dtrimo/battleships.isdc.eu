@@ -1,13 +1,21 @@
 package eu.isdc.internship.db.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "BATLLESHIP_POSITION")
@@ -16,12 +24,13 @@ public class BattleshipPosition {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "BT_POS_ID", nullable = false)
 	private Long BT_Pos_id;
-
-	private int flagRotate;
-	private int flagReflX;
-	private int flagReflY;
+	  
 	private int translateX;
 	private int translateY;
+	
+	@OneToMany(mappedBy = "battleshipPosition",fetch=FetchType.LAZY, orphanRemoval = true)	// 1-n cu StartConfig
+	@Cascade(value = CascadeType.ALL)
+	private List<Transformation> transformations;
 
 	@ManyToOne //n-1 cu StartConfig
 	@JoinColumn(name = "startConfig_id")
@@ -32,10 +41,9 @@ public class BattleshipPosition {
 	private AvailableBattleship av_BT;
 
 	public BattleshipPosition(){}
-	public BattleshipPosition( int rotate,int reflx,int refly,int transX,int transY){
-		this.flagRotate=rotate;
-		this.flagReflX=reflx;
-		this.flagReflY=refly;
+	public BattleshipPosition(List<Transformation> transformations, int transX,int transY){
+		this.transformations = new ArrayList<Transformation>();
+		this.transformations.addAll(transformations);
 		this.translateX=transX;
 		this.translateY=transY;
 	}
@@ -54,30 +62,6 @@ public class BattleshipPosition {
 
 	public void setBT_Pos_id(Long bT_Pos_id) {
 		BT_Pos_id = bT_Pos_id;
-	}
-
-	public int getFlagRotate() {
-		return flagRotate;
-	}
-
-	public void setFlagRotate(int flagRotate) {
-		this.flagRotate = flagRotate;
-	}
-
-	public int getFlagReflX() {
-		return flagReflX;
-	}
-
-	public void setFlagReflX(int flagReflX) {
-		this.flagReflX = flagReflX;
-	}
-
-	public int getFlagReflY() {
-		return flagReflY;
-	}
-
-	public void setFlagReflY(int flagReflY) {
-		this.flagReflY = flagReflY;
 	}
 
 	public int getTranslateX() {
@@ -103,5 +87,11 @@ public class BattleshipPosition {
 	public void setAv_BT(AvailableBattleship av_BT) {
 		this.av_BT = av_BT;
 	}
-
+	public List<Transformation> getTransformations() {
+		return transformations;
+	}
+	public void setTransformations(List<Transformation> transformations) {
+		this.transformations = transformations;
+	}
+	
 }

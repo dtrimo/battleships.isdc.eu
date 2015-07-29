@@ -14,9 +14,9 @@ public class BattleshipPositionAdapter extends GenericAdapter<BattleshipPosition
 		}
 		BattleshipPosition bt=new BattleshipPosition();
 		bt.setBT_Pos_id(dto.getBT_Pos_id());
-		bt.setFlagReflX(dto.getFlagReflX());
-		bt.setFlagReflY(dto.getFlagReflY());
-		bt.setFlagRotate(dto.getFlagRotate());
+//		bt.setFlagReflX(dto.getFlagReflX());
+//		bt.setFlagReflY(dto.getFlagReflY());
+//		bt.setFlagRotate(dto.getFlagRotate());
 		bt.setTranslateX(dto.getTranslateX());
 		bt.setTranslateY(dto.getTranslateY());
 		return bt;
@@ -29,8 +29,8 @@ public class BattleshipPositionAdapter extends GenericAdapter<BattleshipPosition
 		}
 		BattleshipPositionDTO dto = new BattleshipPositionDTO();
 		dto.setBT_Pos_id(model.getBT_Pos_id());
-		dto.setFlagReflX(model.getFlagReflX());
-		dto.setFlagReflY(model.getFlagReflY());
+//		dto.setFlagReflX(model.getFlagReflX());
+//		dto.setFlagReflY(model.getFlagReflY());
 		dto.setFlagRotate(dto.getFlagRotate());
 		dto.setTranslateX(model.getTranslateX());
 		dto.setTranslateY(model.getTranslateY());

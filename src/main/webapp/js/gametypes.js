@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author Dragos.Florea
+ * javascript functions that power the gametype selection page
+ */
+
 (function($){
 	
 	var drawContainer = function($container, availableBattleships){	
@@ -44,11 +50,21 @@
 })(jQuery);
 
 
+var showLoadingScreen = function(){
+	$(".loading").css("display", "inline-block");
+	$(".cancel").css("display", "inline-block");
+};
+
+var hideLoadingScreen = function(){
+	$(".loading").css("display", "none");
+	$(".cancel").css("display", "none");
+};
+
 $(document).ready(function() {
 var $form = $("form.playform");
 $form.on("submit", function(event){
 	event.preventDefault();
-//	alert(document.getElementsByClassName("playform")[0].elements[0].innerText);
+	showLoadingScreen();
 	$.ajax({
 		method : "post",
 		url: "http://localhost:8080/battleships/gametypes",
@@ -56,14 +72,27 @@ $form.on("submit", function(event){
 			gametypeId : $(this).closest("li").find(".gametypeId").text()
 		},		
 		success : function(response){
-			top.location = "http://localhost:8080/battleships/game?gameId="+response.gameId+"&gameRole="+response.gameRole
+			hideLoadingScreen();
+			if(response.errorMsg!=null && response.errorMsg.length > 0){
+				alert(response.errorMsg);
+			}
+			else{
+				top.location = "http://localhost:8080/battleships/game?gameId="+response.gameId+"&gameRole="+response.gameRole
+			}
 		},
 		error : function(error){
-			alert(error);
-		}
+			   alert(error)
+			}
+		
 		
 	});
 	
 });
 })
+
+$(document).ready(function(){
+	$(".cancel").on("click", hideLoadingScreen);
+})	
+	
+		
 

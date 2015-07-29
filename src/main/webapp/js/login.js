@@ -49,7 +49,7 @@ $(document).ready(function() {
 				if ($(response).find("#message").text().length > 0){
 					alert($(response).find("#message").text());
 				} else {
-					alert("Welcome!");
+					
 					top.location="http://localhost:8080/battleships/gametypes";
 				}
 			},

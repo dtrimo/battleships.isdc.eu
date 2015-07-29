@@ -2,7 +2,6 @@ package eu.isdc.internship.db.dao;
 
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.codehaus.plexus.util.StringUtils;

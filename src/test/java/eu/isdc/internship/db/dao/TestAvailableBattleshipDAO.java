@@ -17,6 +17,7 @@ import eu.isdc.internship.db.model.AvailableBattleship;
 import eu.isdc.internship.db.model.BattleshipModel;
 import eu.isdc.internship.db.model.BattleshipPosition;
 import eu.isdc.internship.db.model.GameType;
+import eu.isdc.internship.db.model.Transformation;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/test-beans.xml")
@@ -53,9 +54,9 @@ public class TestAvailableBattleshipDAO {
 		avb1.setModel(model);
 		avb2.setModel(model);
 		
-		BattleshipPosition pos1 = new BattleshipPosition(1,2,3,4,5);
-		BattleshipPosition pos2 = new BattleshipPosition(10,20,30,40,50);
-		BattleshipPosition pos3 = new BattleshipPosition(10,20,30,40,50);
+		BattleshipPosition pos1 = new BattleshipPosition(new ArrayList<Transformation>(),4,5);
+		BattleshipPosition pos2 = new BattleshipPosition(new ArrayList<Transformation>(),40,50);
+		BattleshipPosition pos3 = new BattleshipPosition(new ArrayList<Transformation>(),40,50);
 		ArrayList<BattleshipPosition> posList1 = new ArrayList<BattleshipPosition>();
 		ArrayList<BattleshipPosition> posList2 = new ArrayList<BattleshipPosition>();
 		posList1.add(pos1);

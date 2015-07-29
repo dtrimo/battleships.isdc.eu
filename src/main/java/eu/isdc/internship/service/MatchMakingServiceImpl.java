@@ -4,14 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import javax.annotation.PostConstruct;
 
@@ -34,12 +27,20 @@ public class MatchMakingServiceImpl implements MatchMakingService {
 	private Map<Integer, GameUnderConstruction> gamesUnderConstruction = new HashMap<Integer, GameUnderConstruction>();
 	
 	public GameRequestResponse requestGame(GameRequest gameRequest) throws MatchMakingException {
-		List<Integer> requestsQueue = pendingGameRequests.get(gameRequest.getGametypeId());
+		/*List<Integer> requestsQueue = pendingGameRequests.get(gameRequest.getGametypeId());
 		if (requestsQueue == null){
 			throw new MatchMakingException("Invalid game type");
-		}
+		}*/
 		GameUnderConstruction gameUnderConstruction = gamesUnderConstruction.get(gameRequest.getGametypeId());
 		int order = gameUnderConstruction.getUsers().size()+1;
+		
+		for (Map.Entry<Integer, GameUnderConstruction> entry : gamesUnderConstruction.entrySet()) {
+		    for (Integer user: ((GameUnderConstruction)(entry.getValue())).getUsers())
+				if(user.equals(gameRequest.getUserId())){
+					throw new MatchMakingException("You already pressed the play button!");
+				}
+	    }
+	    
 		gameUnderConstruction.getUsers().add(gameRequest.getUserId());
 		
 		try {

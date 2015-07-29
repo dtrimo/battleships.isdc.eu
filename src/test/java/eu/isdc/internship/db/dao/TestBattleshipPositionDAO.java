@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import eu.isdc.internship.db.model.AvailableBattleship;
 import eu.isdc.internship.db.model.BattleshipPosition;
 import eu.isdc.internship.db.model.StartConfig;
+import eu.isdc.internship.db.model.Transformation;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/test-beans.xml")
@@ -33,8 +34,10 @@ public class TestBattleshipPositionDAO {
 	
 	@Before
 	public void initTests() {
-		BattleshipPosition pos1 = new BattleshipPosition(1,2,3,4,5);
-		BattleshipPosition pos2 = new BattleshipPosition(10,20,30,40,50);
+//		List<Transformation> transf = new ArrayList<Transformation>();
+		
+		BattleshipPosition pos1 = new BattleshipPosition(new ArrayList<Transformation>(),4,5);
+		BattleshipPosition pos2 = new BattleshipPosition(new ArrayList<Transformation>(),40,50);
 		ArrayList<BattleshipPosition> posList = new ArrayList<BattleshipPosition>();
 		posList.add(pos1);
 		posList.add(pos2);
