@@ -2,22 +2,22 @@ package eu.isdc.internship.beans;
 
 public class GameRequest {
 
-	private Integer userId;
-	private Integer gametypeId;
+	private Long userId;
+	private Long gametypeId;
 
-	public Integer getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
-	public Integer getGametypeId() {
+	public Long getGametypeId() {
 		return gametypeId;
 	}
 
-	public void setGametypeId(Integer gametypeId) {
+	public void setGametypeId(Long gametypeId) {
 		this.gametypeId = gametypeId;
 	}
 

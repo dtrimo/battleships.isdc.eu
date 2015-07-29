@@ -54,13 +54,6 @@ public class UserController {
 		return userAdapter.toDTO(userDAO.getUserByName(name));
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/game")
-	@Transactional
-	public String boardValidation(@RequestParam("bla") String bla, HttpServletRequest request){
-		System.out.println("O " + bla);
-		return "game";
-	}
-	
 	@RequestMapping(method=RequestMethod.POST, value="/login")
 	@Transactional
 	public String userLogIn(final Model model, @RequestParam("username") String userName, @RequestParam("password") String password, HttpServletRequest request) {

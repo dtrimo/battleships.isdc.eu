@@ -4,6 +4,7 @@
 <title>Board</title>
 <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
+<script src="js/boardValidation.js" type="text/javascript"></script>	
 <link rel="stylesheet" type="text/css" href="css/gameboard.css">
 
 <style>

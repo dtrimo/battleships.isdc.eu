@@ -77,13 +77,13 @@ $form.on("submit", function(event){
 				alert(response.errorMsg);
 			}
 			else{
-				top.location = "http://localhost:8080/battleships/game?gameId="+response.gameId+"&gameRole="+response.gameRole
+				top.location = "http://localhost:8080/battleships/game?gameId="+response.gameId+"&gameRole="+response.gameRole+"&startConfig="+response.startConfigId;
 			}
 		},
 		error : function(error){
-			   alert(error)
-			}
-		
+			
+			alert(error);
+		}
 		
 	});
 	

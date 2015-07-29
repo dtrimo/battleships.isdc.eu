@@ -2,8 +2,9 @@ package eu.isdc.internship.beans;
 
 public class GameRequestResponse {
 
-	private Integer gameId;
+	private Long gameId;
 	private GameRole gameRole;
+	
 	private String errorMsg;
 
 	public String getErrorMsg() {
@@ -13,12 +14,13 @@ public class GameRequestResponse {
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;
 	}
+	private Long startConfigId;
 
-	public Integer getGameId() {
+	public Long getGameId() {
 		return gameId;
 	}
 
-	public void setGameId(Integer gameId) {
+	public void setGameId(Long gameId) {
 		this.gameId = gameId;
 	}
 
@@ -28,6 +30,14 @@ public class GameRequestResponse {
 
 	public void setGameRole(GameRole gameRole) {
 		this.gameRole = gameRole;
+	}
+
+	public Long getStartConfigId() {
+		return startConfigId;
+	}
+
+	public void setStartConfigId(Long startConfigId) {
+		this.startConfigId = startConfigId;
 	}
 
 
