@@ -1,3 +1,5 @@
 /target/
 .gitconfig
 _viminfo
+target/
+target

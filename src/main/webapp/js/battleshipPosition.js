@@ -8,7 +8,7 @@ var BattleshipPosition = function(xCoords, yCoords) {
 			y : yCoords[i]
 		});
 	}
-}
+} 
 
 BattleshipPosition.prototype.pushTransform = function(transform) {
 	this.transforms.push(transform)

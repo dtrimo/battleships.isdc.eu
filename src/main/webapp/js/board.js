@@ -4,7 +4,7 @@ var Board = function(m, n, $container, shipClass){
 	this.n = n;
 	this.$container = $($container);
 	this.shipClass = shipClass;
-};
+}; 
 
 //board has n lines and m columns
 Board.prototype.drawBoard = function(){			
