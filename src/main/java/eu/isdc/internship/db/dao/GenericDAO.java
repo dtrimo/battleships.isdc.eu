@@ -105,7 +105,7 @@ public abstract class GenericDAO<T, ID extends Serializable> {
    */
 	@SuppressWarnings("rawtypes")
 	protected List<T> readWithPagination(final String hql, final int startIndex, final int maxResults) {
-		return hibernateTemplate.executeFind(new HibernateCallback() {
+		return (List<T>) hibernateTemplate.executeFind(new HibernateCallback() {
 			public Object doInHibernate(final Session session) throws HibernateException, SQLException {
 		    final Query query = session.createQuery(hql);
 		    if (startIndex != -1) {

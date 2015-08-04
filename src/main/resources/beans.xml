@@ -9,6 +9,8 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
+  <import resource="classpath:security-config.xml"/>	
+
   <context:annotation-config />
   <mvc:annotation-driven/>
   

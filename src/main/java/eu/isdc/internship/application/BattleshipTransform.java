@@ -19,6 +19,7 @@ public class BattleshipTransform {
 	public ArrayList<Integer> getyCoords() {
 		return yCoords;
 	}
+	
 	public void setyCoords(ArrayList<Integer> yCoords) {
 		this.yCoords = yCoords;
 	}

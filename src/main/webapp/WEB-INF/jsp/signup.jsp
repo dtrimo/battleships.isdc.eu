@@ -1,21 +1,20 @@
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Log In</title>
+	<title>Sign In</title>
 	<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/plugins/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/plugins/alertManager.js"></script>
-	<script src="js/login.js" type="text/javascript"></script>	
-	<link rel="stylesheet" type="text/css" href="css/login-signup.css">
+	<script src="js/signup.js" type="text/javascript"></script>	
+	<link rel="stylesheet" type="text/css" href="css/login-signup.css">	
 </head>
 
 <body>
   <section class="container">
     <div class="formContainer">
-      <h1>Log In to Battleships</h1>
-      <form class="login" method="post">
+      <h1>Sign up to Battleships</h1>
+      <form class="signup" method="post">
         <p class="errorMessage">${message}</p>
         <div class="formfield required clearfix">
 	      	<label>Username:</label>
@@ -27,11 +26,21 @@
 	        <input type="password" name="password" placeholder="Password" required class="password" tabindex="2">
         </div>
         
+        <div class="formfield required clearfix">
+	        <label>Confirm password:</label>
+	        <input type="password" name="repeatPassword" placeholder="Confirm password" required class="password" tabindex="3">
+        </div>
+        
+        <div class="formfield required clearfix">
+	        <label>Birthday:</label>
+	        <input type="date" name="bday" required tabindex="4">
+        </div>
+        
         <div class="formfield clearfix">
-	        <a href="javascript:;" class="button submit" tabindex="3">Log In</a>     
+	        <a href="javascript:;" class="button submit" tabindex="5">Sign up</a>     
         </div>
       </form>
-        <p class="centered"> Don't have an account? <a href="signup" tabindex="4">Sign Up</a></p>
+        <p class="centered"> Already have an account? <a href="login" tabindex="6">Log in</a></p>
     </div>
   </section>
 </body>

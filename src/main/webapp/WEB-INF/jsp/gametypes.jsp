@@ -34,11 +34,11 @@
 	<body>
 		<div class="loading"></div>
 		<button  class="cancel">Cancel</button>
-		<p>Welcome ${x.name}</p>
+		<p>Welcome ${userName}</p>
 		<div style="text-align: center; font-size: 30px; font-family: serif; margin-top: 20px; margin-bottom: 60px;">Available
 			game modes</div>	
 		<ul class="types"></ul>
-		<span class="hidden" id="gameConfigData"/>${jsonGameTypes}</span>		
+		<span class="hidden" id="gameConfigData">${jsonGameTypes}</span>		
 	</body>
 </html>
 

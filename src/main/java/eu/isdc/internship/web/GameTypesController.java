@@ -9,6 +9,7 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import eu.isdc.internship.beans.GameTypeBean;
 import eu.isdc.internship.beans.adapters.GameTypeAdapter;
 import eu.isdc.internship.db.dto.UserDTO;
 import eu.isdc.internship.exception.MatchMakingException;
+import eu.isdc.internship.security.SecurityUtils;
 import eu.isdc.internship.service.GameTypeService;
 import eu.isdc.internship.service.MatchMakingService;
 
@@ -37,13 +39,14 @@ public class GameTypesController {
 	@Autowired
 	private MatchMakingService matchMakingService;
 	
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(method=RequestMethod.GET, value="gametypes")
 	public String getAllGameTypes(final Model model, final HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException {
 		//System.out.println("---------------------------"+id);
 		List<GameTypeBean> gameTypesList = gameTypeAdapter.toModel(gameTypeService.getGameTypes());
 		ObjectMapper mapper = new ObjectMapper();		
 		model.addAttribute("jsonGameTypes", mapper.writer().writeValueAsString(gameTypesList));	
-		model.addAttribute("x",request.getSession().getAttribute("user"));
+		model.addAttribute("userName",SecurityUtils.getLoggedInUser().getUsername());
 		return "gametypes";
 	}
 	 
