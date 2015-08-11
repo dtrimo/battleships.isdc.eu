@@ -3,11 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script type="text/javascript" src="js/battleshipPosition.js"></script>
-		<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
-		<script type="text/javascript" src="js/jquery-ui.js"></script>
-		<script src="js/board.js" type="text/javascript"></script>
-		<script src="js/gametypes.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/require.js" data-main="js/gameTypeSelection/gameTypeSelection"></script>
 		<link rel="stylesheet" type="text/css" href="css/gametypes.css">
 		
 		<style>

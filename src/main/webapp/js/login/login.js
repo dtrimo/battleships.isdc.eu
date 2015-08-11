@@ -1,6 +1,17 @@
-(function($){
-	
-// alertManager;
+requirejs.config({
+	baseUrl : "js",
+	shim : {
+		'jquery.cookie' : ['jquery'] 
+	},
+	paths : {
+		'jquery' : 'lib/jquery-1.11.3',
+		'jquery.cookie' : 'plugins/jquery.cookie',
+		'alertManager' : 'plugins/alertManager'
+	}
+});
+
+
+require(['jquery','alertManager'],function($, AlertManager){
 	
 	var focusFirstInputField = function(){
 		$($("form.login").find("input")[0]).focus();
@@ -50,7 +61,7 @@
 						window.location.replace(xhr.responseText);
 					},
 					403 : function(xhr){
-						$form.reset();
+						$form[0].reset();
 						$form.find(".errorMessage").text(xhr.responseText);
 						focusFirstInputField();
 					}				
@@ -60,11 +71,11 @@
 	};
 	
 	$(function(){
-		alertManager = new AlertManager();
-		alertManager.dequeueAllAlerts();	
+		var alertManager = AlertManager.getInstance();
+		alertManager.dequeueAllAlerts();
 		focusFirstInputField();
 		setupLoginFormValidation();
 		bindLoginFormSubmit();		
 	});
 	
-})(jQuery);
+});

@@ -3,11 +3,8 @@
 <html>
 <head>
 	<title>Log In</title>
-	<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
-	<script type="text/javascript" src="js/jquery-ui.js"></script>
-	<script type="text/javascript" src="js/plugins/jquery.cookie.js"></script>
-	<script type="text/javascript" src="js/plugins/alertManager.js"></script>
-	<script src="js/login.js" type="text/javascript"></script>	
+	<script type="text/javascript" src="js/require.js" data-main="js/login/login"></script>
+	<link rel="stylesheet" type="text/css" href="css/common-styles.css">
 	<link rel="stylesheet" type="text/css" href="css/login-signup.css">
 </head>
 

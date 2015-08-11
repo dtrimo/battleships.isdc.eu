@@ -40,6 +40,7 @@ public class AvailableBattleshipAdapter extends GenericAdapter<AvailableBattlesh
 		
 		dto.setModel(battleshipModelAdapter.toDTO(model.getModel()));
 		dto.setBT_Positions(battleshipPositionAdapter.toDTO(model.getBT_Positions()));
+		dto.setGameTypeId(model.getGameType().getGame_type_id());
 		return dto;
 	}
 }

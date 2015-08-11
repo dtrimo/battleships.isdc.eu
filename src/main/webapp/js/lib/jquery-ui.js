@@ -9198,6 +9198,12 @@ $.ui.intersect = (function() {
 				( x1 < l && x2 > r ) // Surrounded horizontally
 			);
 		default:
+			if (toleranceMode.x){
+				return ( l < x1 + toleranceMode.x && // Right Half
+						x2 - toleranceMode.x < r && // Left Half
+						t < y1 + toleranceMode.y && // Bottom Half
+						y2 - toleranceMode.y < b ); // Top Half
+			}
 			return false;
 		}
 	};

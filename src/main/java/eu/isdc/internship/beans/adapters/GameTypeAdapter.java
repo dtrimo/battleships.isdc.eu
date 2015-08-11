@@ -11,7 +11,7 @@ import eu.isdc.internship.db.dto.GameTypeDTO;
 public class GameTypeAdapter extends GenericAdapter<GameTypeBean, GameTypeDTO> {
 
 	@Autowired
-	private BattleshipModelAdapter battleshipModelAdapter;
+	private AvailableBattleshipAdapter battleshipModelAdapter;
 	
 	@Override
 	public GameTypeBean toModel(GameTypeDTO dto) {

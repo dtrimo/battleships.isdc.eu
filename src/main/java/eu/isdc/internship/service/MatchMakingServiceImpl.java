@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import eu.isdc.internship.beans.GameRequest;
 import eu.isdc.internship.beans.GameRequestResponse;
 import eu.isdc.internship.beans.GameRole;
+import eu.isdc.internship.beans.GameTypeBean;
 import eu.isdc.internship.db.dto.GameTypeDTO;
 import eu.isdc.internship.exception.MatchMakingException;
 import eu.isdc.internship.service.GameUnderConstructionFactory.GameUnderConstruction;
@@ -62,9 +63,9 @@ public class MatchMakingServiceImpl implements MatchMakingService {
 
 	@PostConstruct
 	public void initializePendingGameRequestsMap(){
-		for (final GameTypeDTO dto : gameTypeService.getGameTypes()){
-			pendingGameRequests.put(dto.getGame_type_id(), new ArrayList<Long>());
-			gamesUnderConstruction.put(dto.getGame_type_id(), gameUnderConstructionFactory.newGame(2,dto.getGame_type_id()));
+		for (final GameTypeBean gameType : gameTypeService.getGameTypes()){
+			pendingGameRequests.put(gameType.getId(), new ArrayList<Long>());
+			gamesUnderConstruction.put(gameType.getId(), gameUnderConstructionFactory.newGame(2,gameType.getId()));
 		}		
 	}
 	

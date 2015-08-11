@@ -1,4 +1,4 @@
-(function($){
+define(['jquery','jquery.cookie'],function($){
 	
 	$.cookie.json = true;
 	
@@ -15,13 +15,25 @@
 		}
 		$alertsContainer.attr("id",id);
 		this.$alertsContainer= $alertsContainer;
+		this.animationMethods = ['fadeIn','fadeOut'];
 	};
+	
+	AlertManager.prototype.setAnimationMethod = function(animationMethod){
+		if (animationMethod == 'show'){
+			this.animationMethods = ['show','hide'];
+			return true;
+		} else if (animationMethod == 'fade'){
+			this.animationMethods = ['fadeIn', 'fadeOut'];
+			return true;
+		}
+		return false;
+	}
 	
 	AlertManager.prototype.displayAlert = function(message, type, delay, fadeInTime, displayTime, fadeOutTime){
 		type = type || "success";
-		fadeInTime = fadeInTime || 0;
+		fadeInTime = fadeInTime || 1000;
 		displayTime = displayTime || 5000;
-		fadeOutTime = fadeOutTime || 600;
+		fadeOutTime = fadeOutTime || 1000;
 		if (delay==undefined){
 			delay = 0;
 		}
@@ -31,11 +43,12 @@
 		$message.text(message);
 		$message.appendTo($alertContainer);
 		var $alertsContainer = this.$alertsContainer;
+		var manager = this;
 		setTimeout(function(){
 			$alertContainer.appendTo($alertsContainer);
-			$alertContainer.show(fadeInTime,function(){
+			$alertContainer[manager.animationMethods[0]](fadeInTime,function(){
 				setTimeout(function(){
-					$alertContainer.hide(fadeOutTime);
+					$alertContainer[manager.animationMethods[1]](fadeOutTime);
 				},displayTime);
 			});		
 		},delay);
@@ -93,4 +106,29 @@
 		$.removeCookie(this.cookieName);
 	}
 	
-})(jQuery)
+	AlertManager.prototype.destroy = function(){
+		$.removeCookie(this.cookieName);
+		this.$alertsContainer.remove();
+	}
+	
+	return (function(){
+		var instances = {};
+				
+		return {
+			getInstance : function(name, container){
+				if (!instances[name]){
+					instances[name] = new AlertManager(container, name);
+				}
+				return instances[name];
+			},
+			destroyInstance : function(name){
+				if (instances[name]){
+					instances[name].destroy();
+				}
+				delete instances[name];
+			}
+		}
+		
+	})();
+	
+});

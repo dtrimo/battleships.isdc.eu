@@ -8,7 +8,7 @@ public class GameTypeBean {
 	private String shortDescription;
 	private Integer n;
 	private Integer m;
-	private List<BattleshipModelBean> battleships;
+	private List<AvailableBattleshipModelBean> battleships;
 	private Long id;
 
 	public Long getId(){
@@ -51,11 +51,11 @@ public class GameTypeBean {
 		this.m = m;
 	}
 
-	public List<BattleshipModelBean> getBattleships() {
+	public List<AvailableBattleshipModelBean> getBattleships() {
 		return battleships;
 	}
 
-	public void setBattleships(List<BattleshipModelBean> battleships) {
+	public void setBattleships(List<AvailableBattleshipModelBean> battleships) {
 		this.battleships = battleships;
 	}
 

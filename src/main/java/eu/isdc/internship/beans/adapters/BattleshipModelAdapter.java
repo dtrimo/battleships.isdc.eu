@@ -1,40 +1,32 @@
 package eu.isdc.internship.beans.adapters;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import eu.isdc.internship.beans.BattleshipModelBean;
 import eu.isdc.internship.db.adapters.GenericAdapter;
-import eu.isdc.internship.db.dto.AvailableBattleshipDTO;
-import eu.isdc.internship.db.dto.PositionDTO;
+import eu.isdc.internship.db.dto.BattleshipModelDTO;
 
 @Component("battleshipModelBeanAdapter")
-public class BattleshipModelAdapter extends GenericAdapter<BattleshipModelBean, AvailableBattleshipDTO>{
+public class BattleshipModelAdapter extends GenericAdapter<BattleshipModelBean, BattleshipModelDTO>{
+
+	@Autowired
+	private PositionAdapter positionAdapter;
 
 	@Override
-	public BattleshipModelBean toModel(AvailableBattleshipDTO dto) {
+	public BattleshipModelBean toModel(BattleshipModelDTO dto) {
 		if (dto==null){
 			return null;
 		}
-		final BattleshipModelBean bean = new BattleshipModelBean();
-		List<Integer> x = new ArrayList<Integer>();
-		List<Integer> y = new ArrayList<Integer>();
-		
-		for (final PositionDTO position: dto.getModel().getPositions()){
-			x.add(position.getX());
-			y.add(position.getY());
-		}
-		
-		bean.setX(x);
-		bean.setY(y);
+		BattleshipModelBean bean = new BattleshipModelBean();
+		bean.setCells(positionAdapter.toModel(dto.getPositions()));
+		bean.setBattleshipModelId(dto.getModel_id());
 		return bean;
 	}
 
 	@Override
-	public AvailableBattleshipDTO toDTO(BattleshipModelBean model) {
+	public BattleshipModelDTO toDTO(BattleshipModelBean model) {
 		throw new UnsupportedOperationException();
 	}
-
 }
+

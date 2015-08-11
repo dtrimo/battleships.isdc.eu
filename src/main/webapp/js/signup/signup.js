@@ -1,4 +1,17 @@
-(function($){
+requirejs.config({
+	baseUrl : "js",
+	shim : {
+		'jquery.cookie' : ['jquery'] 
+	},
+	paths : {
+		'jquery' : 'lib/jquery-1.11.3',
+		'jquery.cookie' : 'plugins/jquery.cookie',
+		'alertManager' : 'plugins/alertManager'
+	}
+});
+
+
+require(['jquery','alertManager'],function($, AlertManager){
 	
 	var alertManager;
 	
@@ -31,7 +44,7 @@
 						top.location.href=response.redirectURL;
 					} else {
 						$form.find(".errorMessage").text(response.message);
-						$form.reset();
+						$form[0].reset();
 					}		
 				},
 				error : function(){
@@ -66,7 +79,7 @@
 	}
 	
 	$(function(){
-		alertManager = new AlertManager();
+		alertManager = AlertManager.getInstance();
 		alertManager.dequeueAllAlerts();
 		focusFirstInputField();
 		setupSignUpFormValidation();
@@ -74,7 +87,7 @@
 	});
 	
 	
-})(jQuery)
+});
 
 	
 	

@@ -7,7 +7,7 @@ public class AvailableBattleshipDTO {
 	private int count;
 	private BattleshipModelDTO model;
 	private List<BattleshipPositionDTO> BT_Positions;
-	private GameTypeDTO gameType;
+	private Long gameTypeId;
 	
 	
 	public Long getAv_BT_id() {
@@ -34,10 +34,11 @@ public class AvailableBattleshipDTO {
 	public void setBT_Positions(List<BattleshipPositionDTO> bT_Positions) {
 		BT_Positions = bT_Positions;
 	}
-	public GameTypeDTO getGameType() {
-		return gameType;
+	public Long getGameTypeId() {
+		return gameTypeId;
 	}
-	public void setGameType(GameTypeDTO gameType) {
-		this.gameType = gameType;
+	public void setGameTypeId(Long gameTypeId) {
+		this.gameTypeId = gameTypeId;
 	}
+
 }

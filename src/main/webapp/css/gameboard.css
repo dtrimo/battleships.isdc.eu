@@ -1,22 +1,29 @@
+*{
+	box-sizing : border-box;
+}
+
 body{
-	/*overflow:hidden;*/
-	    background-image: url('../images/picture.jpg');
-	
+	background-image: url('../images/picture.jpg');
+}
+
+.hidden {
+	display: none;
 }
 
 .board-container{
-	display: table;
+	display: block;
 	float: left;
 	position: relative;
 }
 
-.div-row{
+.board-row{
 	width: 100%;
 	height: 40px;
-	background-color: white;
-	opacity:0.4;
 }
-.div-row > div{
+
+.board-cell, .ship-cell{
+	opacity:0.4;
+	background-color: white;
 	display: inline-block;
 	height: 40px;
 	width: 40px;
@@ -27,30 +34,24 @@ body{
 	border-radius: 10%;	       
 }
 
+.ship-cell{
+	opacity : 0.9;
+	background-color : white;
+	position : absolute;
+}
+
+.ship{
+ 	position: absolute;
+ 	display: block; 
+ 	opacity:0.9;		
+ }
+
 .ships-container{
-	display: table;
+	display: block;
 	float: right;
 	clear: left;
 	position: relative;
-	height: 100%;
 }
-.ship-cell{
-	display: inline-block;
-	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
-	border-radius: 10%;
-}
-.div-ship{
- 	position: absolute;
- 	display: table; 
- 	opacity:0.9;		
- }
-	
- .ship-row{
- 	width: 100%;
-	height: 40px;
- }
 
 .transformation-container{
 	border: 1px solid black;
@@ -63,6 +64,16 @@ body{
 
 .transformation-grid{
 	position:relative;
+}
+
+.transformation-container::after{
+	content:"";
+	position : absolute;
+	height:100%;
+	width : 2px;
+	background-color : black;
+	left: 50%;
+	top : 0;
 }
 
 .transform{
@@ -88,4 +99,29 @@ body{
 	left: 20%
 }
 
+.active {
+	background-color: grey;
+}
 
+.shadow-view {
+	opacity : 0.6;
+	background-color : transparent;
+	z-index : 1;
+}
+
+.shadow-view.valid .ship-cell{
+	background-color : green;
+}
+
+.shadow-view.invalid .ship-cell {
+	background-color : red;
+}
+
+.ui-draggable{
+	z-index:1;
+}
+
+.hovered {
+	z-index:5;
+	box-shadow: 0 0 20px #DEB887;
+}

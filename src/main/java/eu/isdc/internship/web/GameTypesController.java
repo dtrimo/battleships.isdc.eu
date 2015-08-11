@@ -34,16 +34,13 @@ public class GameTypesController {
 	private GameTypeService gameTypeService;
 	
 	@Autowired
-	private GameTypeAdapter gameTypeAdapter;
-	
-	@Autowired
 	private MatchMakingService matchMakingService;
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(method=RequestMethod.GET, value="gametypes")
 	public String getAllGameTypes(final Model model, final HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException {
 		//System.out.println("---------------------------"+id);
-		List<GameTypeBean> gameTypesList = gameTypeAdapter.toModel(gameTypeService.getGameTypes());
+		List<GameTypeBean> gameTypesList = gameTypeService.getGameTypes();
 		ObjectMapper mapper = new ObjectMapper();		
 		model.addAttribute("jsonGameTypes", mapper.writer().writeValueAsString(gameTypesList));	
 		model.addAttribute("userName",SecurityUtils.getLoggedInUser().getUsername());
@@ -55,7 +52,7 @@ public class GameTypesController {
 	public GameRequestResponse requestGame(final Model model, final HttpServletRequest request, @RequestParam("gametypeId") Long id) throws MatchMakingException, IOException {
 		final GameRequest gameRequest = new GameRequest();
 		gameRequest.setGametypeId(id);
-		gameRequest.setUserId(((UserDTO)request.getSession().getAttribute("user")).getUser_id());
+		gameRequest.setUserId(SecurityUtils.getLoggedInUser().getUserId());
 		GameRequestResponse resp;
 		try{
 			resp = matchMakingService.requestGame(gameRequest);
@@ -70,7 +67,7 @@ public class GameTypesController {
 	@RequestMapping(method=RequestMethod.GET, value="gametypesJSON")
 	@ResponseBody
 	public List<GameTypeBean> getAllGameTypesJSON(final Model model) throws JsonGenerationException, JsonMappingException, IOException {
-		return gameTypeAdapter.toModel(gameTypeService.getGameTypes());
+		return gameTypeService.getGameTypes();
 	}
 	
 }

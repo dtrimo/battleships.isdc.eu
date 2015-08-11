@@ -3,23 +3,24 @@ package eu.isdc.internship.beans;
 import java.util.List;
 
 public class BattleshipModelBean {
-	private List<Integer> x;
-	private List<Integer> y;
 
-	public List<Integer> getX() {
-		return x;
+	private Long battleshipModelId;
+	private List<PositionBean> cells;
+
+	public Long getBattleshipModelId() {
+		return battleshipModelId;
 	}
 
-	public void setX(List<Integer> x) {
-		this.x = x;
+	public void setBattleshipModelId(Long battleshipModelId) {
+		this.battleshipModelId = battleshipModelId;
 	}
 
-	public List<Integer> getY() {
-		return y;
+	public List<PositionBean> getCells() {
+		return cells;
 	}
 
-	public void setY(List<Integer> y) {
-		this.y = y;
+	public void setCells(List<PositionBean> cells) {
+		this.cells = cells;
 	}
 
 }
