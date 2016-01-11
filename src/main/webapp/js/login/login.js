@@ -12,7 +12,6 @@ requirejs.config({
 
 
 require(['jquery','alertManager'],function($, AlertManager){
-	
 	var focusFirstInputField = function(){
 		$($("form.login").find("input")[0]).focus();
 	}
@@ -55,7 +54,7 @@ require(['jquery','alertManager'],function($, AlertManager){
 				},
 				statusCode : {
 					200 : function(response){
-						window.location.href = "gametypes";
+						window.location.href = "home";
 					}, 
 					302 : function (xhr){
 						window.location.replace(xhr.responseText);

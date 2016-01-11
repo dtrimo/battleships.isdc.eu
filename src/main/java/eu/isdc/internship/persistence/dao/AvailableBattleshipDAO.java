@@ -1,11 +1,11 @@
-package eu.isdc.internship.db.dao;
+package eu.isdc.internship.persistence.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import eu.isdc.internship.db.model.AvailableBattleship;
-import eu.isdc.internship.db.model.BattleshipModel;
-import eu.isdc.internship.db.model.GameType;
+import eu.isdc.internship.persistence.model.AvailableBattleship;
+import eu.isdc.internship.persistence.model.BattleshipModel;
+import eu.isdc.internship.persistence.model.GameType;
 
 /**
  * 
@@ -31,9 +31,9 @@ public class AvailableBattleshipDAO extends GenericDAO<AvailableBattleship, Long
 			gameType.getAvailableBTs().remove(availableBattleship);
 			gameTypeDAO.save(gameType);
 		}
-		BattleshipModel model = availableBattleship.getModel();
+		BattleshipModel model = availableBattleship.getBattleshipModel();
 		if(model != null) {
-			model.getAv_BT().remove(availableBattleship);
+			model.getAvailableBattleships().remove(availableBattleship);
 			modelDAO.save(model);
 		}
 		hibernateTemplate.delete(availableBattleship);

@@ -1,9 +1,9 @@
-package eu.isdc.internship.db.adapters;
+package eu.isdc.internship.persistence.adapters;
 
 import org.springframework.stereotype.Component;
 
-import eu.isdc.internship.db.dto.*;
-import eu.isdc.internship.db.model.*;
+import eu.isdc.internship.persistence.dto.*;
+import eu.isdc.internship.persistence.model.*;
 
 @Component
 public class StatisticsAdapter extends GenericAdapter<Statistics,StatisticsDTO>{
@@ -14,7 +14,7 @@ public class StatisticsAdapter extends GenericAdapter<Statistics,StatisticsDTO>{
 			return null;
 		}
 		Statistics st=new Statistics();
-		st.setStats_id(dto.getStats_id());
+		st.setStatsId(dto.getStatisticsId());
 		st.setNrOfPlayedGames(dto.getNrOfPlayedGames());
 		st.setNrOfRoundsToWin(dto.getNrOfRoundsToWin());
 		st.setNrOfRundsToLose(dto.getNrOfRundsToLose());
@@ -29,7 +29,7 @@ public class StatisticsAdapter extends GenericAdapter<Statistics,StatisticsDTO>{
 			return null;
 		}
 		StatisticsDTO dto=new StatisticsDTO();
-		dto.setStats_id(model.getStats_id());
+		dto.setStatisticsId(model.getStatsId());
 		dto.setNrOfPlayedGames(model.getNrOfPlayedGames());
 		dto.setNrOfRoundsToWin(model.getNrOfRoundsToWin());
 		dto.setNrOfRundsToLose(model.getNrOfRundsToLose());

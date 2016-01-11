@@ -1,0 +1,104 @@
+*{
+	box-sizing:border-box;
+}
+
+body{
+	padding-left:5%;
+	padding-right:5%;
+}
+
+div.loggedInHeader{
+	margin-top:10px;
+}
+
+div[friends-list]{
+	width:280px;
+	margin-top:10px;
+}
+
+div.friend span.name{
+	display:inline-block;
+	width:80%;
+}
+
+div.friend div.status{
+	display:inline-block;
+	width:10%;
+	height:20px;
+	background-color:red;
+}
+
+div.friend.on div.status{
+	background-color:green;
+}
+
+div[chat-window], div[friends-list]{
+	display: inline-block;	
+	float:left;
+}
+
+div[chat-window]{
+	margin-top:10px;
+}
+
+/*
+These rules are just to position the windows on the home page.
+*/
+div[chat-window]{
+	clear:left;
+}
+
+div.chatWindow {
+	overflow : hidden;
+}
+
+div.chatWindow textarea.conversation-log{
+	float:left;
+	clear:left;
+	margin-bottom:10px;
+	width:247px;
+	height:100px;
+	background: hsl(50, 30%, 90%);
+}
+
+div.chatWindow input {
+	float:left;
+	clear:left;
+	margin-top:2px;
+}
+
+div.chatWindow a.button.submit{
+	margin-left: 7px;
+}
+
+div.chatWindow p.partner{
+	margin-top : 0;
+}
+
+div.available-game-types{
+	display:inline-block;
+	margin-top:10px;
+	margin-left:10px;
+	float:left;
+	width:800px;
+	padding-left:40px;
+}
+
+.chat-box{
+	width:280px;
+	overflow:hidden;
+	display:inline-block;
+	float:left;
+}
+
+div[chat-manager]{
+	width:282px;
+}
+
+div.box-title{
+	font-size:20px;	
+}
+
+div.board-container{
+	float:none;
+}

@@ -17,9 +17,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import eu.isdc.internship.db.adapters.UserAdapter;
-import eu.isdc.internship.db.dao.UserDAO;
-import eu.isdc.internship.db.dto.UserDTO;
+import eu.isdc.internship.persistence.adapters.UserAdapter;
+import eu.isdc.internship.persistence.dao.UserDAO;
+import eu.isdc.internship.persistence.dto.UserDTO;
 import eu.isdc.internship.users.BattleshipsUserDetails;
 
 /**

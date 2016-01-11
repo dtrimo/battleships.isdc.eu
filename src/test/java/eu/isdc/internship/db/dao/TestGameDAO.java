@@ -15,9 +15,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import eu.isdc.internship.db.model.Game;
-import eu.isdc.internship.db.model.Move;
-import eu.isdc.internship.db.model.StartConfig;
+import eu.isdc.internship.persistence.dao.AvailableBattleshipDAO;
+import eu.isdc.internship.persistence.dao.GameDAO;
+import eu.isdc.internship.persistence.dao.MoveDAO;
+import eu.isdc.internship.persistence.dao.StartConfigDAO;
+import eu.isdc.internship.persistence.model.Game;
+import eu.isdc.internship.persistence.model.Move;
+import eu.isdc.internship.persistence.model.StartConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/test-beans.xml")
@@ -94,14 +98,14 @@ public class TestGameDAO {
 		ArrayList<Long> ids = new ArrayList<Long>();
 		List<Game> results = gameDAO.readAll();
 		
-		ids.add(results.get(0).getGame_id());
+		ids.add(results.get(0).getGameId());
 		ids.add(Long.valueOf(2));
 		
 		results = gameDAO.getAllGamesByIds(ids);
 		Assert.assertEquals(1, results.size());
 		
 		ids.clear();
-		ids.add(results.get(0).getGame_id() + 1);
+		ids.add(results.get(0).getGameId() + 1);
 		results = gameDAO.getAllGamesByIds(ids);
 		Assert.assertEquals(0, results.size());
 	}

@@ -13,9 +13,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import eu.isdc.internship.db.model.Game;
-import eu.isdc.internship.db.model.StartConfig;
-import eu.isdc.internship.db.model.User;
+import eu.isdc.internship.persistence.dao.GameDAO;
+import eu.isdc.internship.persistence.dao.StartConfigDAO;
+import eu.isdc.internship.persistence.dao.UserDAO;
+import eu.isdc.internship.persistence.model.Game;
+import eu.isdc.internship.persistence.model.StartConfig;
+import eu.isdc.internship.persistence.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/test-beans.xml")

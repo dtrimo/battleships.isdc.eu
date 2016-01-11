@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import eu.isdc.internship.beans.GameTypeBean;
-import eu.isdc.internship.db.adapters.GenericAdapter;
-import eu.isdc.internship.db.dto.GameTypeDTO;
+import eu.isdc.internship.persistence.adapters.GenericAdapter;
+import eu.isdc.internship.persistence.dto.GameTypeDTO;
 
 @Component("gameTypeBeanAdapter")
 public class GameTypeAdapter extends GenericAdapter<GameTypeBean, GameTypeDTO> {
@@ -25,7 +25,7 @@ public class GameTypeAdapter extends GenericAdapter<GameTypeBean, GameTypeDTO> {
 		bean.setName(dto.getName());
 		bean.setShortDescription(dto.getShortDescription());
 		bean.setBattleships(battleshipModelAdapter.toModel(dto.getAvailableBTs()));
-		bean.setId(dto.getGame_type_id());
+		bean.setId(dto.getGameTypeId());
 		return bean;
 	}
 

@@ -1,10 +1,10 @@
-package eu.isdc.internship.db.adapters;
+package eu.isdc.internship.persistence.adapters;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import eu.isdc.internship.db.dto.*;
-import eu.isdc.internship.db.model.*;
+import eu.isdc.internship.persistence.dto.*;
+import eu.isdc.internship.persistence.model.*;
 
 @Component
 public class GameAdapter extends GenericAdapter<Game,GameDTO>{
@@ -21,7 +21,7 @@ public class GameAdapter extends GenericAdapter<Game,GameDTO>{
 			return null;
 		}
 		Game game = new Game();
-		game.setGame_id(dto.getGame_id());
+		game.setGameId(dto.getGameId());
 		game.setDate(dto.getDate());
 		
 		game.setGameType(gameTypeAdapter.toModel(dto.getGameType()));
@@ -35,7 +35,7 @@ public class GameAdapter extends GenericAdapter<Game,GameDTO>{
 			return null;
 		}
 		GameDTO dto = new GameDTO();
-		dto.setGame_id(model.getGame_id());
+		dto.setGameId(model.getGameId());
 		dto.setDate(model.getDate());
 		
 		dto.setGameType(gameTypeAdapter.toDTO(model.getGameType()));

@@ -1,4 +1,4 @@
-package eu.isdc.internship.db.model;
+package eu.isdc.internship.persistence.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,88 +9,127 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Position. Represents the coordinates of a cell in the makeup of a
+ * battleship model.
+ */
 @Entity
 @Table(name = "POSITIONS")
 public class Position {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "POSITION_ID", nullable = false)
-  private Long position_id;
-  
-  @Column(name = "X", nullable = false)
-  private int x;
-  
-  @Column(name = "Y", nullable = false)
-  private int y;
-  
-  @ManyToOne
-  @JoinColumn(name = "model_id")
-  private BattleshipModel model;
+	/** The position id. */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "position_id", nullable = false)
+	private Long positionId;
 
-  public Position(){}
-  public Position(int x, int y){
-	  this.x=x;
-	  this.y=y;
-  }
-  /**
-   * @return the position_id
-   */
-  public Long getPosition_id() {
-    return position_id;
-  }
+	/** The x. */
+	@Column(name = "x", nullable = false)
+	private int x;
 
-  /**
-   * @param position_id
-   *          the position_id to set
-   */
-  public void setPosition_id(final Long position_id) {
-    this.position_id = position_id;
-  }
+	/** The y. */
+	@Column(name = "y", nullable = false)
+	private int y;
 
-  /**
-   * @return the x
-   */
-  public int getX() {
-    return x;
-  }
+	/** The model. */
+	@ManyToOne
+	@JoinColumn(name = "battleship_model_id")
+	private BattleshipModel battleshipModel;
 
-  /**
-   * @param x
-   *          the x to set
-   */
-  public void setX(final int x) {
-    this.x = x;
-  }
+	/**
+	 * Instantiates a new position.
+	 */
+	public Position() {
+	}
 
-  /**
-   * @return the y
-   */
-  public int getY() {
-    return y;
-  }
+	/**
+	 * Instantiates a new position.
+	 *
+	 * @param x
+	 *            the x
+	 * @param y
+	 *            the y
+	 */
+	public Position(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 
-  /**
-   * @param y
-   *          the y to set
-   */
-  public void setY(final int y) {
-    this.y = y;
-  }
+	/**
+	 * Gets the position id.
+	 *
+	 * @return the position_id
+	 */
+	public Long getPositionId() {
+		return positionId;
+	}
 
-  /**
-   * @return the model
-   */
-  public BattleshipModel getModel() {
-    return model;
-  }
+	/**
+	 * Sets the position id.
+	 *
+	 * @param positionId
+	 *            the new position id
+	 */
+	public void setPositionId(final Long positionId) {
+		this.positionId = positionId;
+	}
 
-  /**
-   * @param model
-   *          the model to set
-   */
-  public void setModel(final BattleshipModel model) {
-    this.model = model;
-  }
+	/**
+	 * Gets the x.
+	 *
+	 * @return the x
+	 */
+	public int getX() {
+		return x;
+	}
+
+	/**
+	 * Sets the x.
+	 *
+	 * @param x
+	 *            the x to set
+	 */
+	public void setX(final int x) {
+		this.x = x;
+	}
+
+	/**
+	 * Gets the y.
+	 *
+	 * @return the y
+	 */
+	public int getY() {
+		return y;
+	}
+
+	/**
+	 * Sets the y.
+	 *
+	 * @param y
+	 *            the y to set
+	 */
+	public void setY(final int y) {
+		this.y = y;
+	}
+
+	/**
+	 * Gets the battleship model.
+	 *
+	 * @return the battleship model
+	 */
+	public BattleshipModel getBattleshipModel() {
+		return battleshipModel;
+	}
+
+	/**
+	 * Sets the battleship model.
+	 *
+	 * @param battleshipModel
+	 *            the new battleship model
+	 */
+	public void setBattleshipModel(BattleshipModel battleshipModel) {
+		this.battleshipModel = battleshipModel;
+	}
 
 }

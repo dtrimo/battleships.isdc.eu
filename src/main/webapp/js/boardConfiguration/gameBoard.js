@@ -23,6 +23,7 @@ define(['jquery','board','jqueryUI','battleshipView'],function($, Board, Battles
 			shipView.xOffset = xOffset;
 			shipView.yOffset = yOffset;
 		}
+		$(document).trigger("ship-added", this);
 	}
 	
 	GameBoard.prototype.hasShip = function(battleshipView){
@@ -55,6 +56,7 @@ define(['jquery','board','jqueryUI','battleshipView'],function($, Board, Battles
 			var battleshipView = this.containedBattleshipViews[index].shipView;
 			battleshipView.destroy();
 			this.containedBattleshipViews.splice(index,1);
+			$(document).trigger("ship-removed", this);
 			return battleshipView;
 		}
 		return null;

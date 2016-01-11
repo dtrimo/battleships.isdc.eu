@@ -47,8 +47,31 @@ define(['jquery','battleshipModel', 'coords'],function($,BattleshipModel,Coords)
 			$cell.data("absolute-position",coords.clone());
 			$cell.data("ship-relative-position", coords.clone().applyTranslation(-this.minX,-this.minY));
 			$cell.data("shipView",this);
+			
+			if (containsCoords(computedCoords,{x:coords.x+1,y:coords.y})){
+				$cell.addClass("neighbor-right");
+			}
+			if (containsCoords(computedCoords,{x:coords.x-1,y:coords.y})){
+				$cell.addClass("neighbor-left");
+			}
+			if (containsCoords(computedCoords,{x:coords.x,y:coords.y-1})){
+				$cell.addClass("neighbor-bottom");
+			}
+			if (containsCoords(computedCoords,{x:coords.x,y:coords.y+1})){
+				$cell.addClass("neighbor-top");
+			}
+			
 			this.$divShip.append($cell);
 		}
+	}
+	
+	var containsCoords = function(coordsArray,coords){
+		for (var i = 0; i < coordsArray.length; i++){
+			if (coordsArray[i].x==coords.x && coordsArray[i].y == coords.y){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	BattleshipView.prototype.render = function(cellWidth, cellHeight, normalized){

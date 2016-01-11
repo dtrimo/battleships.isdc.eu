@@ -1,0 +1,7 @@
+<div class="friendsList box transparent-black-background">
+	<div ng-repeat="friend in friends" ng-class="{friend : true, on : friend.online, off : !friend.online}" ng-click="initiateConversation(friend)">
+		<span class="name">{{friend.name}}</span>
+		<div class="status"></div>
+	</div>
+</div>
+

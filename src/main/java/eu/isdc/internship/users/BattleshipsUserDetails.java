@@ -6,7 +6,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import eu.isdc.internship.db.dto.UserDTO;
+import eu.isdc.internship.persistence.dto.UserDTO;
 
 public class BattleshipsUserDetails extends User {
 
@@ -26,7 +26,7 @@ public class BattleshipsUserDetails extends User {
 	}
 
 	public Long getUserId() {
-		return userDTO.getUser_id();
+		return userDTO.getUserId();
 	}
 
 }

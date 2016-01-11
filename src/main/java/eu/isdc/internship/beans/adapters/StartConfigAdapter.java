@@ -1,20 +1,39 @@
 package eu.isdc.internship.beans.adapters;
 
-import eu.isdc.internship.beans.StartConfigBean;
-import eu.isdc.internship.db.adapters.GenericAdapter;
-import eu.isdc.internship.db.dto.StartConfigDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class StartConfigAdapter extends GenericAdapter<StartConfigBean, StartConfigDTO>{
+import eu.isdc.internship.beans.GameRole;
+import eu.isdc.internship.beans.StartConfigBean;
+import eu.isdc.internship.persistence.adapters.GenericAdapter;
+import eu.isdc.internship.persistence.dto.StartConfigDTO;
+
+@Component
+public class StartConfigAdapter extends GenericAdapter<StartConfigBean, StartConfigDTO> {
+
+	@Autowired
+	private BattleshipPositionAdapter battleshipPositionAdapter;
 
 	@Override
 	public StartConfigBean toModel(StartConfigDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		if (dto == null) {
+			return null;
+		}
+		StartConfigBean bean = new StartConfigBean();
+		bean.setGameId(dto.getGameId());
+		bean.setStartConfigId(dto.getStartConfigId());
+		bean.setUserId(dto.getUserId());
+		bean.setSelectedPositions(battleshipPositionAdapter.toModel(dto.getBattleshipPositions()));
+		bean.setGameRole(GameRole.valueOf(dto.getGameRole()));
+		return bean;
 	}
 
 	@Override
 	public StartConfigDTO toDTO(StartConfigBean model) {
-		// TODO Auto-generated method stub
+		if (model == null) {
+			return null;
+		}
+		// TODO: revisit this
 		return null;
 	}
 

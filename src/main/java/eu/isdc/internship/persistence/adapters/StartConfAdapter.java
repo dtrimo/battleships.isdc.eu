@@ -1,46 +1,48 @@
-package eu.isdc.internship.db.adapters;
+package eu.isdc.internship.persistence.adapters;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import eu.isdc.internship.db.dto.*;
-import eu.isdc.internship.db.model.*;
+import eu.isdc.internship.persistence.dto.StartConfigDTO;
+import eu.isdc.internship.persistence.model.StartConfig;
 
 @Component
-public class StartConfAdapter extends GenericAdapter<StartConfig,StartConfigDTO>{
+public class StartConfAdapter extends GenericAdapter<StartConfig, StartConfigDTO> {
 
 	@Autowired
 	private UserAdapter userAdapter;
-	
+
 	@Autowired
 	private MoveAdapter moveAdapter;
-	
+
 	@Autowired
 	private BattleshipPositionAdapter battleshipPositionAdapter;
-	
+
 	@Override
 	public StartConfig toModel(StartConfigDTO dto) {
-		if(dto==null) {	
+		if (dto == null) {
 			return null;
 		}
 		StartConfig st = new StartConfig();
-		st.setStartConfig_id(dto.getStartConfig_id());
-		st.setBT_Positions(battleshipPositionAdapter.toModel(dto.getBT_Positions()));
-		st.setMove(moveAdapter.toModel(dto.getMove()));
-		st.setUser(userAdapter.toModel(dto.getUser()));
+		st.setStartConfigId(dto.getStartConfigId());
+		st.setBattleshipPositions(battleshipPositionAdapter.toModel(dto.getBattleshipPositions()));
+		st.setMoves(moveAdapter.toModel(dto.getMoves()));
+		st.setGameRole(dto.getGameRole());
 		return st;
 	}
 
 	@Override
 	public StartConfigDTO toDTO(StartConfig model) {
-		if(model == null) {
+		if (model == null) {
 			return null;
 		}
 		StartConfigDTO dto = new StartConfigDTO();
-		dto.setStartConfig_id(model.getStartConfig_id());
-		dto.setBT_Positions(battleshipPositionAdapter.toDTO(model.getBT_Positions()));
-		dto.setMove(moveAdapter.toDTO(model.getMove()));
-		dto.setUser(userAdapter.toDTO(model.getUser()));
+		dto.setStartConfigId(model.getStartConfigId());
+		dto.setBT_Positions(battleshipPositionAdapter.toDTO(model.getBattleshipPositions()));
+		dto.setMoves(moveAdapter.toDTO(model.getMoves()));
+		dto.setUserId(model.getUser().getUserId());
+		dto.setGameId(model.getGame().getGameId());
+		dto.setGameRole(model.getGameRole());
 		return dto;
-	}	
+	}
 }

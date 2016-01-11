@@ -1,4 +1,4 @@
-package eu.isdc.internship.application;
+package eu.isdc.internship.utils;
 
 import java.util.Calendar;
 import java.util.Date;

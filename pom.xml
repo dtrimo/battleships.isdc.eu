@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<spring.framework.version>4.0.2.RELEASE</spring.framework.version>
+		<spring.framework.version>4.2.3.RELEASE</spring.framework.version>
 		<spring.security.version>4.0.2.RELEASE</spring.security.version>
 		<tomcat.servlet.version>7.0.62</tomcat.servlet.version>
 		<jsr250api.version>1.0</jsr250api.version>
@@ -24,11 +24,21 @@
 		<logback.version>1.0.7</logback.version>
 
 		<apache.commons.version>3.0</apache.commons.version>
-		<jackson.version>1.9.13</jackson.version>
+		<jackson.version>2.5.4</jackson.version>
 	</properties>
 
 	<dependencies>
 		<!-- servlet-related dependencies -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-messaging</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-servlet-api</artifactId>
@@ -184,10 +194,21 @@
 		</dependency>
 		<!-- jackson is used for json processing -->
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
 
 	</dependencies>
 

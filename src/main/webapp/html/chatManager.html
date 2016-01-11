@@ -1,0 +1,7 @@
+<div class="chatManager">
+
+	<div ng-repeat="friend in friends | filter:{conversationVisible : true}">
+		<div chat-window ng-controller="ChatWindowController"></div>
+	</div>
+
+</div>

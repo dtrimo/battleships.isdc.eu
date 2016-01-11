@@ -18,6 +18,10 @@ define([ 'jquery', 'battleshipModel', 'battleshipView'], function($, BattleshipM
 			for (var j = 0; j < this.width; j++) {
 				var $divCell = $('<div></div>');
 				$divCell.addClass('board-cell');
+				$divCell.data("coordinates",{
+					x:j,
+					y:this.height-i-1
+				});
 				$divRow.append($divCell);
 			}
 			this.$container.append($divRow);
@@ -69,5 +73,24 @@ define([ 'jquery', 'battleshipModel', 'battleshipView'], function($, BattleshipM
 		return $(this.$container.find('.board-cell')[0]).outerHeight();
 	}
 
+	Board.prototype.getBoardCellDiv = function(x, y){
+		return $(this.$container.children(":nth-child("+(this.height-y)+")").children(":nth-child("+(x+1)+")"));
+	}
+	
+	Board.prototype.coverBoardCellDiv = function(x, y, zIndex){
+		var $coveredCell = this.getBoardCellDiv(x,y);
+		var $newCell = $coveredCell.clone();
+		
+		var $cell = $(this.$container.find('.board-cell')[0]);
+		var cellHeight = $cell.outerHeight();
+		var cellWidth = $cell.outerWidth();
+		
+		$newCell.css('left', x * cellWidth + 'px');
+		$newCell.css('bottom', y * cellHeight + 'px');
+		$newCell.css("z-Index", zIndex === undefined ? 1000 : zIndex);
+		$newCell.appendTo(this.$container);
+		return $newCell;
+	}
+	
 	return Board;
 });

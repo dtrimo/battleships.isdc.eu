@@ -3,8 +3,8 @@ package eu.isdc.internship.beans.adapters;
 import org.springframework.stereotype.Component;
 
 import eu.isdc.internship.beans.PositionBean;
-import eu.isdc.internship.db.adapters.GenericAdapter;
-import eu.isdc.internship.db.dto.PositionDTO;
+import eu.isdc.internship.persistence.adapters.GenericAdapter;
+import eu.isdc.internship.persistence.dto.PositionDTO;
 
 @Component("positionBeanAdapter")
 public class PositionAdapter extends GenericAdapter<PositionBean,PositionDTO>{

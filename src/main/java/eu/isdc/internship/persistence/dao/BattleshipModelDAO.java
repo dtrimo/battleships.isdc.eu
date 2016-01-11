@@ -1,4 +1,4 @@
-package eu.isdc.internship.db.dao;
+package eu.isdc.internship.persistence.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import eu.isdc.internship.db.model.BattleshipModel;
+import eu.isdc.internship.persistence.model.BattleshipModel;
 
 @Repository
 public class BattleshipModelDAO extends GenericDAO<BattleshipModel, Long> {

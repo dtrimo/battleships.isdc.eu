@@ -12,9 +12,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import eu.isdc.internship.application.Comparison;
-import eu.isdc.internship.db.model.Statistics;
-import eu.isdc.internship.db.model.User;
+import eu.isdc.internship.persistence.dao.StatisticsDAO;
+import eu.isdc.internship.persistence.dao.UserDAO;
+import eu.isdc.internship.persistence.model.Statistics;
+import eu.isdc.internship.persistence.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/test-beans.xml")
@@ -57,27 +58,4 @@ public class TestStatisticsDAO {
 		Assert.assertNull(user.getStatistic());
 	}
 	
-	@Test
-	@Transactional
-	public void testFilterStats() {
-		Statistics stats1 = new Statistics(10, 20, 30, 40);
-		Statistics stats2 = new Statistics(100, 200, 300, 400);
-		Statistics stats3 = new Statistics(1000, 2000, 3000, 4000);
-		statDAO.save(stats1);
-		statDAO.save(stats2);
-		statDAO.save(stats3);
-		
-		Assert.assertEquals(4, statDAO.readAll().size());
-		Assert.assertEquals(1, statDAO.getAllStatsByWins(100, Comparison.GT).size());
-		Assert.assertEquals(2, statDAO.getAllStatsByWins(100, Comparison.GTE).size());
-		Assert.assertEquals(2, statDAO.getAllStatsByWins(100, Comparison.LT).size());
-		Assert.assertEquals(3, statDAO.getAllStatsByWins(100, Comparison.LTE).size());
-		Assert.assertEquals(1, statDAO.getAllStatsByWins(1000, Comparison.EQ).size());
-		
-		Assert.assertEquals(1, statDAO.getAllStatsByGamesPlayed(200, Comparison.GT).size());
-		Assert.assertEquals(2, statDAO.getAllStatsByGamesPlayed(200, Comparison.GTE).size());
-		Assert.assertEquals(2, statDAO.getAllStatsByGamesPlayed(200, Comparison.LT).size());
-		Assert.assertEquals(3, statDAO.getAllStatsByGamesPlayed(200, Comparison.LTE).size());
-		Assert.assertEquals(1, statDAO.getAllStatsByGamesPlayed(2000, Comparison.EQ).size());
-	}
 }

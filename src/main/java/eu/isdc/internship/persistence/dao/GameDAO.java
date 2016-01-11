@@ -1,4 +1,4 @@
-package eu.isdc.internship.db.dao;
+package eu.isdc.internship.persistence.dao;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,9 +9,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import eu.isdc.internship.application.DateFormatter;
-import eu.isdc.internship.db.model.Game;
-import eu.isdc.internship.db.model.GameType;
+import eu.isdc.internship.persistence.model.Game;
+import eu.isdc.internship.persistence.model.GameType;
+import eu.isdc.internship.utils.DateFormatter;
 
 /**
  * 

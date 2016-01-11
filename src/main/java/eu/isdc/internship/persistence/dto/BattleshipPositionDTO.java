@@ -1,61 +1,150 @@
-package eu.isdc.internship.db.dto;
+package eu.isdc.internship.persistence.dto;
 
+import java.util.List;
+
+/**
+ * The Class BattleshipPositionDTO.
+ */
 public class BattleshipPositionDTO {
-	private Long BT_Pos_id;
-	private int flagRotate;
-	private int flagReflX;
-	private int flagReflY;
+
+	private Long battleshipPositionId;
 	private int translateX;
 	private int translateY;
-	private StartConfigDTO startConfig;
-	private AvailableBattleshipDTO av_BT;
-	
-	public Long getBT_Pos_id() {
-		return BT_Pos_id;
+	private Long startConfigId;
+	private Long availableBattleshipId;
+	private List<TransformationDTO> transformations;
+	private List<OccupiedPositionDTO> occupiedPositions;
+
+	/**
+	 * Gets the battleship position id.
+	 *
+	 * @return the battleship position id
+	 */
+	public Long getBattleshipPositionId() {
+		return battleshipPositionId;
 	}
-	public void setBT_Pos_id(Long bT_Pos_id) {
-		BT_Pos_id = bT_Pos_id;
+
+	/**
+	 * Sets the battleship position id.
+	 *
+	 * @param battleshipPositionId
+	 *            the new battleship position id
+	 */
+	public void setBattleshipPositionId(Long battleshipPositionId) {
+		this.battleshipPositionId = battleshipPositionId;
 	}
-	public int getFlagRotate() {
-		return flagRotate;
-	}
-	public void setFlagRotate(int flagRotate) {
-		this.flagRotate = flagRotate;
-	}
-	public int getFlagReflX() {
-		return flagReflX;
-	}
-	public void setFlagReflX(int flagReflX) {
-		this.flagReflX = flagReflX;
-	}
-	public int getFlagReflY() {
-		return flagReflY;
-	}
-	public void setFlagReflY(int flagReflY) {
-		this.flagReflY = flagReflY;
-	}
+
+	/**
+	 * Gets the translate x.
+	 *
+	 * @return the translate x
+	 */
 	public int getTranslateX() {
 		return translateX;
 	}
+
+	/**
+	 * Sets the translate x.
+	 *
+	 * @param translateX
+	 *            the new translate x
+	 */
 	public void setTranslateX(int translateX) {
 		this.translateX = translateX;
 	}
+
+	/**
+	 * Gets the translate y.
+	 *
+	 * @return the translate y
+	 */
 	public int getTranslateY() {
 		return translateY;
 	}
+
+	/**
+	 * Sets the translate y.
+	 *
+	 * @param translateY
+	 *            the new translate y
+	 */
 	public void setTranslateY(int translateY) {
 		this.translateY = translateY;
 	}
-	public StartConfigDTO getStartConfig() {
-		return startConfig;
+
+	/**
+	 * Gets the start config id.
+	 *
+	 * @return the start config id
+	 */
+	public Long getStartConfigId() {
+		return startConfigId;
 	}
-	public void setStartConfig(StartConfigDTO startConfig) {
-		this.startConfig = startConfig;
+
+	/**
+	 * Sets the start config id.
+	 *
+	 * @param startConfigId
+	 *            the new start config id
+	 */
+	public void setStartConfigId(Long startConfigId) {
+		this.startConfigId = startConfigId;
 	}
-	public AvailableBattleshipDTO getAv_BT() {
-		return av_BT;
+
+	/**
+	 * Gets the available battleship id.
+	 *
+	 * @return the available battleship id
+	 */
+	public Long getAvailableBattleshipId() {
+		return availableBattleshipId;
 	}
-	public void setAv_BT(AvailableBattleshipDTO av_BT) {
-		this.av_BT = av_BT;
+
+	/**
+	 * Sets the available battleship id.
+	 *
+	 * @param availableBattleshipId
+	 *            the new available battleship id
+	 */
+	public void setAvailableBattleshipId(Long availableBattleshipId) {
+		this.availableBattleshipId = availableBattleshipId;
+	}
+
+	/**
+	 * Gets the transformations.
+	 *
+	 * @return the transformations
+	 */
+	public List<TransformationDTO> getTransformations() {
+		return transformations;
+	}
+
+	/**
+	 * Sets the transformations.
+	 *
+	 * @param transformations
+	 *            the new transformations
+	 */
+	public void setTransformations(List<TransformationDTO> transformations) {
+		this.transformations = transformations;
+	}
+
+	/**
+	 * Gets the occupied positions.
+	 *
+	 * @return the occupied positions
+	 */
+	public List<OccupiedPositionDTO> getOccupiedPositions() {
+		return occupiedPositions;
+	}
+
+	/**
+	 * Sets the occupied positions.
+	 *
+	 * @param occupiedPositions
+	 *            the new occupied positions
+	 */
+	public void setOccupiedPositions(List<OccupiedPositionDTO> occupiedPositions) {
+		this.occupiedPositions = occupiedPositions;
 	}
 }

@@ -29,7 +29,7 @@ $(document).ready(function() {
 	//     alert($(response).find("#message").text());
 	//    } else {
 	//     alert("Welcome!");
-	//     top.location="http://localhost:8080/battleships/home";
+	//     top.location=window.baseUrl+"/home";
 	//    }
 	    alert(response);
 	   },

@@ -1,0 +1,6 @@
+<div class="chatWindow box transparent-black-background">
+	<p class="partner">Chat with {{friend.name}}</p>
+	<textarea show-tail readonly class="conversation-log">{{formatConversationLog(friend.conversationLog)}}</textarea>
+	<input type="text" ng-model="message" ng-keyup="$event.keyCode == 13 && sendMessage()">
+	<a href="javascript:;" class="button submit" ng-click="sendMessage()">Send</a>
+</div>

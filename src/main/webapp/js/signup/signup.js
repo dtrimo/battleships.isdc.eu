@@ -12,7 +12,6 @@ requirejs.config({
 
 
 require(['jquery','alertManager'],function($, AlertManager){
-	
 	var alertManager;
 	
 	var focusFirstInputField = function(){

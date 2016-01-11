@@ -1,40 +1,36 @@
-package eu.isdc.internship.db.adapters;
+package eu.isdc.internship.persistence.adapters;
 
 import org.springframework.stereotype.Component;
 
-import eu.isdc.internship.db.dto.*;
-import eu.isdc.internship.db.model.*;
+import eu.isdc.internship.persistence.dto.PositionDTO;
+import eu.isdc.internship.persistence.model.Position;
 
 @Component
-public class PositionAdapter extends GenericAdapter<Position,PositionDTO>{
-	
+public class PositionAdapter extends GenericAdapter<Position, PositionDTO> {
+
 	@Override
 	public Position toModel(PositionDTO dto) {
-		if(dto==null) {
+		if (dto == null) {
 			return null;
 		}
 		Position pos = new Position();
-		pos.setPosition_id(dto.getPosition_id());
+		pos.setPositionId(dto.getPositionId());
 		pos.setX(dto.getX());
 		pos.setY(dto.getY());
-		
 		return pos;
 	}
 
 	@Override
 	public PositionDTO toDTO(Position model) {
-		if(model == null) {
+		if (model == null) {
 			return null;
 		}
 		PositionDTO dto = new PositionDTO();
-		dto.setPosition_id(model.getPosition_id());
+		dto.setPositionId(model.getPositionId());
 		dto.setX(model.getX());
 		dto.setY(model.getY());
-
+		dto.setBattleshipModelId(model.getBattleshipModel().getModelId());
 		return dto;
 	}
-	
-	
 
-	
 }

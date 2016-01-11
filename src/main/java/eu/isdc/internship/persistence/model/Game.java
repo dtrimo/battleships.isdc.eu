@@ -1,4 +1,4 @@
-package eu.isdc.internship.db.model;
+package eu.isdc.internship.persistence.model;
 
 import java.util.Date;
 import java.util.List;
@@ -19,50 +19,86 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+/**
+ * The Class Game.
+ */
 @Entity
 @Table(name = "GAMES")
 public class Game {
 
+	/** The game id. */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "GAME_ID", nullable = false)
-	private Long game_id;
+	@Column(name = "game_id", nullable = false)
+	private Long gameId;
 
+	/** The date. */
 	@Temporal(TemporalType.DATE)
-	@Column(name = "PLAYING_DATE", nullable = false, length = 10)
+	@Column(name = "playing_date", nullable = false, length = 10)
 	private Date date;
-	
-	@ManyToOne //n-1 cu GameType
+
+	/** The game type. */
+	@ManyToOne
 	@JoinColumn(name = "game_type_id")
 	private GameType gameType;
 
-	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY, orphanRemoval = true)	// 1-n cu StartConfig
+	/** The start configs. */
+	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY, orphanRemoval = true)
 	@Cascade(value = CascadeType.ALL)
 	private List<StartConfig> startConfigs;
-	
-	@OneToMany(mappedBy = "game",fetch=FetchType.LAZY, orphanRemoval = true)	// 1-n cu Moves
+
+	/** The moves. */
+	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY, orphanRemoval = true)
 	@Cascade(value = CascadeType.ALL)
 	private List<Move> moves;
 
-	public Game(){}
-	public Game(Date d){
-		this.date=d;		
-	}
+	/** The winner. */
+	@ManyToOne
+	@JoinColumn(name = "winner_user_id")
+	private User winner;
+
+	/** The finished. */
+	@Column(name = "finished")
+	private boolean finished;
+
 	/**
+	 * Instantiates a new game.
+	 */
+	public Game() {
+	}
+
+	/**
+	 * Instantiates a new game.
+	 *
+	 * @param date
+	 *            the date
+	 */
+	public Game(Date date) {
+		this.date = date;
+	}
+
+	/**
+	 * Gets the game id.
+	 *
 	 * @return the game_id
 	 */
-	public Long getGame_id() {
-		return game_id;
+	public Long getGameId() {
+		return gameId;
 	}
 
 	/**
-	 * @param game_id the game_id to set
+	 * Sets the game id.
+	 *
+	 * @param gameId
+	 *            the new game id
 	 */
-	public void setGame_id(Long game_id) {
-		this.game_id = game_id;
+	public void setGameId(Long gameId) {
+		this.gameId = gameId;
 	}
 
 	/**
+	 * Gets the date.
+	 *
 	 * @return the date
 	 */
 	public Date getDate() {
@@ -70,13 +106,18 @@ public class Game {
 	}
 
 	/**
-	 * @param date the date to set
+	 * Sets the date.
+	 *
+	 * @param date
+	 *            the date to set
 	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
 	/**
+	 * Gets the start configs.
+	 *
 	 * @return the startConfigs
 	 */
 	public List<StartConfig> getStartConfigs() {
@@ -84,13 +125,18 @@ public class Game {
 	}
 
 	/**
-	 * @param startConfigs the startConfigs to set
+	 * Sets the start configs.
+	 *
+	 * @param startConfigs
+	 *            the startConfigs to set
 	 */
 	public void setStartConfigs(List<StartConfig> startConfigs) {
 		this.startConfigs = startConfigs;
 	}
 
 	/**
+	 * Gets the moves.
+	 *
 	 * @return the moves
 	 */
 	public List<Move> getMoves() {
@@ -98,23 +144,70 @@ public class Game {
 	}
 
 	/**
-	 * @param moves the moves to set
+	 * Sets the moves.
+	 *
+	 * @param moves
+	 *            the moves to set
 	 */
 	public void setMoves(List<Move> moves) {
 		this.moves = moves;
 	}
+
+	/**
+	 * Gets the game type.
+	 *
+	 * @return the game type
+	 */
 	public GameType getGameType() {
 		return gameType;
 	}
+
+	/**
+	 * Sets the game type.
+	 *
+	 * @param gameType
+	 *            the new game type
+	 */
 	public void setGameType(GameType gameType) {
 		this.gameType = gameType;
-	}	
-	
-//	public Long getGameTypeId() {
-//		return gameType.getGame_type_id();
-//	}
-//	
-//	public void setGameTypeId(Long id) {
-//		this.gameType.setGame_type_id(id);
-//	}
+	}
+
+	/**
+	 * Gets the winner.
+	 *
+	 * @return the winner
+	 */
+	public User getWinner() {
+		return winner;
+	}
+
+	/**
+	 * Sets the winner.
+	 *
+	 * @param winner
+	 *            the new winner
+	 */
+	public void setWinner(User winner) {
+		this.winner = winner;
+	}
+
+	/**
+	 * Checks if is finished.
+	 *
+	 * @return true, if is finished
+	 */
+	public boolean isFinished() {
+		return finished;
+	}
+
+	/**
+	 * Sets the finished.
+	 *
+	 * @param finished
+	 *            the new finished
+	 */
+	public void setFinished(boolean finished) {
+		this.finished = finished;
+	}
+
 }

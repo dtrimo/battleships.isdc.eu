@@ -1,34 +1,34 @@
-package eu.isdc.internship.db.adapters;
+package eu.isdc.internship.persistence.adapters;
 
 import org.springframework.stereotype.Component;
 
-import eu.isdc.internship.db.dto.FriendDTO;
-import eu.isdc.internship.db.model.Friend;
+import eu.isdc.internship.persistence.dto.FriendDTO;
+import eu.isdc.internship.persistence.model.Friendship;
 
 @Component
-public class FriendAdapter extends GenericAdapter<Friend,FriendDTO> {
+public class FriendAdapter extends GenericAdapter<Friendship,FriendDTO> {
 
 	@Override
-	public Friend toModel(FriendDTO dto) {
+	public Friendship toModel(FriendDTO dto) {
 		if (dto==null){
 			return null;
 		}
-		Friend fr=new Friend();
+		Friendship fr=new Friendship();
 //		fr.setUser1(dto.getUser1());
 //		fr.setUser2(dto.getUser2());
-		fr.setFriendship_id(dto.getFriendship_id());
+		fr.setFriendshipId(dto.getFriendshipId());
 		return fr;
 	}
 
 	@Override
-	public FriendDTO toDTO(Friend model) {
+	public FriendDTO toDTO(Friendship model) {
 		if (model == null) {
 			return null;
 		}
 		FriendDTO dto = new FriendDTO();
 //		dto.setUser1(model.getUser1());
 //		dto.setUser2(model.getUser2());
-		dto.setFriendship_id(model.getFriendship_id());
+		dto.setFriendshipId(model.getFriendshipId());
 		return dto;
 	} 
 

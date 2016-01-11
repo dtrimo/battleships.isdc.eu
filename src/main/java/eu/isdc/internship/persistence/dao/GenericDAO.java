@@ -1,4 +1,4 @@
-package eu.isdc.internship.db.dao;
+package eu.isdc.internship.persistence.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

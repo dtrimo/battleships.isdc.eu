@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import eu.isdc.internship.beans.BattleshipModelBean;
-import eu.isdc.internship.db.adapters.GenericAdapter;
-import eu.isdc.internship.db.dto.BattleshipModelDTO;
+import eu.isdc.internship.persistence.adapters.GenericAdapter;
+import eu.isdc.internship.persistence.dto.BattleshipModelDTO;
 
 @Component("battleshipModelBeanAdapter")
 public class BattleshipModelAdapter extends GenericAdapter<BattleshipModelBean, BattleshipModelDTO>{
@@ -20,7 +20,7 @@ public class BattleshipModelAdapter extends GenericAdapter<BattleshipModelBean, 
 		}
 		BattleshipModelBean bean = new BattleshipModelBean();
 		bean.setCells(positionAdapter.toModel(dto.getPositions()));
-		bean.setBattleshipModelId(dto.getModel_id());
+		bean.setBattleshipModelId(dto.getModelId());
 		return bean;
 	}
 

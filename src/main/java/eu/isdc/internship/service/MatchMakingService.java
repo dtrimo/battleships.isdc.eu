@@ -7,5 +7,6 @@ import eu.isdc.internship.exception.MatchMakingException;
 public interface MatchMakingService {
 
 	GameRequestResponse requestGame(GameRequest gameRequest) throws MatchMakingException;
-	
+
+	void cancelGameRequest(GameRequest gameRequest);
 }

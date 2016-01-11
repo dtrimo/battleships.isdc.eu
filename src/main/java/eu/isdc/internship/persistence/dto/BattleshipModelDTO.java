@@ -1,35 +1,71 @@
-package eu.isdc.internship.db.dto;
+package eu.isdc.internship.persistence.dto;
 
 import java.util.List;
 
+/**
+ * The Class BattleshipModelDTO.
+ */
 public class BattleshipModelDTO {
-	  private Long model_id;
-	  private String name;
-	  private List<PositionDTO> positions;
-	  private List<AvailableBattleshipDTO> Av_BT;
 
-	public Long getModel_id() {
-		return model_id;
+	private Long modelId;
+	private String name;
+	private List<PositionDTO> positions;
+
+	/**
+	 * Gets the model id.
+	 *
+	 * @return the model id
+	 */
+	public Long getModelId() {
+		return modelId;
 	}
-	public void setModel_id(Long model_id) {
-		this.model_id = model_id;
+
+	/**
+	 * Sets the model id.
+	 *
+	 * @param modelId
+	 *            the new model id
+	 */
+	public void setModelId(Long modelId) {
+		this.modelId = modelId;
 	}
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
+
+	/**
+	 * Sets the name.
+	 *
+	 * @param name
+	 *            the new name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	/**
+	 * Gets the positions.
+	 *
+	 * @return the positions
+	 */
 	public List<PositionDTO> getPositions() {
 		return positions;
 	}
+
+	/**
+	 * Sets the positions.
+	 *
+	 * @param positions
+	 *            the new positions
+	 */
 	public void setPositions(List<PositionDTO> positions) {
 		this.positions = positions;
 	}
-	public List<AvailableBattleshipDTO> getAv_BT() {
-		return Av_BT;
-	}
-	public void setAv_BT(List<AvailableBattleshipDTO> av_BT) {
-		Av_BT = av_BT;
-	}
+
 }

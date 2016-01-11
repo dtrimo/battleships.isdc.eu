@@ -1,42 +1,67 @@
-package eu.isdc.internship.db.dto;
+package eu.isdc.internship.persistence.dto;
 
-import java.util.List;
-
+/**
+ * The Class AvailableBattleshipDTO.
+ */
 public class AvailableBattleshipDTO {
-	private Long Av_BT_id;	
-	private int count;
+
+	private Long availableBattleshipId;
 	private BattleshipModelDTO model;
-	private List<BattleshipPositionDTO> BT_Positions;
 	private Long gameTypeId;
-	
-	
-	public Long getAv_BT_id() {
-		return Av_BT_id;
+
+	/**
+	 * Gets the available battleship id.
+	 *
+	 * @return the available battleship id
+	 */
+	public Long getAvailableBattleshipId() {
+		return availableBattleshipId;
 	}
-	public void setAv_BT_id(Long av_BT_id) {
-		Av_BT_id = av_BT_id;
+
+	/**
+	 * Sets the available battleship id.
+	 *
+	 * @param availableBattleshipId
+	 *            the new available battleship id
+	 */
+	public void setAvailableBattleshipId(Long availableBattleshipId) {
+		this.availableBattleshipId = availableBattleshipId;
 	}
-	public int getCount() {
-		return count;
-	}
-	public void setCount(int count) {
-		this.count = count;
-	}
+
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
 	public BattleshipModelDTO getModel() {
 		return model;
 	}
+
+	/**
+	 * Sets the model.
+	 *
+	 * @param model
+	 *            the new model
+	 */
 	public void setModel(BattleshipModelDTO model) {
 		this.model = model;
 	}
-	public List<BattleshipPositionDTO> getBT_Positions() {
-		return BT_Positions;
-	}
-	public void setBT_Positions(List<BattleshipPositionDTO> bT_Positions) {
-		BT_Positions = bT_Positions;
-	}
+
+	/**
+	 * Gets the game type id.
+	 *
+	 * @return the game type id
+	 */
 	public Long getGameTypeId() {
 		return gameTypeId;
 	}
+
+	/**
+	 * Sets the game type id.
+	 *
+	 * @param gameTypeId
+	 *            the new game type id
+	 */
 	public void setGameTypeId(Long gameTypeId) {
 		this.gameTypeId = gameTypeId;
 	}

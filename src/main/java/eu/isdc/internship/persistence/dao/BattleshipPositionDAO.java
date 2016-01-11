@@ -1,11 +1,11 @@
-package eu.isdc.internship.db.dao;
+package eu.isdc.internship.persistence.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import eu.isdc.internship.db.model.AvailableBattleship;
-import eu.isdc.internship.db.model.BattleshipPosition;
-import eu.isdc.internship.db.model.StartConfig;
+import eu.isdc.internship.persistence.model.AvailableBattleship;
+import eu.isdc.internship.persistence.model.BattleshipPosition;
+import eu.isdc.internship.persistence.model.StartConfig;
 
 /**
  * 
@@ -26,14 +26,14 @@ public class BattleshipPositionDAO extends GenericDAO<BattleshipPosition, Long> 
 	 */
 	@Override
 	public BattleshipPosition delete(BattleshipPosition position) {
-		AvailableBattleship avb = position.getAv_BT();
+		AvailableBattleship avb = position.getAvailableBattleship();
 		if (avb != null) {
-			avb.getBT_Positions().remove(position);
+			avb.getBattleshipPositions().remove(position);
 			avbDAO.save(avb);
 		}
 		StartConfig config = position.getStartConfig();
 		if (config != null) {
-			config.getBT_Positions().remove(position);
+			config.getBattleshipPositions().remove(position);
 			configDAO.save(config);
 		}
 		hibernateTemplate.delete(position);

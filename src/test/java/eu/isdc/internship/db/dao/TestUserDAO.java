@@ -15,10 +15,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import eu.isdc.internship.db.model.Move;
-import eu.isdc.internship.db.model.StartConfig;
-import eu.isdc.internship.db.model.Statistics;
-import eu.isdc.internship.db.model.User;
+import eu.isdc.internship.persistence.dao.MoveDAO;
+import eu.isdc.internship.persistence.dao.StartConfigDAO;
+import eu.isdc.internship.persistence.dao.StatisticsDAO;
+import eu.isdc.internship.persistence.dao.UserDAO;
+import eu.isdc.internship.persistence.model.Move;
+import eu.isdc.internship.persistence.model.StartConfig;
+import eu.isdc.internship.persistence.model.Statistics;
+import eu.isdc.internship.persistence.model.User;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -119,14 +123,14 @@ public class TestUserDAO{
 		ArrayList<Long> ids = new ArrayList<Long>();
 		List<User> results = userDAO.readAll();
 		
-		ids.add(results.get(0).getUser_id());
+		ids.add(results.get(0).getUserId());
 		ids.add(Long.valueOf(2));
 		
 		results = userDAO.getAllUsersByIds(ids);
 		Assert.assertEquals(1, results.size());
 		
 		ids.clear();
-		ids.add(results.get(0).getUser_id() + 1);
+		ids.add(results.get(0).getUserId() + 1);
 		results = userDAO.getAllUsersByIds(ids);
 		Assert.assertEquals(0, results.size());
 	}
@@ -138,9 +142,9 @@ public class TestUserDAO{
 		Assert.assertEquals(1, results.size());
 		
 		User user = results.get(0);
-		Assert.assertEquals(user.getName(), userDAO.read(user.getUser_id()).getName());
-		Assert.assertEquals(user.getBirthDate(), userDAO.read(user.getUser_id()).getBirthDate());
-		Assert.assertEquals(user.getPassword(), userDAO.read(user.getUser_id()).getPassword());
+		Assert.assertEquals(user.getName(), userDAO.read(user.getUserId()).getName());
+		Assert.assertEquals(user.getBirthDate(), userDAO.read(user.getUserId()).getBirthDate());
+		Assert.assertEquals(user.getPassword(), userDAO.read(user.getUserId()).getPassword());
 	}
 
 	@Test
@@ -149,15 +153,15 @@ public class TestUserDAO{
 		List<User> results = userDAO.readAll();
 		Assert.assertEquals(1, results.size());
 		User user1 = results.get(0);		
-		Assert.assertSame(user1, userDAO.read(user1.getUser_id()));
+		Assert.assertSame(user1, userDAO.read(user1.getUserId()));
 		
 		User user2 = new User("user2", "pass2", new Date());
 		results = userDAO.readAll();
 		userDAO.save(user2);
 		Assert.assertEquals(1, results.size());
-		Assert.assertSame(user1, userDAO.read(user1.getUser_id()));
-		Assert.assertSame(user2, userDAO.read(user2.getUser_id()));
-		Assert.assertNotSame(user1, userDAO.read(user2.getUser_id()));
+		Assert.assertSame(user1, userDAO.read(user1.getUserId()));
+		Assert.assertSame(user2, userDAO.read(user2.getUserId()));
+		Assert.assertNotSame(user1, userDAO.read(user2.getUserId()));
     }
 	
 	@Test
@@ -181,6 +185,6 @@ public class TestUserDAO{
 		user1.setName("new name");
 		
 		userDAO.save(user1);
-		Assert.assertEquals("new name", userDAO.read(user1.getUser_id()).getName());
+		Assert.assertEquals("new name", userDAO.read(user1.getUserId()).getName());
 	}
 }

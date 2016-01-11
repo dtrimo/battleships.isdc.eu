@@ -1,4 +1,4 @@
-package eu.isdc.internship.db.dao;
+package eu.isdc.internship.persistence.dao;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import eu.isdc.internship.db.model.GameType;
+import eu.isdc.internship.persistence.model.GameType;
 
 @Repository
 public class GameTypeDAO extends GenericDAO<GameType, Long> {

@@ -1,7 +1,13 @@
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<c:set var="baseUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.localPort}${pageContext.request.contextPath}"/>
+
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<c:set var="baseUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.localPort}${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
+	<script type="text/javascript">window.baseUrl="<c:out value="${baseUrl}"/>";</script>
 	<title>Log In</title>
 	<script type="text/javascript" src="js/require.js" data-main="js/login/login"></script>
 	<link rel="stylesheet" type="text/css" href="css/common-styles.css">

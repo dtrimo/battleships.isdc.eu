@@ -1,0 +1,46 @@
+.clearfix{
+	display:block;
+}
+
+.board-container{
+	float:none;
+}
+
+div.boards{
+	margin-left:10%;
+	margin-right:10%;
+	margin-top:20px;
+	position:relative;
+	color : bisque;
+}
+
+#opponent-board{
+	float:left;
+}
+
+div.title{
+	text-align:center;
+	padding-bottom:10px;
+	padding-top:10px;
+	font-size:20px;
+	margin-bottom:10px;
+}
+
+div.clock{
+	position:absolute;
+	display:inline-block;
+	width:120px;
+	top:20%;
+	left:calc(50% - 62px);
+	padding-left:5px;
+	padding-right:5px;
+}
+
+div.clock > span {
+	display:block;
+	text-align:center;
+}
+
+div.clock > span.title{
+	margin-top:15px;
+}

@@ -1,10 +1,10 @@
-package eu.isdc.internship.db.adapters;
+package eu.isdc.internship.persistence.adapters;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import eu.isdc.internship.db.dto.BattleshipModelDTO;
-import eu.isdc.internship.db.model.BattleshipModel;
+import eu.isdc.internship.persistence.dto.BattleshipModelDTO;
+import eu.isdc.internship.persistence.model.BattleshipModel;
 
 @Component
 public class BattleshipModelAdapter extends GenericAdapter<BattleshipModel,BattleshipModelDTO>{
@@ -18,7 +18,7 @@ public class BattleshipModelAdapter extends GenericAdapter<BattleshipModel,Battl
 			return null;
 		}
 		BattleshipModel battleshipModel = new BattleshipModel();
-		battleshipModel.setModel_id(dto.getModel_id());
+		battleshipModel.setModelId(dto.getModelId());
 		battleshipModel.setName(dto.getName());
 		
 		battleshipModel.setPositions(positionAdapter.toModel(dto.getPositions()));
@@ -31,7 +31,7 @@ public class BattleshipModelAdapter extends GenericAdapter<BattleshipModel,Battl
 			return null;
 		}
 		BattleshipModelDTO dto = new BattleshipModelDTO();
-		dto.setModel_id(model.getModel_id());
+		dto.setModelId(model.getModelId());
 		dto.setName(model.getName());
 		
 		dto.setPositions(positionAdapter.toDTO(model.getPositions()));

@@ -14,10 +14,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import eu.isdc.internship.db.model.Game;
-import eu.isdc.internship.db.model.Move;
-import eu.isdc.internship.db.model.StartConfig;
-import eu.isdc.internship.db.model.User;
+import eu.isdc.internship.persistence.dao.GameDAO;
+import eu.isdc.internship.persistence.dao.MoveDAO;
+import eu.isdc.internship.persistence.dao.StartConfigDAO;
+import eu.isdc.internship.persistence.dao.UserDAO;
+import eu.isdc.internship.persistence.model.Game;
+import eu.isdc.internship.persistence.model.Move;
+import eu.isdc.internship.persistence.model.StartConfig;
+import eu.isdc.internship.persistence.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/test-beans.xml")
@@ -55,7 +59,7 @@ public class TestMoveDAO {
 		move2.setGame(game);
 		
 		StartConfig conf = new StartConfig();
-		conf.setMove(moveList);
+		conf.setMoves(moveList);
 		move1.setStartConfig(conf);
 		move2.setStartConfig(conf);
 		
@@ -124,7 +128,7 @@ public class TestMoveDAO {
 		Assert.assertEquals(2, moveDAO.readAll().size());
 		Assert.assertEquals(1, confDAO.readAll().size());
 		StartConfig conf = confDAO.readAll().get(0);
-		List<Move> moves = conf.getMove();
+		List<Move> moves = conf.getMoves();
 		Assert.assertEquals(2, moves.size());
 		Assert.assertEquals(2, moves.get(0).getX());
 		Assert.assertEquals(3, moves.get(0).getY());
@@ -137,11 +141,11 @@ public class TestMoveDAO {
 		moveDAO.delete(moveDAO.readAll().get(1));
 		Assert.assertEquals(1, moveDAO.readAll().size());
 		Assert.assertEquals(1, confDAO.readAll().size());	
-		Assert.assertEquals(1, confDAO.readAll().get(0).getMove().size());
+		Assert.assertEquals(1, confDAO.readAll().get(0).getMoves().size());
 		
 		moveDAO.delete(moveDAO.readAll().get(0));
 		Assert.assertEquals(0, moveDAO.readAll().size());
 		Assert.assertEquals(1, confDAO.readAll().size());	
-		Assert.assertEquals(0, confDAO.readAll().get(0).getMove().size());
+		Assert.assertEquals(0, confDAO.readAll().get(0).getMoves().size());
 	}
 }

@@ -13,42 +13,44 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import eu.isdc.internship.db.model.BattleshipModel;
-import eu.isdc.internship.db.model.Position;
+import eu.isdc.internship.persistence.dao.BattleshipModelDAO;
+import eu.isdc.internship.persistence.dao.PositionDAO;
+import eu.isdc.internship.persistence.model.BattleshipModel;
+import eu.isdc.internship.persistence.model.Position;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/test-beans.xml")
-@TransactionConfiguration(transactionManager="transactionManager")
+@TransactionConfiguration(transactionManager = "transactionManager")
 public class TestPositionDAO {
 
 	@Autowired
 	private PositionDAO positionDAO;
-	
+
 	@Autowired
 	private BattleshipModelDAO modelDAO;
-	
+
 	@Before
 	public void initTests() {
 		Position pos1 = new Position(1, 2);
 		Position pos2 = new Position(10, 20);
-		
+
 		BattleshipModel model = new BattleshipModel("model");
-		pos1.setModel(model);
-		pos2.setModel(model);
+		pos1.setBattleshipModel(model);
+		pos2.setBattleshipModel(model);
 		ArrayList<Position> posList = new ArrayList<Position>();
 		posList.add(pos1);
 		posList.add(pos2);
 		model.setPositions(posList);
-		
+
 		modelDAO.save(model);
 	}
-	
+
 	@Test
 	@Transactional
 	public void testBattleshipModelMapping() {
 		Assert.assertEquals(2, positionDAO.readAll().size());
 		Assert.assertEquals(1, modelDAO.readAll().size());
-		
+
 		BattleshipModel model = modelDAO.readAll().get(0);
 		List<Position> posList = model.getPositions();
 		Assert.assertEquals(2, posList.size());
@@ -56,7 +58,7 @@ public class TestPositionDAO {
 		Assert.assertEquals(2, posList.get(0).getY());
 		Assert.assertEquals(10, posList.get(1).getX());
 		Assert.assertEquals(20, posList.get(1).getY());
-		
+
 		positionDAO.delete(posList.get(0));
 		Assert.assertEquals(1, modelDAO.readAll().size());
 		Assert.assertEquals(1, positionDAO.readAll().size());

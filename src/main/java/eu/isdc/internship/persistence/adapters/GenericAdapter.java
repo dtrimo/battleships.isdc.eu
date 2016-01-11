@@ -1,4 +1,4 @@
-package eu.isdc.internship.db.adapters;
+package eu.isdc.internship.persistence.adapters;
 
 import java.util.ArrayList;
 import java.util.Collection;

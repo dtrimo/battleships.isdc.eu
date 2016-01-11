@@ -4,8 +4,8 @@ public class GameBean {
 
 	private Integer gameId;
 	private Integer gametypeId;
-	private StartConfig user1Config;
-	private StartConfig user2Config;
+	private StartConfigBean user1Config;
+	private StartConfigBean user2Config;
 
 	public Integer getGameId() {
 		return gameId;
@@ -23,19 +23,19 @@ public class GameBean {
 		this.gametypeId = gametypeId;
 	}
 
-	public StartConfig getUser1Config() {
+	public StartConfigBean getUser1Config() {
 		return user1Config;
 	}
 
-	public void setUser1Config(StartConfig user1Config) {
+	public void setUser1Config(StartConfigBean user1Config) {
 		this.user1Config = user1Config;
 	}
 
-	public StartConfig getUser2Config() {
+	public StartConfigBean getUser2Config() {
 		return user2Config;
 	}
 
-	public void setUser2Config(StartConfig user2Config) {
+	public void setUser2Config(StartConfigBean user2Config) {
 		this.user2Config = user2Config;
 	}
 

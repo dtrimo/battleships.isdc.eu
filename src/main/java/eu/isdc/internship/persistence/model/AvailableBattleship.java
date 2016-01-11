@@ -1,4 +1,4 @@
-package eu.isdc.internship.db.model;
+package eu.isdc.internship.persistence.model;
 
 import java.util.List;
 
@@ -16,81 +16,111 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+/**
+ * The class AvailableBattleship represents a battleship model that is available
+ * in a certain game type (it is the association class between battleship models
+ * and game types). If a model appears multiple times in a game type, each
+ * occurrence should correspond to a separate AvailableBattleship entry.
+ */
 @Entity
 @Table(name = "AVAILABLE_BATTLESHIPS")
 public class AvailableBattleship {
 
+	/** The available battleship id. */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "AV_BT_ID", nullable = false)
-	private Long Av_BT_id;
+	@Column(name = "available_battleship_id", nullable = false)
+	private Long availableBattleshipId;
 
-	@Column(name = "BATTLESHIP_COUNT")
-	private int count;
+	/** The model. */
+	@ManyToOne
+	@JoinColumn(name = "battleship_model_id")
+	private BattleshipModel battleshipModel;
 
-	@ManyToOne //n-1 cu BT_Model 
-	@JoinColumn(name = "model_id")
-	private BattleshipModel model;
-
-	@OneToMany(mappedBy = "av_BT",fetch=FetchType.LAZY) //1-n cu BTPositions
+	/** The battleship positions. */
+	@OneToMany(mappedBy = "availableBattleship", fetch = FetchType.LAZY)
 	@Cascade(value = CascadeType.ALL)
-	private List<BattleshipPosition> BT_Positions;
-	
-	@ManyToOne //n-1 cu GameType
+	private List<BattleshipPosition> battleshipPositions;
+
+	/** The game type. */
+	@ManyToOne
 	@JoinColumn(name = "game_type_id")
 	private GameType gameType;
-	
-	public AvailableBattleship() {}
-	
-	public List<BattleshipPosition> getBT_Positions() {
-		return BT_Positions;
-	}
-	public void setBT_Positions(List<BattleshipPosition> bT_Positions) {
-		BT_Positions = bT_Positions;
+
+	/**
+	 * Gets the battleship positions.
+	 *
+	 * @return the battleship positions
+	 */
+	public List<BattleshipPosition> getBattleshipPositions() {
+		return battleshipPositions;
 	}
 
+	/**
+	 * Sets the battleship positions.
+	 *
+	 * @param battleshipPositions
+	 *            the new battleship positions
+	 */
+	public void setBattleshipPositions(List<BattleshipPosition> battleshipPositions) {
+		this.battleshipPositions = battleshipPositions;
+	}
+
+	/**
+	 * Gets the game type.
+	 *
+	 * @return the game type
+	 */
 	public GameType getGameType() {
 		return gameType;
 	}
 
+	/**
+	 * Sets the game type.
+	 *
+	 * @param gameType
+	 *            the new game type
+	 */
 	public void setGameType(GameType gameType) {
 		this.gameType = gameType;
 	}
 
-	public BattleshipModel getModel() {
-		return model;
-	}
-	public void setModel(BattleshipModel model) {
-		this.model = model;
-	}
 	/**
-	 * @return the av_BT_id
+	 * Gets the model.
+	 *
+	 * @return the model
 	 */
-	public Long getAv_BT_id() {
-		return Av_BT_id;
+	public BattleshipModel getBattleshipModel() {
+		return battleshipModel;
 	}
 
 	/**
-	 * @param av_BT_id
-	 *            the av_BT_id to set
+	 * Sets the model.
+	 *
+	 * @param model
+	 *            the new model
 	 */
-	public void setAv_BT_id(Long av_BT_id) {
-		Av_BT_id = av_BT_id;
+	public void setBattleshipModel(BattleshipModel model) {
+		this.battleshipModel = model;
 	}
 
 	/**
-	 * @return the count
+	 * Gets the available battleship id.
+	 *
+	 * @return the available battleship id
 	 */
-	public int getCount() {
-		return count;
+	public Long getAvailableBattleshipId() {
+		return availableBattleshipId;
 	}
 
 	/**
-	 * @param count
-	 *            the count to set
+	 * Sets the available battleship id.
+	 *
+	 * @param availableBattleshipId
+	 *            the new available battleship id
 	 */
-	public void setCount(int count) {
-		this.count = count;
+	public void setAvailableBattleshipId(Long availableBattleshipId) {
+		this.availableBattleshipId = availableBattleshipId;
 	}
 
 }

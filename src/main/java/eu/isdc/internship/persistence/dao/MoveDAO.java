@@ -1,11 +1,11 @@
-package eu.isdc.internship.db.dao;
+package eu.isdc.internship.persistence.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import eu.isdc.internship.db.model.Game;
-import eu.isdc.internship.db.model.Move;
-import eu.isdc.internship.db.model.User;
+import eu.isdc.internship.persistence.model.Game;
+import eu.isdc.internship.persistence.model.Move;
+import eu.isdc.internship.persistence.model.User;
 
 /**
  * 

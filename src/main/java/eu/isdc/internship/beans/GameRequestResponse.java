@@ -4,7 +4,6 @@ public class GameRequestResponse {
 
 	private Long gameId;
 	private GameRole gameRole;
-	
 	private String errorMsg;
 
 	public String getErrorMsg() {
@@ -14,6 +13,7 @@ public class GameRequestResponse {
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;
 	}
+
 	private Long startConfigId;
 
 	public Long getGameId() {
@@ -39,7 +39,5 @@ public class GameRequestResponse {
 	public void setStartConfigId(Long startConfigId) {
 		this.startConfigId = startConfigId;
 	}
-
-
 
 }

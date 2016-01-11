@@ -1,19 +1,35 @@
 define(['jquery','gameBoard'],function($,GameBoard){
 	
+	var dragging = false;
+	
+	var defaultSettings = {
+		bindDragDropHandler : true,
+		bindRightClickHandler : true,
+		bindMouseMoveHandler : true
+	};
+	
 	var GameBoardController = function(gameBoard){
 		this.gameBoard = gameBoard;
-	}
+	};
 	
-	GameBoardController.prototype.init = function(){
-		bindDroppableBoardHandler(this.gameBoard);
-		bindDraggableShipHandler(this.gameBoard);
-		bindRightClickHandler(this.gameBoard);
-		bindMouseMove(this.gameBoard);
-	}
+	GameBoardController.prototype.init = function(settings){
+		settings = settings || {};
+		settings = $.extend(true,{},defaultSettings, settings);
+		if (settings.bindDragDropHandler){
+			bindDroppableBoardHandler(this.gameBoard);
+			bindDraggableShipHandler(this.gameBoard);			
+		}
+		if (settings.bindRightClickHandler){
+			bindRightClickHandler(this.gameBoard);			
+		}
+		if (settings.bindMouseMoveHandler){
+			bindMouseMove(this.gameBoard);			
+		}
+	};
 	
 	GameBoardController.prototype.destroy = function(){
 		
-	}
+	};
 	
 	var bindRightClickHandler = function(gameBoard) {
 		gameBoard.board.$container.on("mousedown.gameboard", "." + gameBoard.board.shipClass,
@@ -26,7 +42,7 @@ define(['jquery','gameBoard'],function($,GameBoard){
 					$(document).trigger("shipRemoved.gameBoard",battleshipView);				
 				}
 			}); 
-	}
+	};
 
 	var bindDraggableShipHandler = function(gameBoard) {
 		gameBoard.board.$container.on('mouseover', function() {
@@ -35,7 +51,7 @@ define(['jquery','gameBoard'],function($,GameBoard){
 				revert : 'invalid',
 			})
 		});
-	}
+	};
 	
 	var computeDropOffset = function(x,y,cellHeight, cellWidth,
 			boardWidthInCells, boardHeightInCells,shipWidthInCells, shipHeightInCells){
@@ -56,7 +72,7 @@ define(['jquery','gameBoard'],function($,GameBoard){
 			x : pointX,
 			y : boardHeightInCells - pointY - shipHeightInCells
 		}
-	}
+	};
 	
 	var updateShadow = function (gameBoard, $divShip){
 		var $boardContainer = gameBoard.board.$container;
@@ -117,10 +133,13 @@ define(['jquery','gameBoard'],function($,GameBoard){
 		}	
 		
 		return dropOffset;
-	}
+	};
 	
 	var bindMouseMove = function(gameBoard){
 		var highlightCurrentShip = function(event){
+			if (dragging){
+				return;
+			}
 			var mouseX = event.pageX;
 			var mouseY = event.pageY;
 			var boardX = gameBoard.board.$container.offset().left;
@@ -139,7 +158,13 @@ define(['jquery','gameBoard'],function($,GameBoard){
 			}
 		}
 		gameBoard.board.$container.off("mousemove.gameBoard").on("mousemove.gameBoard",highlightCurrentShip);
-	}
+		$("body").on("mousemove.gameboard", function(event){
+			if (!gameBoard.board.$container.is(event.target) && 
+					gameBoard.board.$container.find(event.target).length == 0){
+				gameBoard.board.$container.find("."+gameBoard.board.shipClass).removeClass("hovered");				
+			}
+		});
+	};
 	
 	var addShipHandlers = function(gameBoard,battleshipView,dropOffsetX, dropOffsetY){
 		battleshipView.$divShip.draggable({
@@ -151,6 +176,10 @@ define(['jquery','gameBoard'],function($,GameBoard){
 					x : dropOffsetX,
 					y : dropOffsetY
 				});
+				dragging = true;
+			},
+			stop : function(){
+				dragging = false;
 			}
 		});
 	};
@@ -241,7 +270,7 @@ define(['jquery','gameBoard'],function($,GameBoard){
 				}
 			}
 		});
-	}
+	};
 	
 	return GameBoardController;
 	

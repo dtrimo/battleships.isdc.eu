@@ -12,8 +12,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import eu.isdc.internship.db.model.Friend;
-import eu.isdc.internship.db.model.User;
+import eu.isdc.internship.persistence.dao.FriendDAO;
+import eu.isdc.internship.persistence.dao.UserDAO;
+import eu.isdc.internship.persistence.model.Friendship;
+import eu.isdc.internship.persistence.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/test-beans.xml")
@@ -36,17 +38,17 @@ public class TestFriendDAO {
 		User user2 = new User("user2", "pass2", new Date());
 		User user3 = new User("user3", "pass3", new Date());
 		
-		Friend friend1 = new Friend(user1, user2);
-		Friend friend2 = new Friend(user3, user1);
+		Friendship friend1 = new Friendship(user1, user2);
+		Friendship friend2 = new Friendship(user3, user1);
 		friendDAO.save(friend1);
 		friendDAO.save(friend2);
 		
 		userDAO.save(user1);
-		userId1 = user1.getUser_id();
+		userId1 = user1.getUserId();
 		userDAO.save(user2);
-		userId2 = user2.getUser_id();
+		userId2 = user2.getUserId();
 		userDAO.save(user3);
-		userId3 = user3.getUser_id();
+		userId3 = user3.getUserId();
 	}
 	
 	@Test

@@ -2,28 +2,55 @@ package eu.isdc.internship.beans;
 
 import java.util.List;
 
-import eu.isdc.internship.db.dto.BattleshipPositionDTO;
+import eu.isdc.internship.persistence.dto.BattleshipPositionDTO;
 
 //The configuration of the ships of a user on the gameboard
-public class StartConfig {
+public class StartConfigBean {
 
-	private Integer userId;
-	private List<BattleshipPositionDTO> selectedPositions;
+	private Long userId;
+	private Long gameId;
+	private GameRole gameRole;
+	private Long startConfigId;
+	private List<BattleshipPositionBean> selectedPositions;
 
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-	public List<BattleshipPositionDTO> getSelectedPositions() {
+	public List<BattleshipPositionBean> getSelectedPositions() {
 		return selectedPositions;
 	}
 
-	public void setSelectedPositions(List<BattleshipPositionDTO> selectedPositions) {
+	public void setSelectedPositions(List<BattleshipPositionBean> selectedPositions) {
 		this.selectedPositions = selectedPositions;
+	}
+
+	public GameRole getGameRole() {
+		return gameRole;
+	}
+
+	public void setGameRole(GameRole gameRole) {
+		this.gameRole = gameRole;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public Long getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(Long gameId) {
+		this.gameId = gameId;
+	}
+
+	public Long getStartConfigId() {
+		return startConfigId;
+	}
+
+	public void setStartConfigId(Long startConfigId) {
+		this.startConfigId = startConfigId;
 	}
 
 }

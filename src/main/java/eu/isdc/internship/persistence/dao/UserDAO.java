@@ -1,4 +1,4 @@
-package eu.isdc.internship.db.dao;
+package eu.isdc.internship.persistence.dao;
 
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import eu.isdc.internship.db.model.User;
+import eu.isdc.internship.persistence.model.User;
 
 /**
  * 

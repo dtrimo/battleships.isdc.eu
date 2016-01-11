@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import eu.isdc.internship.beans.AvailableBattleshipModelBean;
-import eu.isdc.internship.db.adapters.GenericAdapter;
-import eu.isdc.internship.db.dto.AvailableBattleshipDTO;
-import eu.isdc.internship.db.dto.PositionDTO;
+import eu.isdc.internship.persistence.adapters.GenericAdapter;
+import eu.isdc.internship.persistence.dto.AvailableBattleshipDTO;
+import eu.isdc.internship.persistence.dto.PositionDTO;
 
 @Component("availableBattleshipBeanAdapter")
 public class AvailableBattleshipAdapter extends GenericAdapter<AvailableBattleshipModelBean, AvailableBattleshipDTO>{
@@ -23,7 +23,7 @@ public class AvailableBattleshipAdapter extends GenericAdapter<AvailableBattlesh
 			return null;
 		}
 		AvailableBattleshipModelBean bean = new AvailableBattleshipModelBean();
-		bean.setAvailableBattleshipModelId(dto.getAv_BT_id());
+		bean.setAvailableBattleshipModelId(dto.getAvailableBattleshipId());
 		bean.setBattleshipModel(battleshipModelAdapter.toModel(dto.getModel()));
 		bean.setGameTypeId(dto.getGameTypeId());
 		return bean;
